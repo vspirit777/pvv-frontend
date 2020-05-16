@@ -1,0 +1,36 @@
+{
+  "name": "hello-next",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node server.js",
+    "build": "next build",
+    "start": "NODE_ENV=production forever server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.2",
+    "intl": "^1.2.5",
+    "isomorphic-unfetch": "^3.0.0",
+    "jquery": "^3.3.1",
+    "material-ui": "^0.20.2",
+    "memory-cache": "^0.2.0",
+    "moment": "^2.22.2",
+    "next": "^8.0.1",
+    "react": "^16.4.2",
+    "react-avatar-editor": "^11.0.4",
+    "react-bootstrap": "^0.32.4",
+    "react-dom": "^16.4.2",
+    "react-facebook-auth": "^1.4.0",
+    "react-gtm-module": "^2.0.4",
+    "react-html-parser": "^2.0.2",
+    "react-image-gallery": "^0.8.12",
+    "react-image-lightbox": "^4.1.0",
+    "react-is": "^16.8.6",
+    "react-loading": "^2.0.3",
+    "react-mailchimp-subscribe": "^2.0.2"
+  }
+}

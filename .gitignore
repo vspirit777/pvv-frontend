@@ -1,0 +1,14 @@
+.next
+node_modules
+logs
+*.log
+logs.txt
+._logs.txt
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.history
+.idea
+.DS_Store
+.next.tar.gz
+static.tar.gz
