@@ -113,17 +113,17 @@ class Display extends SuperComponent {
           <div className="mgTop24">
             <img src={"/static/images/avatar/nhung-phung-phuotvivu.jpg"} className="staffImage"/>
             <h3>Nhung Phung</h3>
-            <p className="mgBottom24"><i>FOUNDER & SALES DIRECTOR</i></p>
+            <p className="mgBottom24"><i>FOUNDER</i></p>
             <p>Là founder của Phuotvivu, Nhung yêu thích viết lách và chia sẻ những câu chuyện du lịch thú vị, không ngừng sáng tạo trong viết và tìm kiếm những điểm đến, tour độc đáo cho bạn đọc và khuyến khích mọi người du lịch khám phá bản thân, thế giới .Những nơi yêu thích của Nhung là Bali, Khao Sok, Hà Lan, Nhật Bản và Bắc Mỹ…</p>
             <div className="clearBoth"/>
           </div>
-          <div className="mgTop24">
+          {/* <div className="mgTop24">
             <img src={"/static/images/avatar/marnick-phuotvivu.jpg"}  className="staffImage"/>
             <h3>Marnick Schoonderwoerd</h3>
             <p className="mgBottom24"><i>MARKETING DIRECTOR</i></p>
             <p>Sau 5 năm làm việc trong lĩnh vực marketing online, anh nghỉ việc để du lịch khám phá thế giới. Đã đến 34 đất nước trải dài khắp các châu từ Châu Phi, Nam Mỹ, Bắc Mỹ, Châu Âu, Châu Úc và Châu Á, hiện tại anh đang gắn bó với Việt Nam và là giám đốc Marketing của Phuotvivu.</p>
             <div className="clearBoth"/>
-          </div>
+          </div> */}
 
 
         </div>

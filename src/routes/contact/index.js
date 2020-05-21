@@ -136,7 +136,7 @@ class Display extends SuperComponent {
 
           <div className='col-sm-6 pdLeft8 pdRight8'>
             <iframe className="border0"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d979.9551995244183!2d106.70005438809814!3d10.748290499518962!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f752cb79c5f%3A0x7ad89d6124dce9ee!2zSOG6u20gNzkzLzQ5IFRy4bqnbiBYdcOibiBTb-G6oW4sIFTDom4gSMawbmcsIFF14bqtbiA3LCBI4buTIENow60gTWluaCwgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1568822415966!5m2!1svi!2s"
+              src="https://www.google.com/maps/embed/v1/place?q=T%E1%BA%A7ng%203%20t%C3%B2a%20nh%C3%A0%20Kh%C3%A1nh%20Huy%2C%20s%E1%BB%91%204%20%C4%90%E1%BB%97%20Th%C3%BAc%20T%E1%BB%8Bnh%2C%20P.%2012%2C%20Q.%20G%C3%B2%20V%E1%BA%A5p%2C%20TP.%20HCM&key=AIzaSyCNtnvoJba7HnX1xaJnpuPnH6jcVNbVFQE"
               width="100%" height="450"
               allowFullScreen="allowfullscreen"  >
             </iframe>

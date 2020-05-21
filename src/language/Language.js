@@ -571,8 +571,8 @@ let LanguageDefine = {
         [`vi.${LanguageIdMap.TERM_AND_CONDITIONS}`, `Điều khoản sử dụng`],
         [`vi.${LanguageIdMap.PRIVACY_POLICY}`, `Quyền riêng tư`],
         [`vi.${LanguageIdMap.PAYMENT_METHOD}`, `Phương thức thanh toán`],
-        [`vi.${LanguageIdMap.SUPPORT_TIME_WEEKDAY_DES}`, `8:30 - 17:30 (Thứ 2- Thứ 6)`],
-        [`vi.${LanguageIdMap.SUPPORT_TIME_WEEKEND_DES}`, `8:30 - 12:00 (Sáng thứ 7)`],
+        [`vi.${LanguageIdMap.SUPPORT_TIME_WEEKDAY_DES}`, `8:00 - 18:00 (Thứ 2 - Thứ 6)`],
+        [`vi.${LanguageIdMap.SUPPORT_TIME_WEEKEND_DES}`, `8:00 - 12:00 (Sáng thứ 7)`],
 
         [`vi.${LanguageIdMap.TOUR}`, `Tour`],
         [`vi.${LanguageIdMap.OTHER_ATTRACTION_IN_NAME}`, `Các hoạt động du lịch đặc sắc khác ở {{name}}`],
@@ -610,7 +610,7 @@ let LanguageDefine = {
         [`vi.${LanguageIdMap.CONTINUE}`, `Tiếp tục`],
         [`vi.${LanguageIdMap.CANCEL_TOUR}`, `Hủy tour`],
         [`vi.${LanguageIdMap.TOUR_AND_TICKET}`, `Tours & Vé tham quan`],
-        
+
         [`vi.${LanguageIdMap.WHOOPS}`, `Whoops!`],
         [`vi.${LanguageIdMap.PAGE_NOT_EXISTS}`, `Trang bạn yêu cầu không tồn tại`],
         [`vi.${LanguageIdMap.NEED_HELP}`, `Bạn cần trợ giúp?`],
@@ -655,12 +655,12 @@ let LanguageDefine = {
         [`vi.${LanguageIdMap.HOW_TO_USE_CREDIT}`, `how to earn credit`],
         [`vi.${LanguageIdMap.DISCOUNT}`, `Giảm giá`],
 
-        
+
         [`vi.${LanguageIdMap.ORDER_STATUS.REQUEST_CANCEL.id}`, `Yêu cầu hủy`],
         [`vi.${LanguageIdMap.ORDER_STATUS.ACCEPT_CANCEL.id}`, `Đã hủy`],
         [`vi.${LanguageIdMap.ORDER_STATUS.REJECT_CANCEL.id}`, `Yêu cầu hủy bị từ chối`],
         [`vi.${LanguageIdMap.ORDER_STATUS.NORMAL.id}`, `Đang xử lý`],
-        
+
 
         ////////////////////////////////////////////////////////////////////////////
         ///////////////////////////////////////////////////////////////////////////
