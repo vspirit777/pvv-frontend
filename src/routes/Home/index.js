@@ -1,5 +1,3 @@
-
-
 import React, { PropTypes, Component } from 'react';
 import $ from "jquery";
 import MailchimpSubscribe from "react-mailchimp-subscribe"
@@ -21,6 +19,8 @@ import {
 import SeachSuggestionPopup from '../../components/searchSuggestionPopup';
 import Router from 'next/router'
 import Head from 'next/head';
+
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
 class SearchInputComponent extends Component {
 
@@ -60,7 +60,7 @@ class SearchInputComponent extends Component {
         <style type="text/css">{`
       .suggestionIcon{
         position: absolute;
-        top: 0; 
+        top: 0;
         right: 0;
         width:`+ (common.getViewportWidth() >= 500 ? 120 : 50) + `px;
         cursor: pointer;
@@ -171,6 +171,7 @@ class Home extends SuperComponent {
       { id: 1 }
     )
       .then((jsonRes) => {
+        console.log(jsonRes.data);
         common.initPropsData.ads = jsonRes.data;
       })
       .catch((err) => {
@@ -366,7 +367,7 @@ class Home extends SuperComponent {
                 </div>
               </div>
             </a>
-          </div> 
+          </div>
           <div className='col-md-3 col-sm-6 posRelative hoverMoveTop12' >
             <a href={"https://phuotvivu.com/ebook/"}
               onClick={e => {

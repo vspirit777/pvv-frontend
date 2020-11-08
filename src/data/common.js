@@ -83,7 +83,7 @@ let common = {
             }
 
             while(searchKeyArr.length >0) {
-                let key = searchKeyArr.pop()                
+                let key = searchKeyArr.pop()
                 if(searchKeyArr.indexOf(key) >= 0) {
                     this.location.search[key] = [searchValueArr.pop()]
                     let foundOtherAt = searchKeyArr.indexOf(key)
@@ -102,7 +102,7 @@ let common = {
         // console.log(this.location)
     },
 
-      
+
     cleanObj(obj) {
         if (!obj || typeof (obj) !== "object") {
             return;
@@ -234,16 +234,16 @@ let common = {
                     var product = data.orderOrderProduct[0];
                     var scheduleData = JSON.parse(product.scheduleData);
                     var quantity = 0;
-                    
+
                     if (scheduleData && scheduleData.schedulePriceItems) {
                         scheduleData.schedulePriceItems.forEach(item => {
                             quantity += item.noOfItem;
                         });
                     }
-                    
+
                     ga('create', analytics.google.trackingId);
                     ga('require', 'ec');
-                    
+
                     ga('ec:addProduct', {
                         'id': product.productId,
                         'name': product.name,
@@ -254,14 +254,14 @@ let common = {
                         'quantity': quantity
                     });
                     ga('ec:setAction', 'add');
-                    
+
                     ga('send', 'event', 'Ecommerce', 'AddCart', product.name, product.productId);
                     // ga('send', 'pageview');     // Send transaction data with initial pageview.
-                    
+
                     console.log('Tracking addToCart event');
                     console.log('product', JSON.stringify(product));
                 }
-                
+
                 // holder.loadingCountdown--;
                 this.getShoppingCartList();
                 Router.push(config.shortUrl.addToCart)
@@ -665,7 +665,7 @@ let common = {
     },
 
 
-    //method:get,post,...    
+    //method:get,post,...
     //options: typeFormUrlencoded
 
     checkMobile() {
@@ -790,7 +790,7 @@ let common = {
                                 window.localStorage.removeItem("uid");
                                 this.currentMainComponent.logout()
                             } catch (error) {
-                                
+
                             }
                             // console.log("call logout")
                             // console.log("logouted")
