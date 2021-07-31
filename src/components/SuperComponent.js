@@ -304,6 +304,7 @@ class SuperComponent extends Component {
 
     componentWillUnmount() {
         window.removeEventListener('scroll', this.handleOnScrollEventBind);
+        window.removeEventListener("load", this.updateComponent);
         // if (common.initDataFromServer) {
         //     common.initDataFromServer = undefined;
         // }
@@ -313,9 +314,15 @@ class SuperComponent extends Component {
         // common.needReload = true;
         // this.checkAndLoadData();
     }
+    updateComponent(){
+        this.forceUpdate();
+    }
     componentDidMount() {
         this.handleOnScrollEventBind = this.handleOnScrollEvent.bind(this);
         window.addEventListener('scroll', this.handleOnScrollEventBind);
+        this.updateComponent = this.updateComponent.bind(this);
+        window.addEventListener("load", this.updateComponent);
+        
 
         this.forceUpdate();
 
@@ -490,6 +497,8 @@ class SuperComponent extends Component {
                 <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" />
                 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css" /> 
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css" />
                 <link rel="stylesheet" href="/static/css/bootstrap.min.css" />
                 <link rel="stylesheet" href="/static/css/main.css" />
                 <link rel="shortcut icon" type="image/x-icon" href="/static/favicon.jpg" />
@@ -1739,10 +1748,9 @@ class SuperComponent extends Component {
         for (let i = 0; i < this.scrollFocusCallbackArr.length; i++) {
             if ($('#' + this.scrollFocusCallbackArr[i].id) && $('#' + this.scrollFocusCallbackArr[i].id).offset()) {
                 let hT = $('#' + this.scrollFocusCallbackArr[i].id).offset().top;
-                if (wS > (hT - 150)) {
+                if (wS > (hT - 250)) {
                     if (this._currentScrollFocus !== this.scrollFocusCallbackArr[i].id) {
                         this._currentScrollFocus = this.scrollFocusCallbackArr[i].id;
-                        // console.log("this._currentScrollFocus=" + this._currentScrollFocus)
                         if (this.scrollFocusCallbackArr[i].callback) {
                             this.scrollFocusCallbackArr[i].callback();
                         } else {
@@ -1761,6 +1769,7 @@ class SuperComponent extends Component {
         loadMore: undefined,
         cardRender: undefined,
         canWrapRow: undefined,
+        maxCardDisplayOfRow: undefined,
     }) {
         if (!data || !data.data) {
             return;
@@ -1778,8 +1787,8 @@ class SuperComponent extends Component {
             data._maxCardDisplayOfRow = Math.round(Math.round(common.getViewportWidth()) / 250)
             if (data._configMaxCardDisplayOfRow && data._maxCardDisplayOfRow > data._configMaxCardDisplayOfRow) {
                 data._maxCardDisplayOfRow = data._configMaxCardDisplayOfRow;
-            } else if (data._maxCardDisplayOfRow > 4 && !data._isSquare) {
-                data._maxCardDisplayOfRow = 4;
+            // } else if (data._maxCardDisplayOfRow > 4 && !data._isSquare) {
+            //     data._maxCardDisplayOfRow = 4;
             } else if (data._maxCardDisplayOfRow > 6 && data._isSquare) {
                 data._maxCardDisplayOfRow = 6;
             } else if (data._maxCardDisplayOfRow < 2) {
@@ -2104,11 +2113,12 @@ class SuperComponent extends Component {
                 Router.push(config.shortUrl.product, config.shortUrl.product + "/" + data.alias)
             }}
         >
-            <div className="productCard">
+            <div className={`productCard ${data._useThumbSecondUrl?'productCardSquare':''}`}>
                 <img
                     alt={data.featureImage ? data.featureImage.altText : data.photoInfo ? data.photoInfo.altText : undefined}
                     className="productCardImage"
-                    src={data.featureImage ? data.featureImage.thumbUrl : data.photoInfo ? data.photoInfo.thumbUrl : undefined}
+                    src={(data._useThumbSecondUrl && data.featureImage.thumbSecondUrl) 
+                        || (data.featureImage ? data.featureImage.thumbUrl : data.photoInfo ? data.photoInfo.thumbUrl : undefined)}
                 />
                 {data.discount > 0 && <div className="productCardDiscount">
                     {"-" + data.discount + "%"}
@@ -2178,8 +2188,8 @@ class SuperComponent extends Component {
                     </OverlayTrigger>
                 </div>
             }
-            <div className="productCardServiceContainer">
-                {data.services && !common.checkServer() && data.services.map((data1, rowIndex1) => {
+            {data.services && <div className="productCardServiceContainer">
+                {!common.checkServer() && data.services.map((data1, rowIndex1) => {
                     return <HoverOpenDropdownMenu
                         key={rowIndex1}
                         anchorOrigin={{ horizontal: 'left', vertical: 'top' }}
@@ -2197,7 +2207,7 @@ class SuperComponent extends Component {
                     {Language.getLanguage(common.moneyType)}
                 </sup>
                 {common.numberWithCommas(data.newPrice ? data.newPrice : data.advertisePrice)}
-                {(data.advertisePrice && data.newPrice)
+                {(data.advertisePrice && Boolean(data.newPrice))
                     && <div className="productCardNewPrice">
                         <sup className="productCardMoney">
                             {Language.getLanguage(common.moneyType)}
@@ -2205,7 +2215,7 @@ class SuperComponent extends Component {
                         {common.numberWithCommas(data.advertisePrice)}
                     </div>
                 }
-            </div>
+            </div>}
         </a>
     }
 

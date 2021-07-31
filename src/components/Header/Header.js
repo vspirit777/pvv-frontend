@@ -41,6 +41,7 @@ class Header extends Component {
     this.needLessMarginTopDiscovery = 0;
     this.state = {
       ...props,
+      searchFocusing: false,
     }
 
     this.addShoppingCartCallbackBindThis = this.addShoppingCartCallback.bind(this)
@@ -159,58 +160,101 @@ class Header extends Component {
     // }
     return (
       <div>
-         <Head>
-        <style type="text/css">{`
+        <Head>
+          <style type="text/css">{`
+          
+          ${this.state.searchFocusing
+              ? "body > div:last-child > div { left: unset !important; right: 0 !important; width: unset !important;}"
+              : ""
+            }
           .navbarHeader{
             border-bottom: 1px solid #e4e4e4;
             box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
-            min-height: unset;
-            max-height: ${this.state.smallPageHeaderDisplay ? 200 : this.state.mobileSearchFocusing ? 100 : 50};
+            margin-bottom: 0 !important;
             background-color: #fff;
             z-index: 100;
             transition-duration: 0.5s;
             overflow-y: hidden;
           }
           .navLogo{
-            float: left;
-            text-align: center;
+            width: ${common.getViewportWidth() >= config.sizeConfig.widthMd ? "20%" : "40%"};
             border-radius: 2px;
           }
           .navLogo > div {
             color: #000;
-            height: 40px;
-            padding-top: 12px;
-            padding-bottom: 12px;
           }
           .navLogo > div > img{
-            height: 100%
+            max-width : 100%;
+            max-height: 98px;
           }
-
-          .headerBar{
-            float: right;
+          .rightBarContainer{
+            width: 20%;
+            text-align: right;
+          }
+          @media only screen and (max-width: ${config.sizeConfig.widthPC - 1}px) {
+            .rightBarContainer {
+              width: 80%;
+            }
+          }
+          .rightBarContainer > div:first-child{
             margin-right: -12px;
           }
-          .headerBar > div{
-            background-color: ${config.colorConfig.main};
-            height: 40px;
-            padding: 8px 12px;
-            cursor: pointer;
+          .rightBarContainer > div:nth-child(2) {
+            margin-right: -12px;
           }
-          .headerBar > div > i{
-            color: #fff;
-            font-size: 24px;
-          }
-
-          .rightBarContainer{
-            float: right;
-            height: 46px;
-            margin-right: 8px;
-          }
-          .rightBarContainer > div{
-            margin: 0;
+          .hotline {
+            font-size: 19px;
             white-space: nowrap;
-            overflow-x: auto;
-            overflow-y: hidden;
+            text-align: right;
+          }
+          .hotline > a {
+            color: ${config.colorConfig.main};
+          }
+          .banner {
+            width: 50%;
+            margin-left: 10%;
+            padding: 0;
+          }
+          @media only screen and (max-width: ${config.sizeConfig.widthPC - 1}px) {
+            .banner {
+              display: none;
+            }
+            .hotline {
+              display: none;
+            }
+          }
+          
+          .banner > img {
+            max-width: 100%;
+            max-height: 98px;
+          }
+          .linkBelowBanner {
+            font-size: 20px;
+            display: flex;
+            justify-content: space-between;
+            color: #fff;
+          }
+          @media only screen and (max-width: ${config.sizeConfig.widthPC - 1}px) {
+            .linkBelowBanner {
+              font-size: 14px;
+            }
+          }
+          .linkBelowBanner > div {
+            background: ${config.colorConfig.main};
+            width: 100%;
+            margin: 1px;
+            padding: 6px;
+            text-align: center;
+          }
+          .linkBelowBanner > div > a {
+            color: inherit;
+            text-transform: uppercase;
+          }
+          .linkBelowBanner > div:first-child {
+            border-top-left-radius: 24px;
+          }
+          .linkBelowBanner > div:nth-child(3) {
+            border-top-right-radius: 24px;
           }
           .questionRight{
             cursor: pointer;
@@ -256,24 +300,45 @@ class Header extends Component {
           }
           .headerSearchForm{
             position: relative;
-            float: left
           }
           .headerSearchForm > div{
             padding-left: 12px;
             padding-right: 12px;
             width: unset !important;
-            ${this.state.mobileSearchFocusing ?  "margin-left: -23px":""}
+            ${(this.state.searchFocusing && common.checkMobile()) ? "margin-left: -23px" : ""}
           }
           .headerSearchForm > i{
-            position: absolute;right: 18px;top: 20px;color: rgb(170, 170, 170);font-size: 15px;
+            font-size: 22px;
+            top: 7px;
+            right: 19px;
+            position: absolute;
+            color: rgb(170, 170, 170);
+            pointer-events: none;
           }
-          .floatLeft{
-            float: left
+          .headerSearchForm > div > div > input {
+            ${!this.state.searchFocusing ? "color: transparent !important" : ""};
+          }
+          .headerSearchForm > .focus{
+            right: 18px;
+            top: 8px;
+            font-size: 15px;
+          }
+          .mainheader {
+            transition: 0.2s;
+            display: flex;
+          }
+          #pvvBlogCamnangContainer{
+            overflow: hidden;
+          }
+          @media only screen and (max-width: ${config.sizeConfig.widthPC - 1}px) {
+            #pvvBlogCamnangContainer{
+              display: none;
+            }
           }
       `}</style>
-       </Head>
+        </Head>
         <Navbar id="header" className="navbar-fixed-top navbar navbarHeader">
-          <div className='row margin0 pageSmallWidth'>
+          <div className='mainheader pageSmallWidth'>
             <a
               href={config.shortUrl.home}
               className="navLogo"
@@ -287,47 +352,17 @@ class Header extends Component {
               </div>
             </a>
 
-            {common.getViewportWidth() < config.sizeConfig.widthMd
-              && <div className="headerBar">
-                <div >
-                  <i className="fa fa-bars" aria-hidden="true"
-                    onClick={e => {
-                      this.setState({
-                        smallPageHeaderDisplay: !this.state.smallPageHeaderDisplay,
-                      }, function () {
-                        if (this.props.holderComponent && this.props.holderComponent.getUserDataCallback) {
-                          this.props.holderComponent.forceUpdate();
-                        }
-                      }.bind(this))
-                    }}
-                  ></i>
-                </div>
-              </div>}
+            <div className={"banner"}>
+              <img src={"/static/banner.jpg"} />
+            </div>
 
-            
-
-            {(!!this.state.smallPageHeaderDisplay || common.getViewportWidth() >= config.sizeConfig.widthMd)
-              && !common.checkServer()
+            {!common.checkServer()
               && <div className="rightBarContainer">
                 <div>
-
                   <HoverOpenDropdownMenu
                     iconButtonElement={<i className="fa fa-question-circle-o hoverDefaultColor questionRight">
                     </i>}
                     data={[
-                      <a href={"tel:" + config.phoneContact}>
-                        <MenuItem className="hoverDefaultColor"
-                          onClick={(event) => {
-                            event.preventDefault();
-                            Router.push("tel:" + config.phoneContact)
-                          }}
-                          style={{ height: 40, minWidth: 180, }}
-                        >
-                          <span>
-                            {Language.getLanguage(LanguageIdMap.HOTLINE) + ": " + config.phoneContact}
-                          </span>
-                        </MenuItem>
-                      </a>,
                       <a href={config.shortUrl.faq}>
                         <MenuItem className="hoverDefaultColor"
                           onClick={(event) => {
@@ -405,7 +440,7 @@ class Header extends Component {
                           , overflowY: "auto", position: "relative"
                         }}>
                           {common.shoppingCart.orderOrderProduct.map((rowData, rowIndex) => {
-                            return <div 
+                            return <div
                               key={rowIndex}
                               style={{ margin: "0 20px", padding: "20px 0", borderBottom: "1px solid #eeeeee", cursor: "pointer" }}
                               onClick={e => {
@@ -495,7 +530,7 @@ class Header extends Component {
                   {!common.checkLoginUser()
                     && <HoverOpenDropdownMenu
                       iconButtonElement={<div className="loginUserRight">
-                        <i className="fa fa-user hoverDefaultColor"/>
+                        <i className="fa fa-user hoverDefaultColor" />
                       </div>}
                       data={[
                         <a>
@@ -559,7 +594,7 @@ class Header extends Component {
                   {common.checkLoginUser()
                     && <HoverOpenDropdownMenu
                       iconButtonElement={<div className="loginUserRight" >
-                        <i className="fa fa-user hoverDefaultColor"/>
+                        <i className="fa fa-user hoverDefaultColor" />
                         <span style={{ marginTop: 3 }}>{window.localStorage.getItem("firstName")}</span>
                       </div>}
                       data={[
@@ -670,56 +705,70 @@ class Header extends Component {
                     />}
 
                 </div>
-              </div>}
-            {(this.state.smallPageHeaderDisplay || common.getViewportWidth() >= 500)
-              && !common.checkServer()
-              && <div className="headerSearchForm">
-                <SearchSuggestionPopup
-                  id="searchInputHeader"
-                  className="focusBorderColorDefault"
-                  underlineShow={false}
-                  // onClick={e => {
-                  //   if (common.checkMobile()) {
-                  //     Router.push(config.shortUrl.search);
-                  //     return;
-                  //   }
-                  // }}
-                  fullWidth={this.state.mobileSearchFocusing}
-                  onFocus={e => {
-                    if (common.checkMobile()) {
-                      this.setState({
-                        mobileSearchFocusing: true,
-                      }, function () {
-                        this.forceUpdate();
-                      }.bind(this))
-                    }
-                  }}
-                  onBlur={e => {
-                    if (common.checkMobile()) {
-                      this.setState({
-                        mobileSearchFocusing: undefined,
-                      })
-                    }
-                  }}
-                  
-                  textFieldStyle={{
-                    marginRight: 0, paddingBottom: 0,
-                    ...(common.getViewportWidth() >= 500 ? { float: "left" } : { float: "right" }),
-                    width: this.state.mobileSearchFocusing ? "calc(100vw - 2px)"
-                      : common.getViewportWidth() >= 500
-                        ? 256
-                        : common.getViewportWidth() - 48,
-                    borderRadius: 4, backgroundColor: "#eee", height: 34,
-                    marginBottom: 4, marginTop: 8, border: "1px solid #eee", paddingLeft: 12, paddingRight: 24,
-                  }}
-                  hintStyle={{ bottom: 2, fontSize: 14 }}
-                  hintText={Language.getLanguage(LanguageIdMap.SEARCH_BY_DESTINATION_ACTIVITY)}
-                />
-                <i className="fa fa-search" />
-              </div>
-            }
+                <div>
+                  {!common.checkServer()
+                    && <div
+                      className="headerSearchForm"
+                    >
+                      <SearchSuggestionPopup
+                        autoFocus={this.state.searchFocusing}
+                        id="searchInputHeader"
+                        className="focusBorderColorDefault"
+                        underlineShow={false}
+                        fullWidth={this.state.searchFocusing}
+                        anchorOrigin={{ vertical: 'bottom', horizontal: "right" }}
+                        targetOrigin={{ vertical: 'top', horizontal: "right" }}
+                        menuStyle={{ width: "100%" }}
 
-            <ul className="displayNone">
+                        onFocus={e => {
+                          this.setState({
+                            searchFocusing: true,
+                          })
+                        }}
+                        onBlur={e => {
+                          this.setState({
+                            searchFocusing: false,
+                          })
+                        }}
+
+                        textFieldStyle={{
+                          overflow: "hidden",
+                          transition: "0.2s",
+                          marginRight: 0, paddingBottom: 0,
+                          ...(common.getViewportWidth() >= 500 ? { float: "left" } : { float: "right" }),
+                          width: (this.state.searchFocusing && common.checkMobile()
+                            && common.getViewportWidth() < config.sizeConfig.widthMd) ? "calc(100vw - 50px)"
+                            : common.getViewportWidth() >= 500
+                              ? this.state.searchFocusing ? 256 : 38
+                              : common.getViewportWidth() - 48,
+                          borderRadius: 4, backgroundColor: "#eee", height: 34,
+                          marginBottom: 4, border: "1px solid #eee",
+                          paddingLeft: this.state.searchFocusing ? 12 : 0,
+                          paddingRight: this.state.searchFocusing ? 12 : 0,
+                        }}
+                        hintStyle={{ bottom: 2, fontSize: 14 }}
+                        hintText={
+                          this.state.searchFocusing ?
+                            Language.getLanguage(LanguageIdMap.SEARCH_BY_DESTINATION_ACTIVITY) :
+                            ""
+                        }
+                      />
+                      {!this.state.searchFocusing
+                        && <i className={`fa fa-search ${this.state.searchFocusing ? "focus" : ""}`} />}
+                    </div>
+                  }
+                </div>
+
+                <div className="hotline">
+                  <a href={"tel:" + config.phoneContact}>
+                    <span>
+                      {Language.getLanguage(LanguageIdMap.HOTLINE) + ": " + config.phoneContact}
+                    </span>
+                  </a>
+                </div>
+              </div>}
+
+            {/* <ul className="displayNone">
               <li><a href="/blog">{Language.getLanguage(LanguageIdMap.BLOG)}</a></li>
               <li><a href="/kinh-nghiem-du-lich">{Language.getLanguage(LanguageIdMap.DESTINATION_GUIDE)}</a></li>
               <li><a href="/ebook">{Language.getLanguage(LanguageIdMap.EBOOK)}</a></li>
@@ -733,7 +782,7 @@ class Header extends Component {
                     className="headerDropdownItem hoverDefaultColor"
                   >
                     {Language.getLanguage(LanguageIdMap.TRAVEL_GUIDE)}
-                    <i className="fa fa-chevron-down hoverDefaultColor caretRightDown"/>
+                    <i className="fa fa-chevron-down hoverDefaultColor caretRightDown" />
                   </div>}
                   data={[
                     <MenuItem className="hoverDefaultColor" style={{ minWidth: 180 }} href={"/blog"}>
@@ -746,11 +795,23 @@ class Header extends Component {
                       {Language.getLanguage(LanguageIdMap.EBOOK)}
                     </MenuItem>,
                   ]}
-                />
-              </div>}
+                />  
+              </div>} */}
 
-
-
+          </div>
+          <div className='pageSmallWidth row' id='pvvBlogCamnangContainer'>
+            <div className="col-sm-2" />
+            <div className="linkBelowBanner col-sm-7 col-xs-12" id='pvvBlogCamnang'>
+              <div>
+                <a href="/blog">{Language.getLanguage(LanguageIdMap.BLOG)}</a>
+              </div>
+              <div>
+                <a href="/blog/kinh-nghiem-du-lich/">Cẩm nang du lịch</a>
+              </div>
+              <div>
+                <a href="/blog/ebook/">Ebook</a>
+              </div>
+            </div>
           </div>
         </Navbar>
         {/* <Sidebar url={this.props.url}/> */}

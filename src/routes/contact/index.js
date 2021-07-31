@@ -135,11 +135,10 @@ class Display extends SuperComponent {
           </div>
 
           <div className='col-sm-6 pdLeft8 pdRight8'>
-            <iframe className="border0"
-              src="https://www.google.com/maps/embed/v1/place?q=T%E1%BA%A7ng%203%20t%C3%B2a%20nh%C3%A0%20Kh%C3%A1nh%20Huy%2C%20s%E1%BB%91%204%20%C4%90%E1%BB%97%20Th%C3%BAc%20T%E1%BB%8Bnh%2C%20P.%2012%2C%20Q.%20G%C3%B2%20V%E1%BA%A5p%2C%20TP.%20HCM&key=AIzaSyCNtnvoJba7HnX1xaJnpuPnH6jcVNbVFQE"
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.6060239797202!2d106.64116571475189!3d10.841431960955143!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3175299b7db37a4f%3A0xa9846a1489e6e936!2zNCDEkOG7lyBUaMO6YyBU4buLbmgsIFBoxrDhu51uZyAxMiwgR8OyIFbhuqVwLCBUaMOgbmggcGjhu5EgSOG7kyBDaMOtIE1pbmgsIFZpZXRuYW0!5e0!3m2!1sen!2s!4v1611466233398!5m2!1sen!2s"
               width="100%" height="450"
-              allowFullScreen="allowfullscreen"  >
-            </iframe>
+              allowFullScreen="allowfullscreen"
+              frameborder="0" aria-hidden="false" tabindex="0"></iframe>
           </div>
         </div>
       </div>

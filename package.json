@@ -31,6 +31,7 @@
     "react-image-lightbox": "^4.1.0",
     "react-is": "^16.8.6",
     "react-loading": "^2.0.3",
-    "react-mailchimp-subscribe": "^2.0.2"
+    "react-mailchimp-subscribe": "^2.0.2",
+    "react-slick": "^0.27.13"
   }
 }

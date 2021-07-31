@@ -425,7 +425,7 @@ let LanguageDefine = {
         [`vi.${LanguageIdMap.URL.PROFILE.CREDIT}`, `Tiền thưởng du lịch`],
         [`vi.${LanguageIdMap.URL.PROFILE.INVITE}`, `Mời bạn bè`],
 
-        [`vi.${LanguageIdMap.SEARCH_BY_DESTINATION_ACTIVITY}`, `Chọn điểm đến, hoạt động du lịch`],
+        [`vi.${LanguageIdMap.SEARCH_BY_DESTINATION_ACTIVITY}`, `Bạn muốn đi đến đâu?`],
         [`vi.${LanguageIdMap.SEARCH_BY_DESTINATION_ACTIVITY_TOUR}`, `Chọn điểm đến, hoạt động du lịch, tour trọn gói`],
         [`vi.${LanguageIdMap.TOP_DESTINATION}`, `Điểm đến nổi bật`],
         [`vi.${LanguageIdMap.EXPLORE_ALL_DESTINATION}`, `Khám phá tất cả các điểm đến `],
@@ -498,7 +498,7 @@ let LanguageDefine = {
         [`vi.${LanguageIdMap.VIEWALL}`, `Xem toàn bộ`],
         [`vi.${LanguageIdMap.VIEWLESS}`, `Thu gọn`],
 
-        [`vi.${LanguageIdMap.HOME_BANNER_TITLE}`, `Du lịch bụi với Phuotvivu!`],
+        [`vi.${LanguageIdMap.HOME_BANNER_TITLE}`, `Du lịch tự túc với Phuotvivu!`],
         [`vi.${LanguageIdMap.HOME_BANNER_DES_LINE_1}`, `Phuotvivu cung cấp tour du lịch bụi dài ngày, ngắn ngày,`],
         [`vi.${LanguageIdMap.HOME_BANNER_DES_LINE_2}`, `vé tham quan tới các điểm đến ở Châu Á, Châu Âu cho khách du lịch tự túc.`],
 
@@ -603,8 +603,8 @@ let LanguageDefine = {
         [`vi.${LanguageIdMap.BOOKING_DETAILS}`, `Chi tiết đặt hàng`],
         [`vi.${LanguageIdMap.GET_VOUCHER}`, `Lấy voucher`],
 
-        [`vi.${LanguageIdMap.TRAVEL_GUIDE}`, `Cẩm nang du lịch`],
-        [`vi.${LanguageIdMap.BLOG}`, `Blog`],
+        [`vi.${LanguageIdMap.TRAVEL_GUIDE}`, `Cẩm nang du lịch | Ebook `],
+        [`vi.${LanguageIdMap.BLOG}`, `Phượt Blog`],
         [`vi.${LanguageIdMap.DESTINATION_GUIDE}`, `Kinh nghiệm du lịch`],
         [`vi.${LanguageIdMap.EBOOK}`, `Ebook`],
         [`vi.${LanguageIdMap.CONTINUE}`, `Tiếp tục`],

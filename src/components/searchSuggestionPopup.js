@@ -36,9 +36,16 @@ export default class SeachSuggestionPopup extends React.Component {
                     return;
                 }
                 this._getSearchProductrequestNum = jsonRes.requestNum;
-                if (this.state.searchInputValue && jsonRes.data && jsonRes.data.products) {
-                    common.searchInputSuggestData = jsonRes.data.products
-                    this.forceUpdate();
+                
+                if (this.state.searchInputValue && jsonRes.data) {
+                    common.searchInputSuggestData = [];
+                    if (jsonRes.data.destinations) {
+                        common.searchInputSuggestData = [...common.searchInputSuggestData, ...jsonRes.data.destinations];
+                    }
+                    if (jsonRes.data.products) {
+                        common.searchInputSuggestData = [...common.searchInputSuggestData, ...jsonRes.data.products];
+                        this.forceUpdate();
+                    }
                 }
             })
             .catch((err) => {
@@ -92,7 +99,14 @@ export default class SeachSuggestionPopup extends React.Component {
         }
 
         Router.push(config.shortUrl.product, config.shortUrl.product + "/" + alias);
+    }
+    pressDestination(alias) {
+        common.needReload = true;
+        if (this.props.closeCallback) {
+            this.props.closeCallback();
+        }
 
+        Router.push(config.shortUrl.destination, config.shortUrl.destination + "/" + alias);
     }
     renderChild() {
         if (this.state.searchInputValue) {
@@ -102,16 +116,45 @@ export default class SeachSuggestionPopup extends React.Component {
                     const rowDataDetail = common.searchInputSuggestData[i];
                     arrReturn.push({
                         text: "",
-                        value: <MenuItem primaryText={rowDataDetail.productName} style={{ minWidth: 850, }}
-                            leftIcon={<i className="fa fa-map-marker"
-                                style={{ color: "#999", fontSize: 15, top: 5, left: 12 }}
-                            />}
+                        value: <MenuItem primaryText={
+                            !rowDataDetail.productId ? rowDataDetail.briefName : rowDataDetail.productName
+                        } style={{ minWidth: 850, }}
+                            leftIcon={
+                                !rowDataDetail.productId ?
+                                    <i className="fa fa-star"
+                                        style={{ color: config.colorConfig.main, fontSize: 22, left: 12 }}
+                                    />
+                                    : (rowDataDetail.featureImage && rowDataDetail.featureImage.thumbSecondUrl)
+                                        ?
+                                        <div
+                                            style={{
+                                                width: 40,
+                                                height: 40,
+                                                borderRadius: 4,
+                                                marginRight: 12,
+                                                marginTop: 0,
+                                                backgroundRepeat: "no-repeat",
+                                                backgroundSize: "cover",
+                                                backgroundPosition: "50%",
+                                                overflow: "hidden",
+                                                flex: "0 0 40px",
+                                                backgroundImage: `url("${rowDataDetail.featureImage.thumbSecondUrl}")`,
+                                            }}
+                                        />
+                                        : <i className="fa fa-map-marker"
+                                            style={{ color: "#999", fontSize: 15, top: 5, left: 12 }}
+                                        />
+                            }
 
                             onKeyPress={e => {
-                                this.pressProduct(rowDataDetail.alias)
+                                !rowDataDetail.productId ?
+                                    this.pressDestination(rowDataDetail.alias) :
+                                    this.pressProduct(rowDataDetail.alias)
                             }}
                             onClick={e => {
-                                this.pressProduct(rowDataDetail.alias)
+                                !rowDataDetail.productId ?
+                                    this.pressDestination(rowDataDetail.alias) :
+                                    this.pressProduct(rowDataDetail.alias)
                             }}
                         />
                     })
@@ -184,7 +227,7 @@ export default class SeachSuggestionPopup extends React.Component {
                                 && <div style={{ display: "flex", flexWrap: "wrap" }}>
                                     {common.searchInputSuggestData.data[common.searchInputSuggestData.dataFocusing].subCategories.map((rowDataDetail, rowIndexDetail) => {
                                         let targetUrl = config.shortUrl.destination + "/" + rowDataDetail.alias;
-                                        return <a 
+                                        return <a
                                             key={rowIndexDetail}
                                             href={targetUrl}
                                             onClick={e => {

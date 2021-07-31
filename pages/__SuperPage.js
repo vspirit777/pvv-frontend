@@ -17,7 +17,7 @@ class __SuperPage extends React.Component {
 
     common.initPropsData = props.initPropsData;
     if (props.common) {
-      Object.keys(props.common).forEach((param) => {
+      Object.keys(props.common || {}).forEach((param) => {
         common[param] = JSON.parse(JSON.stringify(props.common[param]))
       })
       common.topDestinationSecondRow = {
@@ -58,11 +58,12 @@ class __SuperPage extends React.Component {
   }
   static async getInitialProps(props, promiseArr = []) {
     let defaultPromiseArr = []
-    if (props.req) {  //only check when call from server
+    // if (props.req) {  //only check when call from server
+    //todo: remove all comment here
       defaultPromiseArr = common.updateDefaultClientDataForAllPage();
-    } else {
-      defaultPromiseArr = []
-    }
+    // } else {
+    //   defaultPromiseArr = []
+    // }
 
     await Promise.all([
       ...defaultPromiseArr,

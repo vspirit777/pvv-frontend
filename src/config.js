@@ -30,12 +30,12 @@ try {
   // console.log(tmpData.data)
   // do stuff
 } catch (ex) {
-  // console.log(ex)
+  console.log(ex)
 }
-export const productType = tmpData ? tmpData.data : configProductType.live
+export const productType = tmpData ? tmpData.data : configProductType.staging
 
 const colorConfig={
-  main: "#0ab596",
+  main: '#4fffaa',//"#0ab596",
   darkGrey: "#8d8b8a",
   grey: "#f5f5f5",
 }
@@ -52,6 +52,32 @@ export const config = {
   metaTitle: `Phuotvivu - Tour & Vé tham quan ở Châu Á`,
   metaDesc: `Cung cấp tour trong ngày, vé vào các điểm tham quan, vui chơi toàn Châu Á. An toàn và tiết kiệm từ 20-30% khi đặt vé online tại Phuotvivu.`,
   metaImg:`https://pvv-photo.phuotvivu.com/1/f/f/8/s640x424/tour-koh-rong-samloem.jpg`,
+  topList: {
+    uuDaiTrongThang: {
+      id: "VVK",
+      name: "Ưu đãi trong tháng",
+    },
+    diemDenYeuThichTrongNuoc: {
+      id: "JTK",
+      name: "Điểm yêu thích trong nước",
+    },
+    phuotBlog: {
+      id: "MAV",
+      name: "Phượt blog",
+    },
+    diemYeuThichONuocNgoai: {
+      id: "MJP",
+      name: "Điểm yêu thích ở nước ngoài",
+    },
+    phuotBlog2: {
+      id: "HHP",
+      name: "Phượt blog",
+    },
+    reviewBlog: {
+      id: "JPI",
+      name: "Review / blog",
+    },
+  },
   api: {
     hostType: {
       auth_url: "auth_url",
@@ -61,9 +87,9 @@ export const config = {
     getHostNameByHostType: (host) => {
       if (productType === configProductType.staging) {
         switch (host) {
-          case 'auth_url': return 'http://stg-pvv-auth-api.adsincar.vn';
-          case 'profile_url': return 'http://stg-pvv-profile-api.adsincar.vn';
-          case 'product_url': return 'http://stg-pvv-product-api.adsincar.vn';
+          case 'auth_url': return 'http://09e5ab510779.ngrok.io/api';
+          case 'profile_url': return 'http://09e5ab510779.ngrok.io/api';
+          case 'product_url': return 'http://09e5ab510779.ngrok.io/api';
         }
       } else {
         switch (host) {
@@ -84,6 +110,8 @@ export const config = {
       changePassword: "/auth/user/{id}/change/secret",
       getDurationList: "/product/durations",
       getServiceList: "/product/services",
+
+      getTopList: "/product/v1/toplist/elements",
 
       topDestination: "/product/destination/tops",
       allDestination: "/product/destination/all",
@@ -302,6 +330,8 @@ export const config = {
     widthSm: 768,
     widthMd: 992,
     widthLg: 1200,
+
+    widthPC: 1200,
   },
   numRowPerPage: 20,
   maxRetryApi: 5,

@@ -52,7 +52,7 @@ class Display extends __SuperPage {
     } catch (error) {
 
     }
-
+    console.log(propReturn);
     return propReturn;
   }
   render() {
