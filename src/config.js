@@ -12,28 +12,13 @@ import LanguageIdMap from '../src/language/LanguageIdMap';
 import Language from './language/Language';
 
 
-//cam, xanh voucher, xanh combo,xam,nau hat de, mau tim,hat de nhat, cam dam
-export const configProductType = {
-  staging: 1,
-  live: 2,
-}
-let tmpData = undefined;
-// let domain = "http://localhost:3001";
-try {
-  tmpData = require('./_tmpdata.json');
-  // if(tmpData.data===configProductType.live) {
-  //   domain = "http://phuotvivu.phuotvivu.com";
-  // } else {
-  //   domain = "http://stg-phuotvivu.phuotvivu.com";
-  // }
-  // console.log("domain --> "+domain)
-  // console.log(tmpData.data)
-  // do stuff
-} catch (ex) {
-  console.log(ex)
-}
-export const productType = tmpData ? tmpData.data : configProductType.staging
 
+let env;
+try {
+  env = require(`../.${process.env.NODE_ENV}`);
+} catch (ex) {
+  // console.log(ex)
+}
 const colorConfig={
   main: '#4fffaa',//"#0ab596",
   darkGrey: "#8d8b8a",
@@ -84,21 +69,7 @@ export const config = {
       profile_url: "profile_url",
       product_url: "product_url",
     },
-    getHostNameByHostType: (host) => {
-      if (productType === configProductType.staging) {
-        switch (host) {
-          case 'auth_url': return 'http://09e5ab510779.ngrok.io/api';
-          case 'profile_url': return 'http://09e5ab510779.ngrok.io/api';
-          case 'product_url': return 'http://09e5ab510779.ngrok.io/api';
-        }
-      } else {
-        switch (host) {
-          case 'auth_url': return 'https://pvv-auth-api.phuotvivu.com';
-          case 'profile_url': return 'https://pvv-profile-api.phuotvivu.com';
-          case 'product_url': return 'https://pvv-product-api.phuotvivu.com';
-        }
-      }
-    },
+    getHostNameByHostType: (host) => env[host],
     hostEndPoint: {
       register: "/auth/register",
       profile: "/profile/{profileId}",

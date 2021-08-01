@@ -752,7 +752,7 @@ let common = {
         // console.log("fetcher data:" + thisUrl)
         // console.log(req)
         // console.log(body)
-        // alert("before fetch:"+thisUrl+";"+JSON.stringify(req))
+        // console.log("before fetch:"+thisUrl+";", req)
         return await fetch(thisUrl, req)
             .then(async (rawRes) => {
                 // console.log(rawRes.headers.get('Content-Type'))

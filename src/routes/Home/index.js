@@ -21,6 +21,11 @@ import { SlickNextArrow, SlickPrevArrow } from "../product";
 
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
+const ImageLink = ({ url, photoAltText, photoUrl }) => (
+  <a className="colorInherit pointer" href={url}>
+    <img className={"width100 padding1"} alt={photoAltText} src={photoUrl} />
+  </a>
+);
 class SearchInputComponent extends Component {
   constructor(props) {
     super(props);
@@ -557,17 +562,32 @@ class Home extends SuperComponent {
     //       {
     //         photoAltText: "photoAltText",
     //         url: "google.com",
-    //         photoUrl: "http://localhost:3000/static/images/banner/blog.jpg",
+    //         photoUrl: "a0.jpg",
     //       },
     //       {
     //         photoAltText: "photoAltText",
     //         url: "google.com",
-    //         photoUrl: "http://localhost:3000/static/images/banner/blog.jpg",
+    //         photoUrl: "a1.jpg",
     //       },
     //       {
     //         photoAltText: "photoAltText",
     //         url: "google.com",
-    //         photoUrl: "http://localhost:3000/static/images/banner/blog.jpg",
+    //         photoUrl: "a2.jpg",
+    //       },
+    //       {
+    //         photoAltText: "photoAltText",
+    //         url: "google.com",
+    //         photoUrl: "a1.jpg",
+    //       },
+    //       {
+    //         photoAltText: "photoAltText",
+    //         url: "google.com",
+    //         photoUrl: "a2.jpg",
+    //       },
+    //       {
+    //         photoAltText: "photoAltText",
+    //         url: "google.com",
+    //         photoUrl: "a1.jpg",
     //       },
     //     ],
     //   },
@@ -639,15 +659,9 @@ class Home extends SuperComponent {
               >
                 {this.props.initPropsData.topList[
                   config.topList.uuDaiTrongThang.id
-                ].data.map(({ photoAltText, photoUrl, url }, idx) => (
+                ].data.map((topListUrl, idx) => (
                   <div>
-                    <a className="colorInherit pointer" key={idx} href={url}>
-                      <img
-                        className={"width100 padding1"}
-                        alt={photoAltText}
-                        src={photoUrl}
-                      />
-                    </a>
+                    <ImageLink {...topListUrl} />
                   </div>
                 ))}
               </Slider>
@@ -674,28 +688,11 @@ class Home extends SuperComponent {
                       common.getViewportWidth() < 400 ? "width100" : "width40"
                     }
                   >
-                    <a
-                      className="colorInherit pointer"
-                      href={
-                        this.props.initPropsData.topList[
-                          config.topList.diemDenYeuThichTrongNuoc.id
-                        ].data[0].photoAltText
-                      }
-                    >
-                      <img
-                        className={"width100 padding1"}
-                        alt={
-                          this.props.initPropsData.topList[
-                            config.topList.diemDenYeuThichTrongNuoc.id
-                          ].data[0].photoAltText
-                        }
-                        src={
-                          this.props.initPropsData.topList[
-                            config.topList.diemDenYeuThichTrongNuoc.id
-                          ].data[0].photoUrl
-                        }
-                      />
-                    </a>
+                    <ImageLink
+                      {...this.props.initPropsData.topList[
+                        config.topList.diemDenYeuThichTrongNuoc.id
+                      ].data[0]}
+                    />
                   </div>
                 )}
                 <div
@@ -713,28 +710,11 @@ class Home extends SuperComponent {
                         config.topList.diemDenYeuThichTrongNuoc.id
                       ].data[fieldIdx] && (
                         <div key={fieldIdx} className={"width50"}>
-                          <a
-                            className="colorInherit pointer"
-                            href={
-                              this.props.initPropsData.topList[
-                                config.topList.diemDenYeuThichTrongNuoc.id
-                              ].data[fieldIdx].photoAltText
-                            }
-                          >
-                            <img
-                              className={"width100 padding1"}
-                              alt={
-                                this.props.initPropsData.topList[
-                                  config.topList.diemDenYeuThichTrongNuoc.id
-                                ].data[fieldIdx].photoAltText
-                              }
-                              src={
-                                this.props.initPropsData.topList[
-                                  config.topList.diemDenYeuThichTrongNuoc.id
-                                ].data[fieldIdx].photoUrl
-                              }
-                            />
-                          </a>
+                          <ImageLink
+                            {...this.props.initPropsData.topList[
+                              config.topList.diemDenYeuThichTrongNuoc.id
+                            ].data[fieldIdx]}
+                          />
                         </div>
                       )
                   )}
@@ -751,28 +731,11 @@ class Home extends SuperComponent {
                   {this.props.initPropsData.topList[
                     config.topList.diemDenYeuThichTrongNuoc.id
                   ].data[5] && (
-                    <a
-                      className="colorInherit pointer"
-                      href={
-                        this.props.initPropsData.topList[
-                          config.topList.diemDenYeuThichTrongNuoc.id
-                        ].data[5].photoAltText
-                      }
-                    >
-                      <img
-                        className={"width100 padding1"}
-                        alt={
-                          this.props.initPropsData.topList[
-                            config.topList.diemDenYeuThichTrongNuoc.id
-                          ].data[5].photoAltText
-                        }
-                        src={
-                          this.props.initPropsData.topList[
-                            config.topList.diemDenYeuThichTrongNuoc.id
-                          ].data[5].photoUrl
-                        }
-                      />
-                    </a>
+                    <ImageLink
+                      {...this.props.initPropsData.topList[
+                        config.topList.diemDenYeuThichTrongNuoc.id
+                      ].data[5]}
+                    />
                   )}
                 </div>
               </div>
@@ -801,15 +764,9 @@ class Home extends SuperComponent {
               >
                 {this.props.initPropsData.topList[
                   config.topList.phuotBlog.id
-                ].data.map(({ photoAltText, photoUrl, url }, idx) => (
+                ].data.map((topListElement, idx) => (
                   <div>
-                    <a className="colorInherit pointer" key={idx} href={url}>
-                      <img
-                        className={"width100 padding1"}
-                        alt={photoAltText}
-                        src={photoUrl}
-                      />
-                    </a>
+                    <ImageLink {...topListElement} />
                   </div>
                 ))}
               </Slider>
@@ -836,28 +793,11 @@ class Home extends SuperComponent {
                       common.getViewportWidth() < 300 ? "width100" : "width60"
                     }
                   >
-                    <a
-                      className="colorInherit pointer"
-                      href={
-                        this.props.initPropsData.topList[
-                          config.topList.diemYeuThichONuocNgoai.id
-                        ].data[0].photoAltText
-                      }
-                    >
-                      <img
-                        className={"width100 padding1"}
-                        alt={
-                          this.props.initPropsData.topList[
-                            config.topList.diemYeuThichONuocNgoai.id
-                          ].data[0].photoAltText
-                        }
-                        src={
-                          this.props.initPropsData.topList[
-                            config.topList.diemYeuThichONuocNgoai.id
-                          ].data[0].photoUrl
-                        }
-                      />
-                    </a>
+                    <ImageLink
+                      {...this.props.initPropsData.topList[
+                        config.topList.diemYeuThichONuocNgoai.id
+                      ].data[0]}
+                    />
                   </div>
                 )}
                 <div
@@ -871,28 +811,11 @@ class Home extends SuperComponent {
                         config.topList.diemYeuThichONuocNgoai.id
                       ].data[fieldIdx] && (
                         <div key={fieldIdx} className={"width100"}>
-                          <a
-                            className="colorInherit pointer"
-                            href={
-                              this.props.initPropsData.topList[
-                                config.topList.diemYeuThichONuocNgoai.id
-                              ].data[fieldIdx].photoAltText
-                            }
-                          >
-                            <img
-                              className={"width100 padding1"}
-                              alt={
-                                this.props.initPropsData.topList[
-                                  config.topList.diemYeuThichONuocNgoai.id
-                                ].data[fieldIdx].photoAltText
-                              }
-                              src={
-                                this.props.initPropsData.topList[
-                                  config.topList.diemYeuThichONuocNgoai.id
-                                ].data[fieldIdx].photoUrl
-                              }
-                            />
-                          </a>
+                          <ImageLink
+                            {...this.props.initPropsData.topList[
+                              config.topList.diemYeuThichONuocNgoai.id
+                            ].data[fieldIdx]}
+                          />
                         </div>
                       )
                   )}
@@ -905,28 +828,11 @@ class Home extends SuperComponent {
                   {this.props.initPropsData.topList[
                     config.topList.diemYeuThichONuocNgoai.id
                   ].data[3] && (
-                    <a
-                      className="colorInherit pointer"
-                      href={
-                        this.props.initPropsData.topList[
-                          config.topList.diemYeuThichONuocNgoai.id
-                        ].data[3].photoAltText
-                      }
-                    >
-                      <img
-                        className={"width100 padding1"}
-                        alt={
-                          this.props.initPropsData.topList[
-                            config.topList.diemYeuThichONuocNgoai.id
-                          ].data[3].photoAltText
-                        }
-                        src={
-                          this.props.initPropsData.topList[
-                            config.topList.diemYeuThichONuocNgoai.id
-                          ].data[3].photoUrl
-                        }
-                      />
-                    </a>
+                    <ImageLink
+                      {...this.props.initPropsData.topList[
+                        config.topList.diemYeuThichONuocNgoai.id
+                      ].data[3]}
+                    />
                   )}
                 </div>
               </div>
@@ -938,35 +844,57 @@ class Home extends SuperComponent {
           this.props.initPropsData.topList[config.topList.phuotBlog2.id].data &&
           this.props.initPropsData.topList[config.topList.phuotBlog2.id].data
             .length > 0 && (
-            <div className="pageSmallWidth">
+            <div className="pageSmallWidth" id="phuotBlog2Group">
               <h2 className="phuotBlogContainer">
                 {config.topList.phuotBlog2.name}
               </h2>
-              <Slider
-                infinite={true}
-                speed={500}
-                slidesToShow={Math.min(
-                  3,
-                  Math.floor(common.getViewportWidth() / 100)
-                )}
-                slidesToScroll={1}
-                prevArrow={<SlickPrevArrow />}
-                nextArrow={<SlickNextArrow />}
-              >
-                {this.props.initPropsData.topList[
-                  config.topList.phuotBlog.id
-                ].data.map(({ photoAltText, photoUrl, url }, idx) => (
-                  <div>
-                    <a className="colorInherit pointer" key={idx} href={url}>
-                      <img
-                        className={"width100 padding1"}
-                        alt={photoAltText}
-                        src={photoUrl}
-                      />
-                    </a>
-                  </div>
-                ))}
-              </Slider>
+              <div className="displayFlex flexWrapWrap">
+                <div
+                  className={
+                    common.getViewportWidth() < 300 ? "width100" : "width25"
+                  }
+                >
+                  {this.props.initPropsData.topList[
+                    config.topList.phuotBlog2.id
+                  ].data[0] && (
+                    <ImageLink
+                      {...this.props.initPropsData.topList[
+                        config.topList.phuotBlog2.id
+                      ].data[0]}
+                    />
+                  )}
+                </div>
+                <div
+                  className={
+                    common.getViewportWidth() < 300 ? "width100" : "width50"
+                  }
+                >
+                  {this.props.initPropsData.topList[
+                    config.topList.phuotBlog2.id
+                  ].data[1] && (
+                    <ImageLink
+                      {...this.props.initPropsData.topList[
+                        config.topList.phuotBlog2.id
+                      ].data[1]}
+                    />
+                  )}
+                </div>
+                <div
+                  className={
+                    common.getViewportWidth() < 300 ? "width100" : "width25"
+                  }
+                >
+                  {this.props.initPropsData.topList[
+                    config.topList.phuotBlog2.id
+                  ].data[2] && (
+                    <ImageLink
+                      {...this.props.initPropsData.topList[
+                        config.topList.phuotBlog2.id
+                      ].data[2]}
+                    />
+                  )}
+                </div>
+              </div>
             </div>
           )}
 
@@ -992,15 +920,9 @@ class Home extends SuperComponent {
               >
                 {this.props.initPropsData.topList[
                   config.topList.phuotBlog.id
-                ].data.map(({ photoAltText, photoUrl, url }, idx) => (
-                  <div>
-                    <a className="colorInherit pointer" key={idx} href={url}>
-                      <img
-                        className={"width100 padding1"}
-                        alt={photoAltText}
-                        src={photoUrl}
-                      />
-                    </a>
+                ].data.map((topListUrl, idx) => (
+                  <div key={idx}>
+                    <ImageLink {...topListUrl} />
                   </div>
                 ))}
               </Slider>

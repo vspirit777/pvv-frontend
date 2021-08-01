@@ -1520,6 +1520,9 @@ div[class^="col-"] {
 .width20 {
   width: 20%;
 }
+.width25 {
+  width: 25%;
+}
 .width33 {
   width: 33.333%;
 }
