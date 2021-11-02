@@ -17,19 +17,22 @@ class __SuperPage extends React.Component {
 
     common.initPropsData = props.initPropsData;
     if (props.common) {
-      Object.keys(props.common || {}).forEach((param) => {
-        common[param] = JSON.parse(JSON.stringify(props.common[param]))
-      })
-      common.topDestinationSecondRow = {
-        _copyOfOtherRow: common.topDestination,
-        data: common.topDestination.data,
+      try {
+        Object.keys(props.common || {}).forEach((param) => {
+          common[param] = JSON.parse(JSON.stringify(props.common[param]))
+        })
+      } catch (error) {
       }
-      common.topDestination._hasCopyRow = [common.topDestinationSecondRow];
-      let topDestinationData = {
-        briefName: Language.getLanguage(LanguageIdMap.TOP_DESTINATION),
-        subCategories: common.topDestination.data
-      }
-      common.searchInputSuggestDataDefault.data = [topDestinationData, ...common.allDestination]
+      // common.topDestinationSecondRow = {
+      //   _copyOfOtherRow: common.topDestination,
+      //   data: common.topDestination.data,
+      // }
+      // common.topDestination._hasCopyRow = [common.topDestinationSecondRow];
+      // let topDestinationData = {
+      //   briefName: Language.getLanguage(LanguageIdMap.TOP_DESTINATION),
+      //   subCategories: common.topDestination.data
+      // }
+      common.searchInputSuggestDataDefault.data = []//[topDestinationData, ...common.allDestination]
       common.searchInputSuggestData = common.searchInputSuggestDataDefault
     }
   }

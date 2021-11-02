@@ -14,7 +14,7 @@ class Display extends __SuperPage {
     let propReturn = await __SuperPage.getInitialProps(props, Child.getInitialPromiseListForProps(props))
 
     // console.log("~~~~~~~~~~~~~~~~~~~~~~return data initprops")
-    // console.log(propReturn.initPropsData.data)
+    // console.log(propReturn.initPropsData)
 
     if ((!propReturn.initPropsData.data || propReturn.initPropsData.data.length == 0)) {
       if (props.res) {
@@ -52,7 +52,6 @@ class Display extends __SuperPage {
     } catch (error) {
 
     }
-    console.log(propReturn);
     return propReturn;
   }
   render() {

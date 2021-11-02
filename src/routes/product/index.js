@@ -114,9 +114,10 @@ class PackageOption extends Component {
           }
           .priceFavoriteBookNowUnderBriefDescription{
             position: absolute;
-            right: 12px;
+            right: 0px;
             bottom: 6px;
             width: 100%;
+            padding-right: 12px;
           }
           .productPackageSale{
             display: inline-block;
@@ -394,9 +395,6 @@ class PackageOption extends Component {
                                                   if (!rowData.schedulePrice) {
                                                     rowData.schedulePrice = {};
                                                   }
-                                                  // if (this.props.holder.props.initPropsData.checkAvailabilityDatePicker && !rowData.schedulePrice.date) {
-                                                  //   rowData.schedulePrice.date = this.props.holder.props.initPropsData.checkAvailabilityDatePicker;
-                                                  // }
                                                 }.bind(this)
                                               )}
                                               {common.renderDatePicker({
@@ -406,14 +404,14 @@ class PackageOption extends Component {
                                                 value:
                                                   rowData.schedulePrice.date,
                                                 onChangeValue: function (v) {
-                                                  // let newd = new Date(v)
-                                                  // console.log(newd)
-                                                  // let d = new Date(rowData.schedulePrice.date)
-                                                  // console(d)
-                                                  // d.setDate(newd.getDate());
-                                                  // d.setMonth(newd.getMonth());
-                                                  // d.setFullYear(newd.getFullYear());
-                                                  // rowData.schedulePrice.date = d.getTime();
+                                                /*  let newd = new Date(v)
+                                                  console.log(newd)
+                                                  let d = new Date(rowData.schedulePrice.date)
+                                                  console(d)
+                                                  d.setDate(newd.getDate());
+                                                  d.setMonth(newd.getMonth());
+                                                  d.setFullYear(newd.getFullYear());
+                                                  rowData.schedulePrice.date = d.getTime();*/
                                                   rowData.schedulePrice.date =
                                                     v;
                                                   this.forceUpdate();
@@ -518,10 +516,12 @@ class PackageOption extends Component {
                                                     ) => {
                                                       rowData._tmpSelectTime =
                                                         values;
-                                                      // let d = new Date(rowData.schedulePrice.date)
-                                                      // d.setHours(rowData.listStartTimes[values].hour)
-                                                      // d.setMinutes(rowData.listStartTimes[values].minute)
-                                                      // rowData.schedulePrice.date = d.getTime();
+                                                        /*
+                                                      let d = new Date(rowData.schedulePrice.date)
+                                                      d.setHours(rowData.listStartTimes[values].hour)
+                                                      d.setMinutes(rowData.listStartTimes[values].minute)
+                                                      rowData.schedulePrice.date = d.getTime();
+                                                      */
 
                                                       rowData.schedulePrice.time =
                                                         rowData.listStartTimes[
@@ -667,7 +667,7 @@ class PackageOption extends Component {
                                                           rowData1,
                                                           rowIndex1
                                                         ) => {
-                                                          return [
+                                                          return <>
                                                             <div
                                                               style={{
                                                                 padding: 20,
@@ -1002,7 +1002,7 @@ class PackageOption extends Component {
                                                                 margin: 0,
                                                               }}
                                                             />,
-                                                          ];
+                                                          </>
                                                         }
                                                       )}
                                                     <div
@@ -1192,6 +1192,7 @@ class PackageOption extends Component {
                                                       </div>
                                                     );
                                                   }
+                                                  return <div />
                                                 }
                                               )}
                                             {rowData.schedulePrice.date !==
@@ -1564,7 +1565,7 @@ class StickyMenu extends Component {
   };
   render() {
     if (
-      //!common.checkMobile() &&
+      !common.checkMobile() &&
       this.props.holder.props.initPropsData.stickyMenuList &&
       this.props.holder.props.initPropsData
         .needRenderShareBooknowFavoriteAtStickyMenu
@@ -1580,8 +1581,8 @@ class StickyMenu extends Component {
             width: 100%;
             border-top: 1px solid #eee;
             top: ${
-              document.getElementById("header")
-                ? document.getElementById("header").clientHeight
+              document.getElementById("mainheader")
+                ? document.getElementById("mainheader").clientHeight
                 : undefined
             }px;
             overflow-x: auto;
@@ -1666,9 +1667,6 @@ class StickyMenu extends Component {
                             },
                             300
                           );
-                          // this.setState({
-                          //   scrollLeft
-                          // })
                         }}
                       >
                         {rowData.name}
@@ -1699,10 +1697,11 @@ class Display extends SuperComponent {
 
   scrollEventCallback() {
     if (
-      //!common.checkMobile() &&
+      /* (document.documentElement.scrollTop<150 && this.headerHeight !== this.getTopHeightNav()) &&*/
       $("#renderShareBooknowFavoriteOnTopContainerId") &&
       $("#renderShareBooknowFavoriteOnTopContainerId").offset()
     ) {
+      this.headerHeight = this.getTopHeightNav();
       if (
         this.props.initPropsData.needRenderShareBooknowFavoriteAtStickyMenu &&
         document.documentElement.scrollTop <
@@ -1763,16 +1762,24 @@ class Display extends SuperComponent {
           }
         }
 
-        // //todo: remove mock data
-        // data.timeline = [
-        //   { title: "Ngày 1", content: "content 1" },
-        //   { title: "Ngay 2", content: "<p>content 2</p><p>end</p>" },
-        //   { title: "ngay 3", content: "<p>ngay 3</p><p>end</p><p>...</p>" },
-        // ];
-
         if (data.timeline) {
           for (let i = 0; i < data.timeline.length; i++) {
-            data.timeline[i] = data.timeline[i].replace(/style=""/g, "");
+            let title;
+            let content;
+            try {
+              title = data.timeline[i].title.replace(/style=""/g, "");
+              content = data.timeline[i].content.replace(/style=""/g, "");
+              title = decodeURIComponent(
+                escape(data.timeline[i].title)
+              ).replace(/style=""/g, "");
+              content = decodeURIComponent(
+                escape(data.timeline[i].content)
+              ).replace(/style=""/g, "");
+            } catch (error) {}
+            data.timeline[i] = {
+              title,
+              content,
+            };
           }
         }
         if (data.highlight) {
@@ -1796,7 +1803,9 @@ class Display extends SuperComponent {
 
         state.data = data;
       })
-      .catch((err) => {});
+      .catch((err) => {
+        console.log(err);
+      });
   }
   static getProductRelative(state = common.initPropsData) {
     return common
@@ -1873,7 +1882,6 @@ class Display extends SuperComponent {
   }
 
   checkAndLoadData() {
-    // console.log("check data product:"+common.location.pathArr)
 
     if (super.checkAndLoadData() == false) {
       return false;
@@ -1898,7 +1906,7 @@ class Display extends SuperComponent {
       !this.props.initPropsData.data ||
       !this.props.initPropsData.data.featureImage
     ) {
-      return;
+      return <div />;
     }
     return (
       <div>
@@ -1926,12 +1934,13 @@ class Display extends SuperComponent {
             overflow: hidden;
             display: flex;
             justify-content: center;
-            ${
-              Math.round(common.getViewportWidth()) >=
-              config.pageSmallWidthStyle.width
-                ? "height: 70vh;"
-                : "height: 50vh;"
-            }
+             ${
+               ""
+               /* Math.round(common.getViewportWidth()) >=
+                config.pageSmallWidthStyle.width
+                  ? "height: 70vh;"
+                  : "height: 50vh;"*/
+             }
           }
           .productBackgroundImage{
             width: 100%;
@@ -1939,6 +1948,7 @@ class Display extends SuperComponent {
             max-width: 100%;
             z-index: 0;
             height: 100%;
+            display: none;    
           }
         `}</style>
         </Head>
@@ -1959,7 +1969,7 @@ class Display extends SuperComponent {
               {this.props.initPropsData.data.destinations &&
                 this.props.initPropsData.data.destinations.map(
                   (rowData, rowIndex) => {
-                    return [
+                    return <>
                       <a
                         href={config.shortUrl.destination + "/" + rowData.alias}
                         className="colorInherit"
@@ -1972,9 +1982,9 @@ class Display extends SuperComponent {
                         }}
                       >
                         {rowData.briefName}
-                      </a>,
-                      <i className="fa fa-angle-right" />,
-                    ];
+                      </a>
+                      <i className="fa fa-angle-right" />
+                    </>
                   }
                 )}
 
@@ -1996,7 +2006,10 @@ class Display extends SuperComponent {
             <img
               className="productBackgroundImage"
               alt={this.props.initPropsData.data.featureImage.altText}
-              src={this.props.initPropsData.data.featureImage.photoUrl}
+              src={this.props.initPropsData.data.featureImage.photoUrl.replace(
+                "09e5ab510779.ngrok.io",
+                "55482bf53374.ngrok.io"
+              )}
             />
           </div>
         </div>
@@ -2005,7 +2018,7 @@ class Display extends SuperComponent {
   }
   renderData() {
     if (!this.props.initPropsData.data) {
-      return;
+      return <div />;
     }
 
     const priceFavoriteBookNow = (
@@ -2057,7 +2070,7 @@ class Display extends SuperComponent {
         ? this.props.initPropsData.productRelative.data.length
         : 0,
       Math.floor(common.getViewportWidth() / 200),
-      5
+      3
     );
     return (
       <div>
@@ -2080,7 +2093,7 @@ class Display extends SuperComponent {
           .productTitleSection{
             margin: 0;
             background-color: #fff;
-            margin-top: -64px;
+            margin-top: 0px;
           }
           @media only screen and (max-width: ${
             config.sizeConfig.widthPC - 1
@@ -2132,15 +2145,13 @@ class Display extends SuperComponent {
           }
           .productTitleSectionRightFrom{
             display: inline-block;
-            margin-right: 8px;
+            margin-right: 4x;
             font-size: 14px;
           }
           .productTitleSectionRightPrice{
             display: inline-block;
             ${
-              Math.round(common.getViewportWidth()) >= config.sizeConfig.widthSm
-                ? "font-size: 28px"
-                : "font-size: 24px; "
+              "font-size: 24px; "
             }
           }
         `}</style>
@@ -2149,7 +2160,10 @@ class Display extends SuperComponent {
         <div className="productBody">
           <div className="pageSmallWidth posRelative">
             <div className="productSectionStyle productTitleSection">
-              <div className="displayFlex">
+            
+              <div className="displayFlex justifyContentSpaceBetween">
+                <div>
+                <div className="displayFlex">
                 {this.props.initPropsData.data.services &&
                   !common.checkServer() &&
                   this.props.initPropsData.data.services.map(
@@ -2188,9 +2202,9 @@ class Display extends SuperComponent {
                     }
                   )}
               </div>
-              <div className="displayFlex justifyContentSpaceBetween">
-                <div className="productTitleSectionLeft">
-                  <h1>{this.props.initPropsData.data.productName}</h1>
+                  <div className="productTitleSectionLeft">
+                    <h1>{this.props.initPropsData.data.productName}</h1>
+                  </div>
                 </div>
 
                 <div className="productTitleSectionRight">
@@ -2204,7 +2218,7 @@ class Display extends SuperComponent {
             <style type="text/css">{`
             .productBestListContainer{
               border: 1px solid #eee;
-              padding: 32px 0;
+              padding: 10px 0;
             }
             @media only screen and (max-width: ${
               config.sizeConfig.widthPC - 1
@@ -2264,9 +2278,6 @@ class Display extends SuperComponent {
               .width33{
                 width:33.33%
               }
-              .width100{
-                width:100%
-              }
               .productImageMore{
                 position: absolute;
                 width: 100%;
@@ -2310,8 +2321,10 @@ class Display extends SuperComponent {
               }
               .briefDescription{
                 overflow: auto;
+                min-height: 300px;
                 ${
-                  !common.checkServer() &&
+                  ""
+                  /*!common.checkServer() &&
                   document.getElementById("mainGalery") &&
                   document.getElementById(
                     "priceFavoriteBookNowBelowBriefDescription"
@@ -2323,7 +2336,7 @@ class Display extends SuperComponent {
                           "priceFavoriteBookNowBelowBriefDescription"
                         ).offsetHeight
                       }px`
-                    : ""
+                    : ""*/
                 }
               }
               .briefDescriptionTitle{
@@ -2334,14 +2347,24 @@ class Display extends SuperComponent {
                 display: flex;
                 position: relative;
               }
-              .sliderImage{
+              .sliderImageContainer{
                 width: 100%;
+                padding-bottom: 66.7%;
+                position: relative;
+              }
+              .sliderImage{
+                object-fit: cover;
                 cursor: pointer;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
               }
           `}</style>
             </Head>
 
-            <div className="mgTop24">
+            <div className="mgTop2">
               {this.props.initPropsData.data &&
                 this.props.initPropsData.data.gallery &&
                 this.props.initPropsData.data.gallery.length > 0 && (
@@ -2354,7 +2377,10 @@ class Display extends SuperComponent {
                           }}
                           items={this.props.initPropsData.data.gallery.map(
                             ({ photoUrl, thumbUrl, altText }) => ({
-                              original: photoUrl,
+                              original: photoUrl.replace(
+                                "09e5ab510779.ngrok.io",
+                                "55482bf53374.ngrok.io"
+                              ),
                               thumbnail: thumbUrl,
                               description: altText,
                             })
@@ -2381,7 +2407,9 @@ class Display extends SuperComponent {
                           <h2 className="briefDescriptionTitle">
                             {Language.getLanguage(LanguageIdMap.HIGH_LIGHT)}
                           </h2>
-                          {this.props.initPropsData.data.briefDescription}
+                          {Boolean(this.props.initPropsData.data.shortHighlight) && ReactHtmlParser(
+                            this.props.initPropsData.data.shortHighlight
+                          )}
                         </div>
                         <div className="priceFavoriteBookNowUnderBriefDescription">
                           <div id="priceFavoriteBookNowBelowBriefDescription">
@@ -2455,10 +2483,13 @@ class Display extends SuperComponent {
                   >
                     {this.props.initPropsData.data.gallery.map(
                       ({ photoUrl, altText }, i) => (
-                        <div key={i}>
+                        <div key={i} className={"sliderImageContainer"}>
                           <img
                             className={"sliderImage"}
-                            src={photoUrl}
+                            src={photoUrl.replace(
+                              "09e5ab510779.ngrok.io",
+                              "55482bf53374.ngrok.io"
+                            )}
                             alt={altText}
                             onClick={() => this.imageGaleryRef.slideToIndex(i)}
                           />
@@ -2491,6 +2522,8 @@ class Display extends SuperComponent {
               height: 65px;
               color: #fff;
               text-transform: uppercase;
+              border-top-left-radius: 10px;
+              border-top-right-radius: 10px;
             }
             #timeline > .timelineList {
               display: flex;
@@ -2564,7 +2597,9 @@ class Display extends SuperComponent {
             </Head>
             {this.props.initPropsData.data.highlight && (
               <div className="productSectionStyle" id="highlight">
-                <h2>{Language.getLanguage(LanguageIdMap.HIGH_LIGHT)}</h2>
+                <h2 className="mgTop0">
+                  {Language.getLanguage(LanguageIdMap.HIGH_LIGHT)}
+                </h2>
                 {ReactHtmlParser(this.props.initPropsData.data.highlight)}
               </div>
             )}
@@ -2835,6 +2870,7 @@ class Display extends SuperComponent {
                         nextArrow={<SlickNextArrow />}
                       >
                         {this.props.initPropsData.productRelative.data
+                        /*
                           .map((e) => ({
                             ...e,
                             productName: undefined,
@@ -2843,6 +2879,7 @@ class Display extends SuperComponent {
                             _useThumbSecondUrl:
                               e.featureImage && e.featureImage.thumbSecondUrl,
                           }))
+                          */
                           .map(this.renderProductCard.bind(this))}
                       </Slider>
                     )}

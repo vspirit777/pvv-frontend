@@ -98,7 +98,7 @@ class Display extends SuperComponent {
 
   renderBanner() {
     if (!this.props.initPropsData.attraction || !this.props.initPropsData.attraction.bannerUrl) {
-      return;
+      return <div />;
     }
     return <div
       alt={this.props.initPropsData.attraction.altBanner}
@@ -120,7 +120,7 @@ class Display extends SuperComponent {
   }
   renderData() {
     if (!this.props.initPropsData.attraction) {
-      return;
+      return <div/>;
     }
     // console.log(this.props.initPropsData.attractionProduct)
     return <div>

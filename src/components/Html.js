@@ -38,12 +38,14 @@ function Html({ style, script, children, }) {
         <link rel="manifest" href={config.domain + "/manifest.json"} />
 
         {/* <script src="/css/htmlScript.js"></script> */}
-
+        <script type="text/javascript" src={config.domain + "/css/jquery.js"} async></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         {/* <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js" async></script> */}
         <script type="text/javascript" src={config.domain + "/css/bootstrap.js"} async></script>
         <link rel="stylesheet" href={config.domain + "/css/bootstrap.min.css"} />
         {/* <script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js" async></script> */}
-        <script type="text/javascript" src={config.domain + "/css/jquery.js"} async></script>
+      
+
 
 
         {/* <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet" /> */}

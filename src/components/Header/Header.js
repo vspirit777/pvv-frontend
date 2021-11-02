@@ -187,36 +187,32 @@ class Header extends Component {
             max-width : 100%;
             max-height: 98px;
           }
-          .rightBarContainer{
-            width: 20%;
-            text-align: right;
-          }
           @media only screen and (max-width: ${config.sizeConfig.widthPC - 1}px) {
-            .rightBarContainer {
+            #rightBarContainer {
               width: 80%;
             }
           }
-          .rightBarContainer > div:first-child{
+          #rightBarContainer > div{
             margin-right: -12px;
-          }
-          .rightBarContainer > div:nth-child(2) {
-            margin-right: -12px;
+            display: flex;
+            align-items: baseline;
+            justify-content: flex-end;
           }
           .hotline {
             font-size: 19px;
             white-space: nowrap;
-            text-align: right;
+            text-align: center;
+            margin-top: 10px;
           }
           .hotline > a {
             color: ${config.colorConfig.main};
           }
-          .banner {
-            width: 50%;
-            margin-left: 10%;
-            padding: 0;
+          #banner {
+            padding-left: 10px;
+            padding-right: 10px;
           }
           @media only screen and (max-width: ${config.sizeConfig.widthPC - 1}px) {
-            .banner {
+            #banner {
               display: none;
             }
             .hotline {
@@ -224,7 +220,7 @@ class Header extends Component {
             }
           }
           
-          .banner > img {
+          #banner > img {
             max-width: 100%;
             max-height: 98px;
           }
@@ -300,6 +296,7 @@ class Header extends Component {
           }
           .headerSearchForm{
             position: relative;
+            text-align: right;
           }
           .headerSearchForm > div{
             padding-left: 12px;
@@ -323,7 +320,7 @@ class Header extends Component {
             top: 8px;
             font-size: 15px;
           }
-          .mainheader {
+          #mainheader {
             transition: 0.2s;
             display: flex;
           }
@@ -338,26 +335,39 @@ class Header extends Component {
       `}</style>
         </Head>
         <Navbar id="header" className="navbar-fixed-top navbar navbarHeader">
-          <div className='mainheader pageSmallWidth'>
+          <div className='pageSmallWidth' id={"mainheader"}>
+            <div>
             <a
               href={config.shortUrl.home}
               className="navLogo"
               onClick={e => {
                 e.preventDefault();
+                /* Router.push(config.shortUrl.product, '/tour/tour-ha-giang-yen-minh-lung-cu-dong-van-3-ngay-2-dem')*/
                 Router.push(config.shortUrl.home)
               }}
             >
               <div>
                 <img src={"/static/logo.png"} />
+
+                <div className="hotline">
+                  <a href={"tel:" + config.phoneContact}>
+                    <span>
+                      {Language.getLanguage(LanguageIdMap.HOTLINE) + ": " + config.phoneContact}
+                    </span>
+                  </a>
+                </div>
               </div>
             </a>
+            </div>
 
-            <div className={"banner"}>
-              <img src={"/static/banner.jpg"} />
+            <div
+             id={"banner"}
+            >
+              <img className={"width100"} src={"/static/banner.jpg"} />
             </div>
 
             {!common.checkServer()
-              && <div className="rightBarContainer">
+              && <div id="rightBarContainer">
                 <div>
                   <HoverOpenDropdownMenu
                     iconButtonElement={<i className="fa fa-question-circle-o hoverDefaultColor questionRight">
@@ -759,13 +769,6 @@ class Header extends Component {
                   }
                 </div>
 
-                <div className="hotline">
-                  <a href={"tel:" + config.phoneContact}>
-                    <span>
-                      {Language.getLanguage(LanguageIdMap.HOTLINE) + ": " + config.phoneContact}
-                    </span>
-                  </a>
-                </div>
               </div>}
 
             {/* <ul className="displayNone">

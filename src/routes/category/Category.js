@@ -339,7 +339,7 @@ class Category extends SuperComponent {
   renderCategoryFilterNestedDropDown(subCategories, rootNestedDropDown, parentUrl, normalFilterStyle, activeFilterStyle,
     hoverOpenNestedDropdown = true, deep = 0) {
     if (!subCategories) {
-      return undefined;
+      return <div />;
     }
     let returnData = [];
     for (let i = 0; i < subCategories.length; i++) {
@@ -405,7 +405,7 @@ class Category extends SuperComponent {
 
   renderFilter() {
     if (!this.props.initPropsData.filter) {
-      return;
+      return <div />;
     }
     let filterDataArr = [];
     let headCss = "";
@@ -465,9 +465,7 @@ class Category extends SuperComponent {
           font-size: 24px;
         }
         `
-        // console.log(common.location.pathArr)
         let browseAllTargetUrl = "/" + common.location.pathArr[1] + "/" + this.props.initPropsData.alias;
-        // console.log("render:" + JSON.stringify(rowData))
         // if (!common.checkMobile()) {
         if (true) {
           // console.log(common.location.pathArr)
@@ -881,6 +879,7 @@ class Category extends SuperComponent {
             flex-wrap: wrap;
             list-style-type: none;
             padding: 0;
+            // margin-top:${this.getTopHeightNav() + 42}px
           }
           .productContainer{
             width: ${common.getViewportWidth() >= 500 ? "50%" : "100%"};

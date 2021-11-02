@@ -116,9 +116,16 @@ export default class SeachSuggestionPopup extends React.Component {
                     const rowDataDetail = common.searchInputSuggestData[i];
                     arrReturn.push({
                         text: "",
-                        value: <MenuItem primaryText={
+                        value: <MenuItem primaryText={<div style={{    
+                                maxWidth: "calc(100vw - 111px)",
+                                overflow: "hidden",
+                                textOverflow: "ellipsis",
+                            }}>{
                             !rowDataDetail.productId ? rowDataDetail.briefName : rowDataDetail.productName
-                        } style={{ minWidth: 850, }}
+                            }</div>
+                        } 
+                            style={{maxWidth: '100vw'}}
+                            tex
                             leftIcon={
                                 !rowDataDetail.productId ?
                                     <i className="fa fa-star"

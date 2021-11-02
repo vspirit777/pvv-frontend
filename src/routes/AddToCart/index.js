@@ -28,7 +28,7 @@ class Display extends SuperComponent {
   renderData() {
     if (!common.productForSupplierProductInfo || !common.scheduleForSupplierProductInfo) {
       Router.push(config.domain + config.shortUrl.home)
-      return;
+      return <div />;
     }
     return <div>
       <div style={{ ...config.pageSmallWidthStyle, paddingTop: 24 }}>

@@ -142,7 +142,7 @@ class Display extends SuperComponent {
   }
   renderData() {
     if (!this.state.data) {
-      return;
+      return <div />;
     }
     return <div>
       <div style={{ ...config.pageSmallWidthStyle, paddingTop: 48 }}>

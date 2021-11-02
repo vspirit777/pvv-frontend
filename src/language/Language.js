@@ -498,9 +498,9 @@ let LanguageDefine = {
         [`vi.${LanguageIdMap.VIEWALL}`, `Xem toàn bộ`],
         [`vi.${LanguageIdMap.VIEWLESS}`, `Thu gọn`],
 
-        [`vi.${LanguageIdMap.HOME_BANNER_TITLE}`, `Du lịch tự túc với Phuotvivu!`],
-        [`vi.${LanguageIdMap.HOME_BANNER_DES_LINE_1}`, `Phuotvivu cung cấp tour du lịch bụi dài ngày, ngắn ngày,`],
-        [`vi.${LanguageIdMap.HOME_BANNER_DES_LINE_2}`, `vé tham quan tới các điểm đến ở Châu Á, Châu Âu cho khách du lịch tự túc.`],
+        [`vi.${LanguageIdMap.HOME_BANNER_TITLE}`, `Du lịch Tự túc cùng Phuotvivu!`],
+        [`vi.${LanguageIdMap.HOME_BANNER_DES_LINE_1}`, `Khám phá - Trải nghiệm - Chinh phục Việt Nam & Thế giới theo cách của bạn!`],
+        [`vi.${LanguageIdMap.HOME_BANNER_DES_LINE_2}`, ``],
 
         [`vi.${LanguageIdMap.DATE}`, `Ngày`],
         [`vi.${LanguageIdMap.CART_IS_EMPTY}`, `Giỏ hàng trống`],

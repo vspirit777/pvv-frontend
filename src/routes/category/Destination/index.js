@@ -91,7 +91,7 @@ class Display extends Category {
   }
   renderUpperOfFilter() {
     if (this.props.initPropsData.subDestination && this.props.initPropsData.subDestination.data && this.props.initPropsData.subDestination.data.length > 0) {
-      return <div className="mgBottom48">
+      return <div>
         {this.props.initPropsData.category && <div className="fontsize32 mgBottom32">
           {Language.getLanguage(LanguageIdMap.DESTINATION_IN_CATEGORY, { category: this.props.initPropsData.category.briefName })}
         </div>}

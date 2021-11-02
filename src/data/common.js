@@ -611,7 +611,7 @@ let common = {
         , inputStyle: undefined, floatingLabelStyle: undefined,
     }) {
         if(this.checkServer()) {
-            return;
+            return <div />;
         }
         const IntlPolyfill = require('intl');
         const DateTimeFormat = IntlPolyfill.DateTimeFormat;

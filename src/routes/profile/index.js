@@ -86,7 +86,6 @@ class Display extends SuperComponent {
             >
               {common.checkLoginUser() && <div>
                 {common.userProfileData && <div style={{
-                  // paddingTop: 40, 
                   paddingBottom: 40, textAlign: "center", borderBottom: "1px solid #e0e0e0", color: "#000"
                 }}>
                   {/* <img src={common.userProfileData.avatar} style={{ marginBottom: 20, width: 104 }} /> */}
@@ -264,7 +263,6 @@ class Display extends SuperComponent {
                   </div>
                   <div style={{ maxWidth: 400, width: "100%", textAlign: "center" }}>
                     <IconMenu
-                      // style={{ width: "100%" }}
                       iconButtonElement={<div
                         style={{
                           height: 40,

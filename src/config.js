@@ -10,17 +10,14 @@
 /* eslint-disable max-len */
 import LanguageIdMap from '../src/language/LanguageIdMap';
 import Language from './language/Language';
+import envConfig from '../.env'
 
 
 
-let env;
-try {
-  env = require(`../.${process.env.NODE_ENV}`);
-} catch (ex) {
-  // console.log(ex)
-}
+let env = envConfig[process.env.NODE_ENV] || envConfig.production;
+
 const colorConfig={
-  main: '#4fffaa',//"#0ab596",
+  main: '#0f9a7e',//"#0ab596",
   darkGrey: "#8d8b8a",
   grey: "#f5f5f5",
 }
@@ -31,12 +28,13 @@ export const config = {
     lat:10.7605712,
     lng:106.6976879,
   },
-  phoneContact:"0287 300 0776",
+  phoneContact:"028 7300 0776",
   emailContact:"hotro@phuotvivu.com",
   companyName:"Phuotvivu",
   metaTitle: `Phuotvivu - Tour & Vé tham quan ở Châu Á`,
   metaDesc: `Cung cấp tour trong ngày, vé vào các điểm tham quan, vui chơi toàn Châu Á. An toàn và tiết kiệm từ 20-30% khi đặt vé online tại Phuotvivu.`,
   metaImg:`https://pvv-photo.phuotvivu.com/1/f/f/8/s640x424/tour-koh-rong-samloem.jpg`,
+  topListHasTitle:['MAV','HHP','JPI'],
   topList: {
     uuDaiTrongThang: {
       id: "VVK",
@@ -90,7 +88,7 @@ export const config = {
       typeOfTripFlat: "/product/category/type/trip/flat",
       scheduleGetPersonByType: "/product/product/schedules/person/types",
 
-      searchProduct:"/product/search/product/{product}",
+      searchProduct:"/product/v1/search/{product}",
 
       productDetail: "/product/product/alias/{alias}",
       productRelative:"/product/product/alias/{alias}/related",

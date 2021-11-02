@@ -21,11 +21,19 @@ import { SlickNextArrow, SlickPrevArrow } from "../product";
 
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
-const ImageLink = ({ url, photoAltText, photoUrl }) => (
-  <a className="colorInherit pointer" href={url}>
-    <img className={"width100 padding1"} alt={photoAltText} src={photoUrl} />
-  </a>
-);
+const ImageLink = ({ title, url, photoAltText, photoUrl, topListId }) => {
+  return (
+    <a className="colorInherit pointer" href={url}>
+      <img className={"width100 padding1"} alt={photoAltText} 
+      // src={photoUrl} 
+      src={photoUrl.replace('09e5ab510779.ngrok.io','55482bf53374.ngrok.io')}
+      />
+      {Boolean(title) && config.topListHasTitle.indexOf(topListId) >= 0 && (
+        <div className={"textAlignCenter colorMain fontWeightBold mgTop4"}> {title}</div>
+      )}
+    </a>
+  );
+};
 class SearchInputComponent extends Component {
   constructor(props) {
     super(props);
@@ -167,11 +175,11 @@ class Home extends SuperComponent {
       font-size: ${common.getViewportWidth() >= 800 ? "1.5em" : "1em"};
       margin-bottom: 40px;
       font-weight: bold;
-      color: #000;
+      color: ${config.colorConfig.main};
     }
     .whyPVVContainer{
       display: flex;
-      margin-bottom: 60px;
+      margin-bottom: 30px;
       flex-wrap: wrap;
       font-weight: bold;
       font-size: 16px;
@@ -295,7 +303,7 @@ class Home extends SuperComponent {
   renderBanner() {
     // let imageGaleryList = this.getBannerImageList();
     return (
-      <div className="posRelative">
+      <div className="posRelative mgTop15Negative">
         <div className="itemGalleryContainer">
           <div>
             <img src={"/static/images/banner/home.jpg"} />

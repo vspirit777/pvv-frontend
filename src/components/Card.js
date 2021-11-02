@@ -53,9 +53,8 @@ class Card extends Component {
                         && <div
                             className="shadowImg"
                             style={{ position: "relative", overflow: "hidden", paddingBottom: "100%", backgroundColor: "#eeeeee", }}>
-                            <img src={this.props.inviImage ? undefined : this.props.image} // className="img img-responsive full-width"
+                            <img src={this.props.inviImage ? undefined : this.props.image}
                                 style={{
-                                    //zIndex: -1,
                                     width: "100%",
                                     position: "absolute"
                                 }} />
@@ -63,7 +62,6 @@ class Card extends Component {
                     }
                     {!this.props.isSquare && <img
                         src={this.props.data.photoInfo?this.props.data.photoInfo.thumbUrl:undefined}
-                        // src={this.props.inviImage ? undefined : this.props.image}
                         onLoad={this.imageLoadedCallback.bind(this)}
                         className="shadowImg"
                         style={{

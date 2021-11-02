@@ -159,145 +159,145 @@ class SuperComponent extends Component {
     changeSizeCallback() {
         this.forceUpdate();
     }
-    checkCanUseFireBase() {
-        // console.log("navigator.userAgent.toLowerCase():" + navigator.userAgent.toLowerCase());
-        var ua = navigator.userAgent, tem,
-            M = ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
-        if (/trident/i.test(M[1])) {
-            tem = /\brv[ :]+(\d+)/g.exec(ua) || [];
-            return 'IE ' + (tem[1] || '');
-        }
-        if (M[1] === 'Chrome') {
-            tem = ua.match(/\b(OPR|Edge)\/(\d+)/);
-            if (tem != null) return tem.slice(1).join(' ').replace('OPR', 'Opera');
-        }
-        M = M[2] ? [M[1], M[2]] : [navigator.appName, navigator.appVersion, '-?'];
-        if ((tem = ua.match(/version\/(\d+)/i)) != null) M.splice(1, 1, tem[1]);
-        // console.log("browser:" + JSON.stringify(M))
-        try {
-            if (M[0].toLowerCase() == "chrome") {
-                if (M[1] >= 50) {
-                    return true;
-                }
-            } else if (M[0].toLowerCase() == "safari") {
-                return false;
-            } else if (M[0].toLowerCase() == "firefox") {
-                if (M[1] >= 44) {
-                    return true;
-                }
-                return false;
+    // checkCanUseFireBase() {
+    //     // console.log("navigator.userAgent.toLowerCase():" + navigator.userAgent.toLowerCase());
+    //     var ua = navigator.userAgent, tem,
+    //         M = ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
+    //     if (/trident/i.test(M[1])) {
+    //         tem = /\brv[ :]+(\d+)/g.exec(ua) || [];
+    //         return 'IE ' + (tem[1] || '');
+    //     }
+    //     if (M[1] === 'Chrome') {
+    //         tem = ua.match(/\b(OPR|Edge)\/(\d+)/);
+    //         if (tem != null) return tem.slice(1).join(' ').replace('OPR', 'Opera');
+    //     }
+    //     M = M[2] ? [M[1], M[2]] : [navigator.appName, navigator.appVersion, '-?'];
+    //     if ((tem = ua.match(/version\/(\d+)/i)) != null) M.splice(1, 1, tem[1]);
+    //     // console.log("browser:" + JSON.stringify(M))
+    //     try {
+    //         if (M[0].toLowerCase() == "chrome") {
+    //             if (M[1] >= 50) {
+    //                 return true;
+    //             }
+    //         } else if (M[0].toLowerCase() == "safari") {
+    //             return false;
+    //         } else if (M[0].toLowerCase() == "firefox") {
+    //             if (M[1] >= 44) {
+    //                 return true;
+    //             }
+    //             return false;
 
-            } else if (M[0].toLowerCase() == "opera") {
-                if (M[1] >= 37) {
-                    return true;
-                }
-                return false;
-            }
+    //         } else if (M[0].toLowerCase() == "opera") {
+    //             if (M[1] >= 37) {
+    //                 return true;
+    //             }
+    //             return false;
+    //         }
 
-        } catch (error) {
-            return false;
-        }
-        return false;
-    }
-    receiveFirebaseMessage(message) {
-        if (common.headerComponent) {
-            common.headerComponent.updateNotify();
-        }
+    //     } catch (error) {
+    //         return false;
+    //     }
+    //     return false;
+    // }
+    // receiveFirebaseMessage(message) {
+    //     if (common.headerComponent) {
+    //         common.headerComponent.updateNotify();
+    //     }
 
-        // console.log("receive message:" + JSON.stringify(message.notification))
-        let alertModalPopupButtonNameClickCallback = undefined;
-        if (message.notification.click_action && message.notification.click_action !== "https://mypop.vn") {
-            alertModalPopupButtonNameClickCallback = [
-                {
-                    name: Language.getLanguage(LanguageIdMap.btnView), callback: () => {
-                        window.open(message.notification.click_action, '_blank');
-                    }
-                },
-                { name: Language.getLanguage(LanguageIdMap.btnClose) }
-            ]
-        } else {
-            alertModalPopupButtonNameClickCallback = [
-                {
-                    name: Language.getLanguage(LanguageIdMap.btnView), callback: () => {
-                        window.open(config.domain + config.shortUrl.notify, '_blank');
-                    }
-                },
-                {
-                    name: Language.getLanguage(LanguageIdMap.btnClose)
-                }]
-        }
-        // if (common.headerComponent && common.headerComponent.holderComponent) {
-        this.setState({
-            alertModalPopup: {
-                titleAlertModal: message.notification.title,//Language.getLanguage(LanguageIdMap.notification),
-                descAlertModal: this.replaceBreakLineStringToHtml(message.data.message),
-                alertModalPopupButtonNameClickCallback: alertModalPopupButtonNameClickCallback
-            }
-        })
-        // }
-    }
-    sendFireBaseTokenToServer() {
-        // console.log("sendFireBaseTokenToServer:" + common.firebaseToken + ";" + window.localStorage.getItem("uid"))
-        if (!common.firebaseToken || !window.localStorage.getItem("uid")) {
-            return;
-        }
-        // console.log("call api")
-        // console.log("config.api.hostType.mypop_url:" + config.api.getHostNameByHostType(config.api.hostType.mypop_url)
-        //     + ";config.api.hostEndPoint.addFirebaseToken:" + config.api.hostEndPoint.addFirebaseToken)
-        common.fetcher(
-            config.api.hostType.mypop_url,
-            config.api.hostEndPoint.addFirebaseToken,
-            "post",
-            undefined,
-            {
-                deviceToken: common.firebaseToken
-            },
-            {
-                typeFormData: true,
-                noCallbackErr: true,
-            }
-        )
-            .then((jsonRes) => {
-                common.messaging.onMessage(function (payload) {
-                    // console.log("Message received. ", JSON.stringify(payload));
-                    if (common.currentMainComponent) {
-                        common.currentMainComponent.receiveFirebaseMessage(payload);
-                    }
-                });
+    //     // console.log("receive message:" + JSON.stringify(message.notification))
+    //     let alertModalPopupButtonNameClickCallback = undefined;
+    //     if (message.notification.click_action && message.notification.click_action !== "https://mypop.vn") {
+    //         alertModalPopupButtonNameClickCallback = [
+    //             {
+    //                 name: Language.getLanguage(LanguageIdMap.btnView), callback: () => {
+    //                     window.open(message.notification.click_action, '_blank');
+    //                 }
+    //             },
+    //             { name: Language.getLanguage(LanguageIdMap.btnClose) }
+    //         ]
+    //     } else {
+    //         alertModalPopupButtonNameClickCallback = [
+    //             {
+    //                 name: Language.getLanguage(LanguageIdMap.btnView), callback: () => {
+    //                     window.open(config.domain + config.shortUrl.notify, '_blank');
+    //                 }
+    //             },
+    //             {
+    //                 name: Language.getLanguage(LanguageIdMap.btnClose)
+    //             }]
+    //     }
+    //     // if (common.headerComponent && common.headerComponent.holderComponent) {
+    //     this.setState({
+    //         alertModalPopup: {
+    //             titleAlertModal: message.notification.title,//Language.getLanguage(LanguageIdMap.notification),
+    //             descAlertModal: this.replaceBreakLineStringToHtml(message.data.message),
+    //             alertModalPopupButtonNameClickCallback: alertModalPopupButtonNameClickCallback
+    //         }
+    //     })
+    //     // }
+    // }
+    // sendFireBaseTokenToServer() {
+    //     // console.log("sendFireBaseTokenToServer:" + common.firebaseToken + ";" + window.localStorage.getItem("uid"))
+    //     if (!common.firebaseToken || !window.localStorage.getItem("uid")) {
+    //         return;
+    //     }
+    //     // console.log("call api")
+    //     // console.log("config.api.hostType.mypop_url:" + config.api.getHostNameByHostType(config.api.hostType.mypop_url)
+    //     //     + ";config.api.hostEndPoint.addFirebaseToken:" + config.api.hostEndPoint.addFirebaseToken)
+    //     common.fetcher(
+    //         config.api.hostType.mypop_url,
+    //         config.api.hostEndPoint.addFirebaseToken,
+    //         "post",
+    //         undefined,
+    //         {
+    //             deviceToken: common.firebaseToken
+    //         },
+    //         {
+    //             typeFormData: true,
+    //             noCallbackErr: true,
+    //         }
+    //     )
+    //         .then((jsonRes) => {
+    //             common.messaging.onMessage(function (payload) {
+    //                 // console.log("Message received. ", JSON.stringify(payload));
+    //                 if (common.currentMainComponent) {
+    //                     common.currentMainComponent.receiveFirebaseMessage(payload);
+    //                 }
+    //             });
 
-            })
-            .catch((err) => {
-                console.log("error send api:" + err)
-                this.forceUpdate();
-            })
-    }
+    //         })
+    //         .catch((err) => {
+    //             console.log("error send api:" + err)
+    //             this.forceUpdate();
+    //         })
+    // }
 
-    removeFireBaseTokenToServer() {
-        // console.log("common.firebaseToken:" + common.firebaseToken)
-        if (!common.firebaseToken) {
-            return;
-        }
-        common.fetcher(
-            config.api.hostType.mypop_url,
-            config.api.hostEndPoint.removeFirebaseToken,
-            "post",
-            undefined,
-            {
-                deviceToken: common.firebaseToken
-            },
-            {
-                typeFormData: true,
-                noCallbackErr: true,
-            }
-        )
-            .then((jsonRes) => {
-            })
-            .catch((err) => {
-                console.log("error pro3:" + err)
-                this.forceUpdate();
-            })
-        // common.firebaseToken = undefined;
-    }
+    // removeFireBaseTokenToServer() {
+    //     // console.log("common.firebaseToken:" + common.firebaseToken)
+    //     if (!common.firebaseToken) {
+    //         return;
+    //     }
+    //     common.fetcher(
+    //         config.api.hostType.mypop_url,
+    //         config.api.hostEndPoint.removeFirebaseToken,
+    //         "post",
+    //         undefined,
+    //         {
+    //             deviceToken: common.firebaseToken
+    //         },
+    //         {
+    //             typeFormData: true,
+    //             noCallbackErr: true,
+    //         }
+    //     )
+    //         .then((jsonRes) => {
+    //         })
+    //         .catch((err) => {
+    //             console.log("error pro3:" + err)
+    //             this.forceUpdate();
+    //         })
+    //     // common.firebaseToken = undefined;
+    // }
     getSortableValue({ value }) {
         return null;
     }
@@ -663,9 +663,9 @@ class SuperComponent extends Component {
                     <div className="footerCompanyName">
                         {config.companyName}
                     </div>
-                    <div>Công ty TNHH PHƯỢT VI VU</div>
+                    <div>CÔNG TY TNHH PHƯỢT VI VU INTERNATIONAL</div>
                     <div>MST: 0313594739</div>
-                    <div>Địa chỉ: Tầng 3 tòa nhà Khánh Huy, số 4 Đỗ Thúc Tịnh, P. 12, Q. Gò Vấp, TP. HCM.</div>
+                    <div>Địa chỉ: Tầng 3, Toà nhà Khánh Huy, Số 4 Đỗ Thúc Tịnh, P. 12, Q. Gò Vấp, TP. HCM</div>
                     <div className="mgTop12">{Language.getLanguage(LanguageIdMap.PAYMENT_METHOD)}</div>
                     <img
                         src={"/static/images/payment-phuotvivu.png"}
@@ -822,11 +822,10 @@ class SuperComponent extends Component {
         </div>
     }
     renderSubmitButton(buttonText, buttonStyle = undefined, uploadPercent = undefined) {
-        // console.log("render submit this.isLoadingSubmitButton:"+this.isLoadingSubmitButton)
         return <div style={{ textAlign: "center", marginTop: 24 }}>
             <Button
                 style={{
-                    height: 48, marginBottom: 0,//config.sizeConfig.belowTitle,
+                    height: 48, marginBottom: 0,
                     ...(buttonStyle ? buttonStyle : config.buttonStyle[0]),
                     fontWeight: "bold",
                     outline: "none",
@@ -890,9 +889,9 @@ class SuperComponent extends Component {
     // }
     replaceBreakLineStringToHtml(str, addToLast = undefined, ) {
         if (str == undefined) {
-            return "";
+            return <div />;
         }
-        let returnStr = [];
+        let returnStr = <div />;
         let strArr = str.split('\n');
         // for (var i = 0; i < strArr.length; i++) {
         //     console.log("i:"+i+";strarrlength:"+strArr.length)
@@ -1152,7 +1151,7 @@ class SuperComponent extends Component {
     }
     renderLogin() {
         if (!this.state.loginModalPopup) {
-            return;
+            return <div />;
         }
         return <Modal show={true}
             onHide={() => {
@@ -1267,7 +1266,7 @@ class SuperComponent extends Component {
     }
     renderRegister() {
         if (!this.state.registerModalPopup) {
-            return;
+            return <div />;
         }
         return <Modal show={this.state.registerModalPopup}
             onHide={() => {
@@ -1433,7 +1432,7 @@ class SuperComponent extends Component {
     }
     renderUploadImagePopup() {
         if (!this.state.uploadImagePopup) {
-            return;
+            return <div />;
         }
         return <Dialog
             contentStyle={{ width: "95%", maxWidth: "none" }}
@@ -1619,7 +1618,7 @@ class SuperComponent extends Component {
     }
     renderForgetPassword() {
         if (!this.state.forgetPasswordModal) {
-            return;
+            return <div />;
         }
         return <Modal show={true}>
             <Modal.Body style={{ padding: config.sizeConfig.distanceSection }}>
@@ -1772,7 +1771,7 @@ class SuperComponent extends Component {
         maxCardDisplayOfRow: undefined,
     }) {
         if (!data || !data.data) {
-            return;
+            return <div />;
         }
         // console.log("----------------------common.getViewportWidth():" + common.getViewportWidth())
         if (!data._presetConfigData) {
@@ -1980,13 +1979,14 @@ class SuperComponent extends Component {
                 />
             )
         }
+        return <div />
     }
 
     renderNotify() {
         try {
             window
         } catch (error) {
-            return;
+            return <div />;
         }
         if (window.localStorage.getItem("needVerifyAccount") || window.localStorage.getItem("forgetPassword")) {
             if (!window.localStorage.getItem("lastTimeSendOtp")) {
@@ -2029,7 +2029,7 @@ class SuperComponent extends Component {
     }
     renderAlertModal() {
         if (this.state.alertModalPopup == undefined) {
-            return;
+            return <div />;
         }
         return <Modal show={this.state.alertModalPopup}
             style={{ zIndex: 2000 }}
@@ -2093,6 +2093,7 @@ class SuperComponent extends Component {
                                     })
                                 }}>{rowData.name}</Button>
                         }
+                        return <div />
                     })
                 }
             </Modal.Footer>
@@ -2102,7 +2103,7 @@ class SuperComponent extends Component {
 
 
     renderProductCard(data) {
-        return <a className="colorInherit pointer"
+        return <a className="colorInherit pointer paddingLeft12"
             href={config.domain + config.shortUrl.product + "/" + data.alias}
             onClick={e => {
                 e.preventDefault();
@@ -2117,7 +2118,7 @@ class SuperComponent extends Component {
                 <img
                     alt={data.featureImage ? data.featureImage.altText : data.photoInfo ? data.photoInfo.altText : undefined}
                     className="productCardImage"
-                    src={(data._useThumbSecondUrl && data.featureImage.thumbSecondUrl) 
+                    src={(data._useThumbSecondUrl && data.featureImage.thumbSecondUrl.replace('09e5ab510779.ngrok.io','55482bf53374.ngrok.io')) 
                         || (data.featureImage ? data.featureImage.thumbUrl : data.photoInfo ? data.photoInfo.thumbUrl : undefined)}
                 />
                 {data.discount > 0 && <div className="productCardDiscount">
@@ -2165,7 +2166,7 @@ class SuperComponent extends Component {
                 </div>
             </div>
             {data.productName &&
-                <div className="twoLineText productCardExcerpt">
+                <div className="twoLineText productCardExcerpt fontWeightBold">
                     <OverlayTrigger
                         placement="top"
                         overlay={<Tooltip>
@@ -2177,7 +2178,7 @@ class SuperComponent extends Component {
                 </div>
             }
             {data.excerpt &&
-                <div className="twoLineText productCardExcerpt">
+                <div className="twoLineText productCardExcerpt fontsize16">
                     <OverlayTrigger
                         placement="top"
                         overlay={<Tooltip>
@@ -2201,6 +2202,7 @@ class SuperComponent extends Component {
                             <div style={{ paddingTop: 8, paddingLeft: 12, paddingRight: 12 }}>{data1.name}</div>
                         ]}
                     />
+                    return <div />
                 })}
                 {Language.getLanguage(LanguageIdMap.from) + " "}
                 <sup className="productCardMoney">
