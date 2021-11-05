@@ -927,7 +927,7 @@ class Home extends SuperComponent {
                 nextArrow={<SlickNextArrow />}
               >
                 {this.props.initPropsData.topList[
-                  config.topList.phuotBlog.id
+                  config.topList.reviewBlog.id
                 ].data.map((topListUrl, idx) => (
                   <div key={idx}>
                     <ImageLink {...topListUrl} />

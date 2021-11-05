@@ -2079,8 +2079,8 @@ class Display extends SuperComponent {
           .productSectionStyle{
             ${
               Math.round(common.getViewportWidth()) >= config.sizeConfig.widthSm
-                ? "padding:24px 64px"
-                : "padding:24px 32px"
+                ? "padding:0px 64px"
+                : "padding:0px 32px"
             }
           }
           .priceFavoriteBookNow{

@@ -94,10 +94,14 @@
     background-color: #666;
     font-size: 24px;
     text-transform: uppercase;
-    text-align: center;
-    font-weight: 500;
+    font-weight: bold;
     margin-top: 0;
     margin-bottom: 0;
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.95;
   }
   .exploreAllDestination{
     margin-right: 10px;
