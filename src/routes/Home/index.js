@@ -39,32 +39,6 @@ class SearchInputComponent extends Component {
     super(props);
     this.state = {};
   }
-  renderCssInHeader() {
-    return (
-      <Head>
-        <style type="text/css">
-          {`
-    h1 {
-      font-size: ` +
-            (common.getViewportWidth() >= 800
-              ? "4.1667em"
-              : common.getViewportWidth() >= 600
-              ? "3.1667em"
-              : "2.1em") +
-            `;
-      font-weight: bold;
-      text-align: center;
-      line-height: 1.25em;
-      margin-bottom: 15px;
-    }
-    #searchInput{
-      border-radius: 4px; background-color: #fff; width: 100%;
-    }
-  `}
-        </style>
-      </Head>
-    );
-  }
   clickInput(retry = false) {
     // this.props.holderComponent.setState({}, function () {
     let scrollTop;

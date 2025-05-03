@@ -246,12 +246,6 @@ class Header extends Component {
             color: inherit;
             text-transform: uppercase;
           }
-          .linkBelowBanner > div:first-child {
-            border-top-left-radius: 24px;
-          }
-          .linkBelowBanner > div:nth-child(3) {
-            border-top-right-radius: 24px;
-          }
           .questionRight{
             cursor: pointer;
             margin-right: 12px;
@@ -335,6 +329,27 @@ class Header extends Component {
       `}</style>
         </Head>
         <Navbar id="header" className="navbar-fixed-top navbar navbarHeader">
+          
+          <div className='pageSmallWidth row' id='pvvBlogCamnangContainer'>
+            <div className="col-sm-2" />
+            <div className="linkBelowBanner col-sm-7 col-xs-12" id='pvvBlogCamnang'>
+              <div>
+                <a href="/blog">Tour và trải nghiệm</a>
+              </div>
+              <div>
+                <a href="/blog/kinh-nghiem-du-lich/">Vé tham quan</a>
+              </div>
+              <div>
+                <a href="/blog/ebook/">Di chuyển</a>
+              </div>
+              <div>
+                <a href="/blog/ebook/">Combo & Packages</a>
+              </div>
+              <div>
+                <a href="/blog/ebook/">Về chúng tôi</a>
+              </div>
+            </div>
+          </div>
           <div className='pageSmallWidth' id={"mainheader"}>
             <div>
             <a
@@ -358,12 +373,6 @@ class Header extends Component {
                 </div>
               </div>
             </a>
-            </div>
-
-            <div
-             id={"banner"}
-            >
-              <img className={"width100"} src={"/static/banner.jpg"} />
             </div>
 
             {!common.checkServer()
@@ -771,50 +780,7 @@ class Header extends Component {
 
               </div>}
 
-            {/* <ul className="displayNone">
-              <li><a href="/blog">{Language.getLanguage(LanguageIdMap.BLOG)}</a></li>
-              <li><a href="/kinh-nghiem-du-lich">{Language.getLanguage(LanguageIdMap.DESTINATION_GUIDE)}</a></li>
-              <li><a href="/ebook">{Language.getLanguage(LanguageIdMap.EBOOK)}</a></li>
-            </ul>
-
-            {(!!this.state.smallPageHeaderDisplay || common.getViewportWidth() >= 850)
-              && !common.checkServer()
-              && <div className="floatLeft">
-                <HoverOpenDropdownMenu
-                  iconButtonElement={<div
-                    className="headerDropdownItem hoverDefaultColor"
-                  >
-                    {Language.getLanguage(LanguageIdMap.TRAVEL_GUIDE)}
-                    <i className="fa fa-chevron-down hoverDefaultColor caretRightDown" />
-                  </div>}
-                  data={[
-                    <MenuItem className="hoverDefaultColor" style={{ minWidth: 180 }} href={"/blog"}>
-                      {Language.getLanguage(LanguageIdMap.BLOG)}
-                    </MenuItem>,
-                    <MenuItem className="hoverDefaultColor" style={{ minWidth: 180 }} href={"/kinh-nghiem-du-lich"}>
-                      {Language.getLanguage(LanguageIdMap.DESTINATION_GUIDE)}
-                    </MenuItem>,
-                    <MenuItem className="hoverDefaultColor" style={{ minWidth: 180 }} href={"/ebook"}>
-                      {Language.getLanguage(LanguageIdMap.EBOOK)}
-                    </MenuItem>,
-                  ]}
-                />  
-              </div>} */}
-
-          </div>
-          <div className='pageSmallWidth row' id='pvvBlogCamnangContainer'>
-            <div className="col-sm-2" />
-            <div className="linkBelowBanner col-sm-7 col-xs-12" id='pvvBlogCamnang'>
-              <div>
-                <a href="/blog">{Language.getLanguage(LanguageIdMap.BLOG)}</a>
-              </div>
-              <div>
-                <a href="/blog/kinh-nghiem-du-lich/">Cẩm nang du lịch</a>
-              </div>
-              <div>
-                <a href="/blog/ebook/">Ebook</a>
-              </div>
-            </div>
+        
           </div>
         </Navbar>
         {/* <Sidebar url={this.props.url}/> */}
