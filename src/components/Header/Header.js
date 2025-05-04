@@ -249,7 +249,7 @@ class Header extends Component {
             color: inherit;
           }
           #rightBarContainer {
-	          padding-top: 4px;
+	          padding-top: 0px;
           }
           .questionRight{
             cursor: pointer;
