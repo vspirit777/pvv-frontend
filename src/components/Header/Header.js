@@ -197,7 +197,6 @@ class Header extends Component {
             display: flex;
             align-items: baseline;
             justify-content: flex-end;
-            padding-bottom: 
           }
           .hotline {
             font-size: 19px;
@@ -244,6 +243,7 @@ class Header extends Component {
             padding: 6px;
             text-align: center;
             padding-top: 14px;
+            padding-bottom: 14px;
           }
           .linkBelowBanner > div > a {
             color: inherit;
@@ -307,7 +307,6 @@ class Header extends Component {
             font-size: 22px;
             top: 7px;
             right: 19px;
-            position: absolute;
             pointer-events: none;
           }
           .headerSearchForm > div > div > input {
@@ -717,7 +716,7 @@ class Header extends Component {
                       && <div
                         className="headerSearchForm"
                       >
-                        <SearchSuggestionPopup
+                        {this.state.searchFocusing ? (<SearchSuggestionPopup
                           autoFocus={this.state.searchFocusing}
                           id="searchInputHeader"
                           className="focusBorderColorDefault"
@@ -760,7 +759,7 @@ class Header extends Component {
                               Language.getLanguage(LanguageIdMap.SEARCH_BY_DESTINATION_ACTIVITY) :
                               ""
                           }
-                        />
+                        />): null}
                         {!this.state.searchFocusing
                           && <i className={`fa fa-search ${this.state.searchFocusing ? "focus" : ""}`} />}
                       </div>
