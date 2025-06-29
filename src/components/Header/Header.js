@@ -307,7 +307,8 @@ class Header extends Component {
             font-size: 22px;
             top: 7px;
             right: 19px;
-            pointer-events: none;
+            // pointer-events: none;
+            pointer-events: auto;
           }
           .headerSearchForm > div > div > input {
             ${!this.state.searchFocusing ? "color: transparent !important" : ""};
@@ -759,9 +760,17 @@ class Header extends Component {
                               Language.getLanguage(LanguageIdMap.SEARCH_BY_DESTINATION_ACTIVITY) :
                               ""
                           }
-                        />): null}
+                        />) : null}
+
                         {!this.state.searchFocusing
-                          && <i className={`fa fa-search ${this.state.searchFocusing ? "focus" : ""}`} />}
+                          && <i
+                            className={`fa fa-search ${this.state.searchFocusing ? "focus" : ""}`}
+                            style={{ cursor: "pointer" }}
+                            onClick={() => {
+                              console.log("click search icon");
+                              this.setState({ searchFocusing: true });
+                            }}
+                          />}
                       </div>
                     }
                   </div>
