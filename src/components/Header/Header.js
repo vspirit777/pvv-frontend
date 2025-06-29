@@ -761,7 +761,13 @@ class Header extends Component {
                           }
                         />): null}
                         {!this.state.searchFocusing
-                          && <i className={`fa fa-search ${this.state.searchFocusing ? "focus" : ""}`} />}
+                          && <i
+    className={`fa fa-search ${this.state.searchFocusing ? "focus" : ""}`}
+    style={{ cursor: "pointer" }}
+    onClick={() => {
+      this.setState({ searchFocusing: true });
+    }}
+  />}
                       </div>
                     }
                   </div>
