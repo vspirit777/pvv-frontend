@@ -357,6 +357,11 @@ class Header extends Component {
             display: flex;
             align-items: center;
             gap: 18px;
+            margin-left: auto;
+          }
+          .headerTopBar .logo-search-group {
+            display: flex;
+            align-items: center;
           }
           .headerTopBar .headerIcons > * {
             display: flex;
@@ -371,6 +376,39 @@ class Header extends Component {
           .headerTopBar .headerSearchForm {
             margin-top: 0;
           }
+          .headerTopBar .header-search-box {
+            flex: 0 0 auto;
+            width: 315px;
+            margin: 0 0 0 16px;
+            position: relative;
+          }
+          .headerTopBar .header-search-box input {
+            width: 100%;
+            height: 40px;
+            padding: 0 40px 0 16px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s;
+          }
+          .headerTopBar .header-search-box input:focus {
+            border-color: ${config.colorConfig.main};
+          }
+          .headerTopBar .header-search-box .search-icon {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+            font-size: 16px;
+            pointer-events: none;
+          }
+          @media only screen and (max-width: ${config.sizeConfig.widthMd - 1}px) {
+            .headerTopBar .header-search-box {
+              display: none;
+            }
+          }
           .navbar-fixed-top {
             top: 64px !important; /* height of .headerTopBar */
             border-width: 0 0 1px;
@@ -378,18 +416,44 @@ class Header extends Component {
       `}</style>
         </Head>
         <div className="headerTopBar">
-          <a
-            href={config.shortUrl.home}
-            className="navLogo"
-            onClick={e => {
-              e.preventDefault();
-              Router.push(config.shortUrl.home)
-            }}
-          >
-            <div>
-              <img src={"/static/logo.png"} style={{ maxWidth: '100%', maxHeight: 48 }} />
-            </div>
-          </a>
+          <div className="logo-search-group">
+            <a
+              href={config.shortUrl.home}
+              className="navLogo"
+              onClick={e => {
+                e.preventDefault();
+                Router.push(config.shortUrl.home)
+              }}
+            >
+              <div>
+                <img src={"/static/logo.png"} style={{ maxWidth: '100%', maxHeight: 48 }} />
+              </div>
+            </a>
+            {!common.checkServer() && (
+              <div className="header-search-box">
+                <SearchSuggestionPopup
+                  id="headerSearchInput"
+                  underlineShow={false}
+                  placeholder="Tìm kiếm điểm đến, tour..."
+                  hintStyle={{ bottom: 2, fontSize: 14 }}
+                  textFieldStyle={{
+                    width: '100%',
+                    height: 40,
+                    padding: '0 40px 0 16px',
+                    border: '1px solid #ddd',
+                    borderRadius: 20,
+                    fontSize: 14,
+                    background: '#fff',
+                  }}
+                  style={{ width: '100%' }}
+                  inputStyle={{
+                    padding: '0 40px 0 16px',
+                  }}
+                />
+                <i className="fa fa-search search-icon" />
+              </div>
+            )}
+          </div>
           <div className="headerIcons">
             <HoverOpenDropdownMenu
               iconButtonElement={<i className="fa fa-question-circle-o hoverDefaultColor questionRight"></i>}
@@ -729,62 +793,6 @@ class Header extends Component {
                 </a>,
               ]}
             />}
-            <div className="headerSearchForm">
-              {this.state.searchFocusing ? (<SearchSuggestionPopup
-                autoFocus={this.state.searchFocusing}
-                id="searchInputHeader"
-                className="focusBorderColorDefault"
-                underlineShow={false}
-                fullWidth={this.state.searchFocusing}
-                anchorOrigin={{ vertical: 'bottom', horizontal: "right" }}
-                targetOrigin={{ vertical: 'top', horizontal: "right" }}
-                menuStyle={{ width: "100%" }}
-
-                onFocus={e => {
-                  this.setState({
-                    searchFocusing: true,
-                  })
-                }}
-                onBlur={e => {
-                  this.setState({
-                    searchFocusing: false,
-                  })
-                }}
-
-                textFieldStyle={{
-                  overflow: "hidden",
-                  transition: "0.2s",
-                  marginRight: 0, paddingBottom: 0,
-                  ...(common.getViewportWidth() >= 500 ? { float: "left" } : { float: "right" }),
-                  width: (this.state.searchFocusing && common.checkMobile()
-                    && common.getViewportWidth() < config.sizeConfig.widthMd) ? "calc(100vw - 50px)"
-                    : common.getViewportWidth() >= 500
-                      ? this.state.searchFocusing ? 256 : 38
-                      : common.getViewportWidth() - 48,
-                  borderRadius: 4, backgroundColor: "#eee",
-                  height: 22,
-                  marginBottom: 4, border: "1px solid #eee",
-                  paddingLeft: this.state.searchFocusing ? 12 : 0,
-                  paddingRight: this.state.searchFocusing ? 12 : 0,
-                }}
-                hintStyle={{ bottom: 2, fontSize: 14 }}
-                hintText={
-                  this.state.searchFocusing ?
-                    Language.getLanguage(LanguageIdMap.SEARCH_BY_DESTINATION_ACTIVITY) :
-                    ""
-                }
-              />) : null}
-
-              {!this.state.searchFocusing
-                && <i
-                  className={`fa fa-search ${this.state.searchFocusing ? "focus" : ""}`}
-                  style={{ cursor: "pointer" }}
-                  onClick={() => {
-                    console.log("click search icon");
-                    this.setState({ searchFocusing: true });
-                  }}
-                />}
-            </div>
           </div>
         </div>
         <Navbar id="header" className="navbar-fixed-top navbar navbarHeader">
