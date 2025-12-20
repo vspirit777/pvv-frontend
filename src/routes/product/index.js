@@ -2937,9 +2937,13 @@ class Display extends SuperComponent {
                     width: 100%;
                     height: 100%;
                   }
-                  /* Timeline Styles */
+                  /* Timeline Styles - All days visible for SEO */
                   #timeline {
                     margin-bottom: 24px;
+                    background: #fff;
+                    border-radius: 12px;
+                    overflow: hidden;
+                    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
                   }
                   #timeline > h2 {
                     justify-content: center;
@@ -2952,40 +2956,53 @@ class Display extends SuperComponent {
                     height: 55px;
                     color: #fff;
                     text-transform: uppercase;
-                    border-top-left-radius: 10px;
-                    border-top-right-radius: 10px;
                   }
-                  #timeline > .timelineList {
+                  #timeline .timeline-all-days {
+                    padding: 0;
+                  }
+                  #timeline .timeline-day-item {
+                    border-bottom: 1px solid #eee;
+                  }
+                  #timeline .timeline-day-item:last-child {
+                    border-bottom: none;
+                  }
+                  #timeline .timeline-day-header {
                     display: flex;
-                    font-size: 16px;
-                    cursor: pointer;
-                    background: #f5f5f5;
-                    flex-wrap: wrap;
-                  }
-                  #timeline > .timelineList > div {
-                    min-height: 50px;
-                    justify-content: center;
                     align-items: center;
-                    display: flex;
-                    flex: 1;
-                    padding: 8px 12px;
-                    text-align: center;
+                    gap: 12px;
+                    padding: 16px 20px;
+                    background: #f8f9fa;
+                    font-size: 16px;
+                    font-weight: 700;
+                    color: #0ab596;
+                    cursor: pointer;
                     transition: all 0.2s ease;
                   }
-                  #timeline > .timelineList > div:hover {
+                  #timeline .timeline-day-header:hover {
                     background: #e8f5f2;
                   }
-                  #timeline > .timelineList > .timelineFocus {
+                  #timeline .timeline-day-header i {
+                    width: 28px;
+                    height: 28px;
                     background: #0ab596;
                     color: #fff;
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 14px;
+                    font-style: normal;
                   }
-                  #timeline .timeline-content {
+                  #timeline .timeline-day-content {
                     padding: 20px;
                     background: #fff;
-                    border: 1px solid #eee;
-                    border-top: none;
-                    border-bottom-left-radius: 10px;
-                    border-bottom-right-radius: 10px;
+                    line-height: 1.7;
+                  }
+                  #timeline .timeline-day-content img {
+                    max-width: 100%;
+                    height: auto;
+                    border-radius: 8px;
+                    margin: 12px 0;
                   }
                   /* Highlight Styles */
                   #highlight {
@@ -3012,7 +3029,7 @@ class Display extends SuperComponent {
               `}</style>
                 </Head>
 
-                {/* Timeline Section */}
+                {/* Timeline Section - All days visible for SEO */}
                 {this.props.initPropsData.data.timeline &&
                   this.props.initPropsData.data.timeline.length > 0 && (
                     <div id="timeline">
@@ -3020,37 +3037,20 @@ class Display extends SuperComponent {
                         <i className="fa fa-calendar-check-o" style={{ marginRight: 10 }} />
                         Lịch trình
                       </h2>
-                      <div className="timelineList">
+                      <div className="timeline-all-days">
                         {this.props.initPropsData.data.timeline.map(
-                          ({ title }, tlIdx) => (
-                            <div
-                              key={tlIdx}
-                              className={
-                                this.state.timelineFocus === tlIdx
-                                  ? "timelineFocus"
-                                  : ""
-                              }
-                              onClick={() =>
-                                this.setState({ timelineFocus: tlIdx })
-                              }
-                            >
-                              {title}
+                          ({ title, content }, tlIdx) => (
+                            <div key={tlIdx} className="timeline-day-item">
+                              <div className="timeline-day-header">
+                                <i>{tlIdx + 1}</i>
+                                <span>{title}</span>
+                              </div>
+                              <div className="timeline-day-content">
+                                {content && ReactHtmlParser(content)}
+                              </div>
                             </div>
                           )
                         )}
-                      </div>
-                      <div className="timeline-content">
-                        {this.props.initPropsData.data.timeline[
-                          this.state.timelineFocus
-                        ] &&
-                          this.props.initPropsData.data.timeline[
-                            this.state.timelineFocus
-                          ].content &&
-                          ReactHtmlParser(
-                            this.props.initPropsData.data.timeline[
-                              this.state.timelineFocus
-                            ].content
-                          )}
                       </div>
                     </div>
                   )}
