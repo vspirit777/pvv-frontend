@@ -1541,7 +1541,7 @@ class ShareBooknowFavourite extends Component {
                   }
                 }}
               >
-                {Language.getLanguage(LanguageIdMap.BOOK_NOW)}
+                ĐẶT VÉ ONLINE
               </RaisedButton>
             )}
           </div>
@@ -2105,12 +2105,6 @@ class Display extends SuperComponent {
       <div className="product-sidebar">
         {/* Combined Booking Card with Kredivo */}
         <div className="sidebar-booking-card">
-          {/* ĐẶT VÉ ONLINE Header */}
-          <div className="booking-header">
-            <i className="fa fa-ticket" />
-            <span>ĐẶT VÉ ONLINE</span>
-          </div>
-
           {/* Price Section */}
           <div className="booking-price-section">
             <div className="price-row">
@@ -2135,11 +2129,6 @@ class Display extends SuperComponent {
             )}
           </div>
 
-          {/* Booking Buttons */}
-          <div id="renderShareBooknowFavoriteOnTopContainerId" className="sidebar-booking-buttons">
-            <ShareBooknowFavourite holder={this} spaceBetweenElement={"8px"} />
-          </div>
-
           {/* Kredivo Section - Inside the same card */}
           <div className="kredivo-section">
             <div className="kredivo-header">
@@ -2157,6 +2146,14 @@ class Display extends SuperComponent {
               </div>
             </div>
           </div>
+
+          {/* Booking Buttons - Below Kredivo */}
+          <div id="renderShareBooknowFavoriteOnTopContainerId" className="sidebar-booking-buttons">
+            <ShareBooknowFavourite holder={this} spaceBetweenElement={"8px"} />
+          </div>
+          <div className="call-booking-text">
+            hoặc gọi đặt vé <a href="tel:02873000776">028 7300 0776</a>
+          </div>
         </div>
 
         {/* Why Book With PVV Section */}
@@ -2171,35 +2168,23 @@ class Display extends SuperComponent {
                 <i className="fa fa-dollar" />
               </div>
               <div className="why-book-text">
-                <strong>Giá cả cạnh tranh</strong>
-                <span>Đảm bảo giá tốt nhất thị trường</span>
+                <span>Giá tốt nhất</span>
               </div>
             </div>
             <div className="why-book-item">
               <div className="why-book-icon">
-                <i className="fa fa-shield" />
+                <i className="fa fa-star" />
               </div>
               <div className="why-book-text">
-                <strong>An toàn & Bảo mật</strong>
-                <span>Thanh toán an toàn, bảo mật thông tin</span>
+                <span>Chất lượng tốt nhất</span>
               </div>
             </div>
             <div className="why-book-item">
               <div className="why-book-icon">
-                <i className="fa fa-phone" />
+                <i className="fa fa-check-circle" />
               </div>
               <div className="why-book-text">
-                <strong>Hỗ trợ 24/7</strong>
-                <span>Hotline: {config.phoneContact}</span>
-              </div>
-            </div>
-            <div className="why-book-item">
-              <div className="why-book-icon">
-                <i className="fa fa-file-text-o" />
-              </div>
-              <div className="why-book-text">
-                <strong>Xác nhận ngay</strong>
-                <span>Nhận vé điện tử qua Email</span>
+                <span>Đặt vé dễ dàng</span>
               </div>
             </div>
           </div>
@@ -2305,7 +2290,7 @@ class Display extends SuperComponent {
             font-size: 18px;
           }
           .booking-price-section {
-            padding: 20px;
+            padding: 14px 20px;
             background: #fff;
             border-bottom: 1px solid #eee;
           }
@@ -2352,11 +2337,26 @@ class Display extends SuperComponent {
           }
           .sidebar-booking-buttons .booknowButton > button {
             width: 100% !important;
-            background: #0ab596 !important;
+            background: #e53935 !important;
             border-radius: 6px !important;
+            color: #fff !important;
           }
           .sidebar-booking-buttons .productFavContainer {
             display: none;
+          }
+          .call-booking-text {
+            text-align: center;
+            padding: 0 20px 16px 20px;
+            font-size: 14px;
+            color: #666;
+          }
+          .call-booking-text a {
+            color: #0ab596;
+            font-weight: 600;
+            text-decoration: none;
+          }
+          .call-booking-text a:hover {
+            text-decoration: underline;
           }
 
           /* Kredivo Section Styles */
@@ -2412,23 +2412,23 @@ class Display extends SuperComponent {
           .why-book-header {
             background: #0ab596;
             color: #fff;
-            padding: 14px 20px;
+            padding: 10px 16px;
             display: flex;
             align-items: center;
-            gap: 10px;
-            font-size: 14px;
+            gap: 8px;
+            font-size: 13px;
             font-weight: 600;
           }
           .why-book-header i {
-            font-size: 16px;
+            font-size: 14px;
           }
           .why-book-list {
-            padding: 16px 20px;
+            padding: 10px 16px;
           }
           .why-book-item {
             display: flex;
-            gap: 12px;
-            padding: 12px 0;
+            gap: 10px;
+            padding: 8px 0;
             border-bottom: 1px solid #f0f0f0;
           }
           .why-book-item:last-child {
@@ -2439,10 +2439,10 @@ class Display extends SuperComponent {
             padding-top: 0;
           }
           .why-book-icon {
-            width: 36px;
-            height: 36px;
+            width: 28px;
+            height: 28px;
             background: #e8f5f2;
-            border-radius: 8px;
+            border-radius: 6px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -2450,21 +2450,23 @@ class Display extends SuperComponent {
           }
           .why-book-icon i {
             color: #0ab596;
-            font-size: 16px;
+            font-size: 13px;
           }
           .why-book-text {
             flex: 1;
+            display: flex;
+            align-items: center;
           }
           .why-book-text strong {
             display: block;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 600;
             color: #333;
-            margin-bottom: 2px;
+            margin-bottom: 0;
           }
           .why-book-text span {
-            font-size: 12px;
-            color: #666;
+            font-size: 13px;
+            color: #333;
           }
 
           /* New Gallery Styles */
