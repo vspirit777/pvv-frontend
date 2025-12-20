@@ -307,8 +307,7 @@ class Header extends Component {
             font-size: 22px;
             top: 7px;
             right: 19px;
-            // pointer-events: none;
-            pointer-events: auto;
+            pointer-events: none;
           }
           .headerSearchForm > div > div > input {
             ${!this.state.searchFocusing ? "color: transparent !important" : ""};
@@ -330,452 +329,473 @@ class Header extends Component {
               display: none;
             }
           }
+          .headerTopBar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+            height: 64px;
+            background: #fff;
+            border-bottom: 1px solid #e4e4e4;
+            z-index: 1020;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100vw;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.04);
+          }
+          body {
+            padding-top: 64px !important;
+          }
+          .headerTopBar .navLogo {
+            width: 160px;
+            min-width: 120px;
+            margin-right: 24px;
+          }
+          .headerTopBar .headerIcons {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+          }
+          .headerTopBar .headerIcons > * {
+            display: flex;
+            align-items: center;
+          }
+          .headerTopBar .shoppingRight {
+            margin-top: 0;
+          }
+          .headerTopBar .loginUserRight {
+            margin-top: 0;
+          }
+          .headerTopBar .headerSearchForm {
+            margin-top: 0;
+          }
+          .navbar-fixed-top {
+            top: 64px !important; /* height of .headerTopBar */
+            border-width: 0 0 1px;
+          }
       `}</style>
         </Head>
-        <Navbar id="header" className="navbar-fixed-top navbar navbarHeader">
-
-          <div className='pageSmallWidth row' id='pvvBlogCamnangContainer'>
-            <div className="linkBelowBanner" id='pvvBlogCamnang'>
-              <div>
-                <a
-                  href={config.shortUrl.home}
-                  className="navLogo"
+        <div className="headerTopBar">
+          <a
+            href={config.shortUrl.home}
+            className="navLogo"
+            onClick={e => {
+              e.preventDefault();
+              Router.push(config.shortUrl.home)
+            }}
+          >
+            <div>
+              <img src={"/static/logo.png"} style={{ maxWidth: '100%', maxHeight: 48 }} />
+            </div>
+          </a>
+          <div className="headerIcons">
+            <HoverOpenDropdownMenu
+              iconButtonElement={<i className="fa fa-question-circle-o hoverDefaultColor questionRight"></i>}
+              data={[
+                <a href={config.shortUrl.faq}>
+                  <MenuItem className="hoverDefaultColor"
+                    onClick={(event) => {
+                      event.preventDefault();
+                      Router.push(config.shortUrl.faq)
+                    }}
+                    style={{ height: 40, minWidth: 180, }}
+                  >
+                    <span>
+                      {Language.getLanguage(LanguageIdMap.HELP_CENTER)}
+                    </span>
+                  </MenuItem>
+                </a>,
+                <a href={config.shortUrl.contact}>
+                  <MenuItem className="hoverDefaultColor"
+                    onClick={(event) => {
+                      event.preventDefault();
+                      Router.push(config.shortUrl.contact)
+                    }}
+                    style={{ height: 40, minWidth: 180, }}
+                  >
+                    <span>
+                      {Language.getLanguage(LanguageIdMap.CONTACT_US)}
+                    </span>
+                  </MenuItem>
+                </a>,
+                <a href={config.shortUrl.aboutUs}>
+                  <MenuItem className="hoverDefaultColor"
+                    onClick={(event) => {
+                      event.preventDefault();
+                      Router.push(config.shortUrl.aboutUs)
+                    }}
+                    style={{ height: 40, minWidth: 180, }}
+                  >
+                    <span>
+                      {Language.getLanguage(LanguageIdMap.ABOUT_US)}
+                    </span>
+                  </MenuItem>
+                </a>,
+                <a href={"http://www.fb.com/msg/phuotvivu"} >
+                  <MenuItem className="hoverDefaultColor"
+                    onClick={(event) => {
+                      event.preventDefault();
+                      window.open("http://www.fb.com/msg/phuotvivu", '_blank');
+                    }}
+                    style={{ height: 40, minWidth: 180, }}
+                  >
+                    <span>
+                      {Language.getLanguage(LanguageIdMap.ASK_ON_FACEBOOK)}
+                    </span>
+                  </MenuItem>
+                </a>,
+              ]}
+            />
+            <HoverOpenDropdownMenu
+              iconButtonElement={<div className="shoppingRight">
+                <i className="fa fa-shopping-cart hoverDefaultColor"
                   onClick={e => {
                     e.preventDefault();
-                    /* Router.push(config.shortUrl.product, '/tour/tour-ha-giang-yen-minh-lung-cu-dong-van-3-ngay-2-dem')*/
-                    Router.push(config.shortUrl.home)
+                    Router.push(config.shortUrl.shoppingCart)
                   }}
-                >
-                  <div>
-                    <img src={"/static/logo.png"} />
-                  </div>
-                </a>
-              </div>
-              <div>
-                <a href="/blog">Tour và trải nghiệm</a>
-              </div>
-              <div>
-                <a href="/blog/kinh-nghiem-du-lich/">Vé tham quan</a>
-              </div>
-              <div>
-                <a href="/blog/ebook/">Di chuyển</a>
-              </div>
-              <div>
-                <a href="/blog/ebook/">Combo & Packages</a>
-              </div>
-              <div>
-                <a href="/blog/ebook/">Về chúng tôi</a>
-              </div>
-              {!common.checkServer()
-                && <div id="rightBarContainer">
-                  <div>
-                    <HoverOpenDropdownMenu
-                      iconButtonElement={<i className="fa fa-question-circle-o hoverDefaultColor questionRight">
-                      </i>}
-                      data={[
-                        <a href={config.shortUrl.faq}>
-                          <MenuItem className="hoverDefaultColor"
-                            onClick={(event) => {
-                              event.preventDefault();
-                              Router.push(config.shortUrl.faq)
-                            }}
-                            style={{ height: 40, minWidth: 180, }}
-                          >
-                            <span>
-                              {Language.getLanguage(LanguageIdMap.HELP_CENTER)}
-                            </span>
-                          </MenuItem>
-                        </a>,
-                        <a href={config.shortUrl.contact}>
-                          <MenuItem className="hoverDefaultColor"
-                            onClick={(event) => {
-                              event.preventDefault();
-                              Router.push(config.shortUrl.contact)
-                            }}
-                            style={{ height: 40, minWidth: 180, }}
-                          >
-                            <span>
-                              {Language.getLanguage(LanguageIdMap.CONTACT_US)}
-                            </span>
-                          </MenuItem>
-                        </a>,
-                        <a href={config.shortUrl.aboutUs}>
-                          <MenuItem className="hoverDefaultColor"
-                            onClick={(event) => {
-                              event.preventDefault();
-                              Router.push(config.shortUrl.aboutUs)
-                            }}
-                            style={{ height: 40, minWidth: 180, }}
-                          >
-                            <span>
-                              {Language.getLanguage(LanguageIdMap.ABOUT_US)}
-                            </span>
-                          </MenuItem>
-                        </a>,
-                        <a href={"http://www.fb.com/msg/phuotvivu"} >
-                          <MenuItem className="hoverDefaultColor"
-                            onClick={(event) => {
-                              event.preventDefault();
-                              window.open("http://www.fb.com/msg/phuotvivu", '_blank');
-                            }}
-                            style={{ height: 40, minWidth: 180, }}
-                          >
-                            <span>
-                              {Language.getLanguage(LanguageIdMap.ASK_ON_FACEBOOK)}
-                            </span>
-                          </MenuItem>
-                        </a>,
-                      ]}
-                    />
-                    <HoverOpenDropdownMenu
-                      iconButtonElement={<div className="shoppingRight">
-                        <i className="fa fa-shopping-cart hoverDefaultColor"
-                          onClick={e => {
-                            e.preventDefault();
-                            Router.push(config.shortUrl.shoppingCart)
-                          }}
-                        />
-                        {common.shoppingCart && common.shoppingCart.orderOrderProduct && common.shoppingCart.orderOrderProduct.length > 0
-                          && <div className="shoppingRightChip">
-                            {common.shoppingCart.orderOrderProduct.length}
-                          </div>}
-                      </div>}
-                      menuStyle={{}}
-                      data={<div style={{
-                        marginTop: 0, boxSizing: "border-box",
-                      }}>
-                        {(common.shoppingCart && common.shoppingCart.orderOrderProduct && common.shoppingCart.orderOrderProduct.length > 0)
-                          ? <div style={{
-                            paddingBottom: 60, height: 400, maxHeight: common.windowHeight, width: 400, maxWidth: common.getViewportWidth()
-                            , overflowY: "auto", position: "relative"
-                          }}>
-                            {common.shoppingCart.orderOrderProduct.map((rowData, rowIndex) => {
-                              return <div
-                                key={rowIndex}
-                                style={{ margin: "0 20px", padding: "20px 0", borderBottom: "1px solid #eeeeee", cursor: "pointer" }}
-                                onClick={e => {
-                                  common.needReload = true;
-                                  Router.push(config.shortUrl.product, config.shortUrl.product + "/" + rowData.alias)
-                                }}
-                              >
-                                <a style={{ color: "inherit" }}>
-                                  <img style={{ float: "left", width: 60, height: 60, borderRadius: 2, marginRight: 20 }}
-                                    src={rowData.thumbUrl}>
-                                  </img>
-                                  <div style={{ paddingLeft: 80 }}>
-                                    <div style={{ lineHeight: 1.29, overflowX: "hidden", textOverflow: "ellipsis", maxHeight: 37, fontWeight: "bold" }}>
-                                      {rowData.name}
-                                    </div>
-                                    {rowData.scheduleData && <div style={{ lineHeight: 1.2, overflowX: "hidden", textOverflow: "ellipsis", marginTop: 4 }}>
-                                      {rowData.scheduleData.name}
-                                    </div>}
-                                    <div style={{ lineHeight: 1.2, overflowX: "hidden", textOverflow: "ellipsis", marginTop: 4, color: "#888" }}>
-                                      {common.changeTimeStampToHumanTime(rowData.scheduleData.date, undefined, "standardDate")}
-                                    </div>
-                                    {rowData.scheduleData && rowData.scheduleData.schedulePriceItems && <div style={{ lineHeight: 1.2, overflowX: "hidden", textOverflow: "ellipsis", marginTop: 4 }}>
-                                      {rowData.scheduleData.schedulePriceItems.map((rowData1, rowIndex1) => {
-                                        return (rowIndex1 > 0 ? ", " : "") + rowData1.noOfItem
-                                          + " x " + (rowData1.label ? rowData1.label : common.schedulePriceItemTypeMap[rowData1.schedulePriceItemType])
-                                      })}
-                                    </div>}
-                                    <div style={{
-                                      lineHeight: 1.2, overflowX: "hidden", textOverflow: "ellipsis", marginTop: 4, color: "#ff5722"
-                                      , fontSize: 16
-                                    }}>
-                                      <sup style={{ top: "-0.5em", fontSize: 10, marginRight: 4 }}>
-                                        {Language.getLanguage(common.moneyType)}
-                                      </sup>
-                                      {common.numberWithCommas(rowData.cost)}
-                                    </div>
-                                  </div>
-                                </a>
-                              </div>
-                            })}
+                />
+                {common.shoppingCart && common.shoppingCart.orderOrderProduct && common.shoppingCart.orderOrderProduct.length > 0 && <div className="shoppingRightChip">{common.shoppingCart.orderOrderProduct.length}</div>}
+              </div>}
+              menuStyle={{}}
+              data={<div style={{
+                marginTop: 0, boxSizing: "border-box",
+              }}>
+                {(common.shoppingCart && common.shoppingCart.orderOrderProduct && common.shoppingCart.orderOrderProduct.length > 0)
+                  ? <div style={{
+                    paddingBottom: 60, height: 400, maxHeight: common.windowHeight, width: 400, maxWidth: common.getViewportWidth()
+                    , overflowY: "auto", position: "relative"
+                  }}>
+                    {common.shoppingCart.orderOrderProduct.map((rowData, rowIndex) => {
+                      return <div
+                        key={rowIndex}
+                        style={{ margin: "0 20px", padding: "20px 0", borderBottom: "1px solid #eeeeee", cursor: "pointer" }}
+                        onClick={e => {
+                          common.needReload = true;
+                          Router.push(config.shortUrl.product, config.shortUrl.product + "/" + rowData.alias)
+                        }}
+                      >
+                        <a style={{ color: "inherit" }}>
+                          <img style={{ float: "left", width: 60, height: 60, borderRadius: 2, marginRight: 20 }}
+                            src={rowData.thumbUrl}>
+                          </img>
+                          <div style={{ paddingLeft: 80 }}>
+                            <div style={{ lineHeight: 1.29, overflowX: "hidden", textOverflow: "ellipsis", maxHeight: 37, fontWeight: "bold" }}>
+                              {rowData.name}
+                            </div>
+                            {rowData.scheduleData && <div style={{ lineHeight: 1.2, overflowX: "hidden", textOverflow: "ellipsis", marginTop: 4 }}>
+                              {rowData.scheduleData.name}
+                            </div>}
+                            <div style={{ lineHeight: 1.2, overflowX: "hidden", textOverflow: "ellipsis", marginTop: 4, color: "#888" }}>
+                              {common.changeTimeStampToHumanTime(rowData.scheduleData.date, undefined, "standardDate")}
+                            </div>
+                            {rowData.scheduleData && rowData.scheduleData.schedulePriceItems && <div style={{ lineHeight: 1.2, overflowX: "hidden", textOverflow: "ellipsis", marginTop: 4 }}>
+                              {rowData.scheduleData.schedulePriceItems.map((rowData1, rowIndex1) => {
+                                return (rowIndex1 > 0 ? ", " : "") + rowData1.noOfItem
+                                  + " x " + (rowData1.label ? rowData1.label : common.schedulePriceItemTypeMap[rowData1.schedulePriceItemType])
+                              })}
+                            </div>}
                             <div style={{
-                              position: "fixed", borderTop: "solid 1px #e0e0e0", width: "100%",
-                              lineHeight: 1.5, display: "flex", bottom: 0, backgroundColor: "#fff"
+                              lineHeight: 1.2, overflowX: "hidden", textOverflow: "ellipsis", marginTop: 4, color: "#ff5722"
+                              , fontSize: 16
                             }}>
-                              <div style={{ width: "50%", padding: "9px 24px 11px", height: 59 }}>
-                                <div>
-                                  {Language.getLanguage(LanguageIdMap.subtotal)}
-                                  {common.shoppingCart.orderOrderProduct && " ("
-                                    + Language.getLanguage(LanguageIdMap.ITEMS, { item: common.shoppingCart.orderOrderProduct.length }) + ")"}
-                                  {":"}
-                                </div>
-                                <div style={{ lineHeight: 1.3, color: "#ff5722", fontSize: 16 }}>
-                                  <sup style={{ top: "-0.5em", fontSize: 10, marginRight: 4 }}>
-                                    {Language.getLanguage(common.moneyType)}
-                                  </sup>
-                                  {common.numberWithCommas(common.shoppingCart.cost)}
-                                </div>
-                              </div>
-                              <div style={{ width: "50%", height: 59 }}>
-                                <RaisedButton
-                                  buttonStyle={{ ...config.buttonStyle[0] }}
-                                  overlayStyle={{ height: 59, width: "100%" }}
-                                  style={{
-                                    height: 59,
-                                    width: "100%",
-                                    fontWeight: "bold",
-                                    outline: "none",
-                                    opacity: this.loadingCountdown > 0 ? 0.3 : 1,
-                                  }}
-                                  onClick={e => {
-                                    Router.push(config.shortUrl.shoppingCart)
-                                  }}
-                                >{Language.getLanguage(LanguageIdMap.VIEW_CART)}
-                                </RaisedButton>
-                              </div>
+                              <sup style={{ top: "-0.5em", fontSize: 10, marginRight: 4 }}>
+                                {Language.getLanguage(common.moneyType)}
+                              </sup>
+                              {common.numberWithCommas(rowData.cost)}
                             </div>
                           </div>
-                          : <div style={{
-                            color: "#d5d5d5", textAlign: "center", padding: "20px 20px 8px 20px", width: 400
-                            , maxWidth: common.getViewportWidth(),
-                          }}>
-                            <i className="fa fa-shopping-cart" style={{ cursor: "pointer", marginRight: 12, fontSize: 24 }} />
-                            <div style={{ marginTop: 12 }}> {Language.getLanguage(LanguageIdMap.CART_IS_EMPTY)} </div>
-                          </div>}
-                      </div>}
-                    />
-                    {!common.checkLoginUser()
-                      && <HoverOpenDropdownMenu
-                        iconButtonElement={<div className="loginUserRight">
-                          <i className="fa fa-user hoverDefaultColor" />
-                        </div>}
-                        data={[
-                          <a>
-                            <MenuItem className="hoverDefaultColor"
-                              onClick={(event) => {
-                                event.preventDefault();
-                                common.currentMainComponent.setState({ loginModalPopup: true });
-                              }}
-                              style={{ height: 40, minWidth: 180, }}
-                            >
-                              <span>
-                                {Language.getLanguage(LanguageIdMap.btnLogin)}
-                              </span>
-                            </MenuItem>
-                          </a>,
-                          <a>
-                            <MenuItem className="hoverDefaultColor"
-                              onClick={(event) => {
-                                event.preventDefault();
-                                common.currentMainComponent.setState({ registerModalPopup: true });
-                              }}
-                              style={{ height: 40, minWidth: 180, }}
-                            >
-                              <span>
-                                {Language.getLanguage(LanguageIdMap.btnRegister)}
-                              </span>
-                            </MenuItem>
-                          </a>,
-                          <a>
-                            <MenuItem className="hoverDefaultColor"
-                              onClick={(event) => {
-                                event.preventDefault();
-                                common.needReload = true;
-                                Router.push(config.shortUrl.profile, config.shortUrl.profile + "/" + config.shortUrl.profileChild.INVITE.url)
-                                common.currentMainComponent.checkAndLoadData();
-                              }}
-                              style={{ height: 40 }}
-                            >
-                              <span>
-                                {Language.getLanguage(LanguageIdMap.URL.PROFILE.INVITE)}
-                              </span>
-                            </MenuItem>
-                          </a>,
-                          <a>
-                            <MenuItem className="hoverDefaultColor"
-                              onClick={(event) => {
-                                event.preventDefault();
-                                common.needReload = true;
-                                Router.push(config.shortUrl.profile, config.shortUrl.profile + "/" + config.shortUrl.profileChild.CREDIT.url)
-                                common.currentMainComponent.checkAndLoadData();
-                              }}
-                              style={{ height: 40 }}
-                            >
-                              <span>
-                                {Language.getLanguage(LanguageIdMap.URL.PROFILE.CREDIT)}
-                              </span>
-                            </MenuItem>
-                          </a>,
-                        ]}
-                      />}
-                    {common.checkLoginUser()
-                      && <HoverOpenDropdownMenu
-                        iconButtonElement={<div className="loginUserRight" >
-                          <i className="fa fa-user hoverDefaultColor" />
-                          <span style={{ marginTop: 3 }}>{window.localStorage.getItem("firstName")}</span>
-                        </div>}
-                        data={[
-                          <a>
-                            <MenuItem className="hoverDefaultColor"
-                              onClick={(event) => {
-                                event.preventDefault();
-                                common.needReload = true;
-                                Router.push(config.shortUrl.profile, config.shortUrl.profile + "/" + config.shortUrl.profileChild.MYACCOUNT.url)
-                                common.currentMainComponent.checkAndLoadData();
-                              }}
-                              style={{ height: 40 }}
-                            >
-                              <span>
-                                {Language.getLanguage(LanguageIdMap.URL.PROFILE.MY_ACCOUNT)}
-                              </span>
-                            </MenuItem>
-                          </a>,
-                          <a>
-                            <MenuItem className="hoverDefaultColor"
-                              onClick={(event) => {
-                                event.preventDefault();
-                                common.needReload = true;
-                                Router.push(config.shortUrl.profile, config.shortUrl.profile + "/" + config.shortUrl.profileChild.BOOKING.url)
-                                common.currentMainComponent.checkAndLoadData();
-                              }}
-                              style={{ height: 40 }}
-                            >
-                              <span>
-                                {Language.getLanguage(LanguageIdMap.URL.PROFILE.BOOKING)}
-                              </span>
-                            </MenuItem>
-                          </a>,
-                          <a>
-                            <MenuItem className="hoverDefaultColor"
-                              onClick={(event) => {
-                                event.preventDefault();
-                                common.needReload = true;
-                                Router.push(config.shortUrl.profile, config.shortUrl.profile + "/" + config.shortUrl.profileChild.WISHLIST.url)
-                                common.currentMainComponent.checkAndLoadData();
-                              }}
-                              style={{ height: 40 }}
-                            >
-                              <span>
-                                {Language.getLanguage(LanguageIdMap.URL.PROFILE.WISH_LIST)}
-                              </span>
-                            </MenuItem>
-                          </a>,
-                          <a>
-                            <MenuItem className="hoverDefaultColor"
-                              onClick={(event) => {
-                                event.preventDefault();
-                                common.needReload = true;
-                                Router.push(config.shortUrl.profile, config.shortUrl.profile + "/" + config.shortUrl.profileChild.INVITE.url)
-                                common.currentMainComponent.checkAndLoadData();
-                              }}
-                              style={{ height: 40 }}
-                            >
-                              <span>
-                                {Language.getLanguage(LanguageIdMap.URL.PROFILE.INVITE)}
-                              </span>
-                            </MenuItem>
-                          </a>,
-                          <a>
-                            <MenuItem className="hoverDefaultColor"
-                              onClick={(event) => {
-                                event.preventDefault();
-                                common.needReload = true;
-                                Router.push(config.shortUrl.profile, config.shortUrl.profile + "/" + config.shortUrl.profileChild.CREDIT.url)
-                                common.currentMainComponent.checkAndLoadData();
-                              }}
-                              style={{ height: 40 }}
-                            >
-                              <span>
-                                {Language.getLanguage(LanguageIdMap.URL.PROFILE.CREDIT)}
-                              </span>
-                            </MenuItem>
-                          </a>,
-                          <a>
-                            <MenuItem className="hoverDefaultColor"
-                              onClick={(event) => {
-                                event.preventDefault();
-                                common.needReload = true;
-                                Router.push(config.shortUrl.profile, config.shortUrl.profile + "/" + config.shortUrl.profileChild.SETTING.url)
-                                common.currentMainComponent.checkAndLoadData();
-                              }}
-                              style={{ height: 40 }}
-                            >
-                              <span>
-                                {Language.getLanguage(LanguageIdMap.URL.PROFILE.SETTING)}
-                              </span>
-                            </MenuItem>
-                          </a>,
-                          <a>
-                            <MenuItem className="hoverDefaultColor"
-                              onClick={(e) => {
-                                e.preventDefault();
-                                common.currentMainComponent.logout();
-                              }}
-                              style={{ height: 40 }}
-                            >
-                              <span>
-                                {Language.getLanguage(LanguageIdMap.btnLogout)}
-                              </span>
-                            </MenuItem>
-                          </a>,
-                        ]}
-                      />}
-                    {!common.checkServer()
-                      && <div
-                        className="headerSearchForm"
-                      >
-                        {this.state.searchFocusing ? (<SearchSuggestionPopup
-                          autoFocus={this.state.searchFocusing}
-                          id="searchInputHeader"
-                          className="focusBorderColorDefault"
-                          underlineShow={false}
-                          fullWidth={this.state.searchFocusing}
-                          anchorOrigin={{ vertical: 'bottom', horizontal: "right" }}
-                          targetOrigin={{ vertical: 'top', horizontal: "right" }}
-                          menuStyle={{ width: "100%" }}
-
-                          onFocus={e => {
-                            this.setState({
-                              searchFocusing: true,
-                            })
-                          }}
-                          onBlur={e => {
-                            this.setState({
-                              searchFocusing: false,
-                            })
-                          }}
-
-                          textFieldStyle={{
-                            overflow: "hidden",
-                            transition: "0.2s",
-                            marginRight: 0, paddingBottom: 0,
-                            ...(common.getViewportWidth() >= 500 ? { float: "left" } : { float: "right" }),
-                            width: (this.state.searchFocusing && common.checkMobile()
-                              && common.getViewportWidth() < config.sizeConfig.widthMd) ? "calc(100vw - 50px)"
-                              : common.getViewportWidth() >= 500
-                                ? this.state.searchFocusing ? 256 : 38
-                                : common.getViewportWidth() - 48,
-                            borderRadius: 4, backgroundColor: "#eee",
-                            height: 22,
-                            marginBottom: 4, border: "1px solid #eee",
-                            paddingLeft: this.state.searchFocusing ? 12 : 0,
-                            paddingRight: this.state.searchFocusing ? 12 : 0,
-                          }}
-                          hintStyle={{ bottom: 2, fontSize: 14 }}
-                          hintText={
-                            this.state.searchFocusing ?
-                              Language.getLanguage(LanguageIdMap.SEARCH_BY_DESTINATION_ACTIVITY) :
-                              ""
-                          }
-                        />) : null}
-
-                        {!this.state.searchFocusing
-                          && <i
-                            className={`fa fa-search ${this.state.searchFocusing ? "focus" : ""}`}
-                            style={{ cursor: "pointer" }}
-                            onClick={() => {
-                              console.log("click search icon");
-                              this.setState({ searchFocusing: true });
-                            }}
-                          />}
+                        </a>
                       </div>
-                    }
+                    })}
+                    <div style={{
+                      position: "fixed", borderTop: "solid 1px #e0e0e0", width: "100%",
+                      lineHeight: 1.5, display: "flex", bottom: 0, backgroundColor: "#fff"
+                    }}>
+                      <div style={{ width: "50%", padding: "9px 24px 11px", height: 59 }}>
+                        <div>
+                          {Language.getLanguage(LanguageIdMap.subtotal)}
+                          {common.shoppingCart.orderOrderProduct && " ("
+                            + Language.getLanguage(LanguageIdMap.ITEMS, { item: common.shoppingCart.orderOrderProduct.length }) + ")"}
+                          {":"}
+                        </div>
+                        <div style={{ lineHeight: 1.3, color: "#ff5722", fontSize: 16 }}>
+                          <sup style={{ top: "-0.5em", fontSize: 10, marginRight: 4 }}>
+                            {Language.getLanguage(common.moneyType)}
+                          </sup>
+                          {common.numberWithCommas(common.shoppingCart.cost)}
+                        </div>
+                      </div>
+                      <div style={{ width: "50%", height: 59 }}>
+                        <RaisedButton
+                          buttonStyle={{ ...config.buttonStyle[0] }}
+                          overlayStyle={{ height: 59, width: "100%" }}
+                          style={{
+                            height: 59,
+                            width: "100%",
+                            fontWeight: "bold",
+                            outline: "none",
+                            opacity: this.loadingCountdown > 0 ? 0.3 : 1,
+                          }}
+                          onClick={e => {
+                            Router.push(config.shortUrl.shoppingCart)
+                          }}
+                        >{Language.getLanguage(LanguageIdMap.VIEW_CART)}
+                        </RaisedButton>
+                      </div>
+                    </div>
                   </div>
+                  : <div style={{
+                    color: "#d5d5d5", textAlign: "center", padding: "20px 20px 8px 20px", width: 400
+                    , maxWidth: common.getViewportWidth(),
+                  }}>
+                    <i className="fa fa-shopping-cart" style={{ cursor: "pointer", marginRight: 12, fontSize: 24 }} />
+                    <div style={{ marginTop: 12 }}> {Language.getLanguage(LanguageIdMap.CART_IS_EMPTY)} </div>
+                  </div>}
+              </div>}
+            />
+            {!common.checkLoginUser() && <HoverOpenDropdownMenu
+              iconButtonElement={<div className="loginUserRight">
+                <i className="fa fa-user hoverDefaultColor" />
+              </div>}
+              data={[
+                <a>
+                  <MenuItem className="hoverDefaultColor"
+                    onClick={(event) => {
+                      event.preventDefault();
+                      common.currentMainComponent.setState({ loginModalPopup: true });
+                    }}
+                    style={{ height: 40, minWidth: 180, }}
+                  >
+                    <span>
+                      {Language.getLanguage(LanguageIdMap.btnLogin)}
+                    </span>
+                  </MenuItem>
+                </a>,
+                <a>
+                  <MenuItem className="hoverDefaultColor"
+                    onClick={(event) => {
+                      event.preventDefault();
+                      common.currentMainComponent.setState({ registerModalPopup: true });
+                    }}
+                    style={{ height: 40, minWidth: 180, }}
+                  >
+                    <span>
+                      {Language.getLanguage(LanguageIdMap.btnRegister)}
+                    </span>
+                  </MenuItem>
+                </a>,
+                <a>
+                  <MenuItem className="hoverDefaultColor"
+                    onClick={(event) => {
+                      event.preventDefault();
+                      common.needReload = true;
+                      Router.push(config.shortUrl.profile, config.shortUrl.profile + "/" + config.shortUrl.profileChild.INVITE.url)
+                      common.currentMainComponent.checkAndLoadData();
+                    }}
+                    style={{ height: 40 }}
+                  >
+                    <span>
+                      {Language.getLanguage(LanguageIdMap.URL.PROFILE.INVITE)}
+                    </span>
+                  </MenuItem>
+                </a>,
+                <a>
+                  <MenuItem className="hoverDefaultColor"
+                    onClick={(event) => {
+                      event.preventDefault();
+                      common.needReload = true;
+                      Router.push(config.shortUrl.profile, config.shortUrl.profile + "/" + config.shortUrl.profileChild.CREDIT.url)
+                      common.currentMainComponent.checkAndLoadData();
+                    }}
+                    style={{ height: 40 }}
+                  >
+                    <span>
+                      {Language.getLanguage(LanguageIdMap.URL.PROFILE.CREDIT)}
+                    </span>
+                  </MenuItem>
+                </a>,
+              ]}
+            />}
+            {common.checkLoginUser() && <HoverOpenDropdownMenu
+              iconButtonElement={<div className="loginUserRight" >
+                <i className="fa fa-user hoverDefaultColor" />
+                <span style={{ marginTop: 3 }}>{window.localStorage.getItem("firstName")}</span>
+              </div>}
+              data={[
+                <a>
+                  <MenuItem className="hoverDefaultColor"
+                    onClick={(event) => {
+                      event.preventDefault();
+                      common.needReload = true;
+                      Router.push(config.shortUrl.profile, config.shortUrl.profile + "/" + config.shortUrl.profileChild.MYACCOUNT.url)
+                      common.currentMainComponent.checkAndLoadData();
+                    }}
+                    style={{ height: 40 }}
+                  >
+                    <span>
+                      {Language.getLanguage(LanguageIdMap.URL.PROFILE.MY_ACCOUNT)}
+                    </span>
+                  </MenuItem>
+                </a>,
+                <a>
+                  <MenuItem className="hoverDefaultColor"
+                    onClick={(event) => {
+                      event.preventDefault();
+                      common.needReload = true;
+                      Router.push(config.shortUrl.profile, config.shortUrl.profile + "/" + config.shortUrl.profileChild.BOOKING.url)
+                      common.currentMainComponent.checkAndLoadData();
+                    }}
+                    style={{ height: 40 }}
+                  >
+                    <span>
+                      {Language.getLanguage(LanguageIdMap.URL.PROFILE.BOOKING)}
+                    </span>
+                  </MenuItem>
+                </a>,
+                <a>
+                  <MenuItem className="hoverDefaultColor"
+                    onClick={(event) => {
+                      event.preventDefault();
+                      common.needReload = true;
+                      Router.push(config.shortUrl.profile, config.shortUrl.profile + "/" + config.shortUrl.profileChild.WISHLIST.url)
+                      common.currentMainComponent.checkAndLoadData();
+                    }}
+                    style={{ height: 40 }}
+                  >
+                    <span>
+                      {Language.getLanguage(LanguageIdMap.URL.PROFILE.WISH_LIST)}
+                    </span>
+                  </MenuItem>
+                </a>,
+                <a>
+                  <MenuItem className="hoverDefaultColor"
+                    onClick={(event) => {
+                      event.preventDefault();
+                      common.needReload = true;
+                      Router.push(config.shortUrl.profile, config.shortUrl.profile + "/" + config.shortUrl.profileChild.INVITE.url)
+                      common.currentMainComponent.checkAndLoadData();
+                    }}
+                    style={{ height: 40 }}
+                  >
+                    <span>
+                      {Language.getLanguage(LanguageIdMap.URL.PROFILE.INVITE)}
+                    </span>
+                  </MenuItem>
+                </a>,
+                <a>
+                  <MenuItem className="hoverDefaultColor"
+                    onClick={(event) => {
+                      event.preventDefault();
+                      common.needReload = true;
+                      Router.push(config.shortUrl.profile, config.shortUrl.profile + "/" + config.shortUrl.profileChild.CREDIT.url)
+                      common.currentMainComponent.checkAndLoadData();
+                    }}
+                    style={{ height: 40 }}
+                  >
+                    <span>
+                      {Language.getLanguage(LanguageIdMap.URL.PROFILE.CREDIT)}
+                    </span>
+                  </MenuItem>
+                </a>,
+                <a>
+                  <MenuItem className="hoverDefaultColor"
+                    onClick={(event) => {
+                      event.preventDefault();
+                      common.needReload = true;
+                      Router.push(config.shortUrl.profile, config.shortUrl.profile + "/" + config.shortUrl.profileChild.SETTING.url)
+                      common.currentMainComponent.checkAndLoadData();
+                    }}
+                    style={{ height: 40 }}
+                  >
+                    <span>
+                      {Language.getLanguage(LanguageIdMap.URL.PROFILE.SETTING)}
+                    </span>
+                  </MenuItem>
+                </a>,
+                <a>
+                  <MenuItem className="hoverDefaultColor"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      common.currentMainComponent.logout();
+                    }}
+                    style={{ height: 40 }}
+                  >
+                    <span>
+                      {Language.getLanguage(LanguageIdMap.btnLogout)}
+                    </span>
+                  </MenuItem>
+                </a>,
+              ]}
+            />}
+            <div className="headerSearchForm">
+              {this.state.searchFocusing ? (<SearchSuggestionPopup
+                autoFocus={this.state.searchFocusing}
+                id="searchInputHeader"
+                className="focusBorderColorDefault"
+                underlineShow={false}
+                fullWidth={this.state.searchFocusing}
+                anchorOrigin={{ vertical: 'bottom', horizontal: "right" }}
+                targetOrigin={{ vertical: 'top', horizontal: "right" }}
+                menuStyle={{ width: "100%" }}
 
-                </div>}
+                onFocus={e => {
+                  this.setState({
+                    searchFocusing: true,
+                  })
+                }}
+                onBlur={e => {
+                  this.setState({
+                    searchFocusing: false,
+                  })
+                }}
+
+                textFieldStyle={{
+                  overflow: "hidden",
+                  transition: "0.2s",
+                  marginRight: 0, paddingBottom: 0,
+                  ...(common.getViewportWidth() >= 500 ? { float: "left" } : { float: "right" }),
+                  width: (this.state.searchFocusing && common.checkMobile()
+                    && common.getViewportWidth() < config.sizeConfig.widthMd) ? "calc(100vw - 50px)"
+                    : common.getViewportWidth() >= 500
+                      ? this.state.searchFocusing ? 256 : 38
+                      : common.getViewportWidth() - 48,
+                  borderRadius: 4, backgroundColor: "#eee",
+                  height: 22,
+                  marginBottom: 4, border: "1px solid #eee",
+                  paddingLeft: this.state.searchFocusing ? 12 : 0,
+                  paddingRight: this.state.searchFocusing ? 12 : 0,
+                }}
+                hintStyle={{ bottom: 2, fontSize: 14 }}
+                hintText={
+                  this.state.searchFocusing ?
+                    Language.getLanguage(LanguageIdMap.SEARCH_BY_DESTINATION_ACTIVITY) :
+                    ""
+                }
+              />) : null}
+
+              {!this.state.searchFocusing
+                && <i
+                  className={`fa fa-search ${this.state.searchFocusing ? "focus" : ""}`}
+                  style={{ cursor: "pointer" }}
+                  onClick={() => {
+                    console.log("click search icon");
+                    this.setState({ searchFocusing: true });
+                  }}
+                />}
+            </div>
+          </div>
+        </div>
+        <Navbar id="header" className="navbar-fixed-top navbar navbarHeader">
+          <div className='pageSmallWidth row' id='pvvBlogCamnangContainer'>
+            <div className="linkBelowBanner" id='pvvBlogCamnang' style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%'}}>
+              {/* Only menu items, no logo here */}
+              <div><a href="/blog">Tour và trải nghiệm</a></div>
+              <div><a href="/blog/kinh-nghiem-du-lich/">Vé tham quan</a></div>
+              <div><a href="/blog/ebook/">Di chuyển</a></div>
+              <div><a href="/blog/ebook/">Combo & Packages</a></div>
+              <div><a href="/blog/ebook/">Về chúng tôi</a></div>
             </div>
           </div>
         </Navbar>

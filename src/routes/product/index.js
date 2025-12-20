@@ -74,43 +74,109 @@ class PackageOption extends Component {
             width: 30px;
             height: 30px;
           }
+          /* Package Options Section Styling */
+          .package-options-wrapper {
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 24px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+          }
+          .package-options-header {
+            background: #0ab596;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 16px;
+            font-weight: 700;
+            padding: 14px 20px;
+            text-transform: uppercase;
+          }
+          .package-options-header i {
+            font-size: 18px;
+          }
+          .package-options-body {
+            padding: 20px;
+          }
+          .package-date-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+          }
+          .package-date-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+          }
           .productPackageListContainer{
-            border: 1px solid #000;
+            border: 1px solid #ddd;
             display: inline-flex;
             background-color: #fff;
             overflow: hidden;
-            height: 37px;
+            height: 40px;
+            border-radius: 6px;
           }
           .productPackageListContainer > i{
-            font-size: 20px;
-            margin-left: 8px;
+            font-size: 16px;
+            margin-left: 12px;
             margin-right: 8px;
-            padding-top: 8px;
+            padding-top: 10px;
+            color: #0ab596;
           }
           .productPackageCheckingStatus {
             padding-right: 16px;
-            font-size: 18px;
-            padding-top: 4px;
+            font-size: 13px;
+            padding-top: 10px;
+            color: #666;
             ${
               this.props.holder.props.initPropsData.checkAvailabilityDatePicker
                 ? "visibility: hidden"
                 : ""
             }
           }
+          .tour-price-section {
+            background: #f8f9fa;
+            border-radius: 8px;
+            overflow: hidden;
+          }
+          .tour-price-header {
+            background: #e8f5f2;
+            padding: 12px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #d0e8e3;
+          }
+          .tour-price-header-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #0ab596;
+          }
           .productPackageContainer{
-            padding: 0px 20px;
+            padding: 16px;
             margin: 0;
-            margin-bottom: 8px;
             background: #fff;
             position: relative;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-bottom: 1px solid #f0f0f0;
+            transition: all 0.2s ease;
+          }
+          .productPackageContainer:last-child {
+            border-bottom: none;
+          }
+          .productPackageContainer:hover {
+            background: #f8fffe;
           }
           .productPackageName{
-            line-height: 24px;
-            font-size: 18px;
-            font-weight: bold;
+            line-height: 22px;
+            font-size: 15px;
+            font-weight: 600;
+            color: #333;
           }
           .priceFavoriteBookNowUnderBriefDescription{
             position: absolute;
@@ -125,70 +191,87 @@ class PackageOption extends Component {
             line-height: 24px;
             margin-top: 6px;
           }
+          .productPackageSale .fontWeightBold {
+            color: #0ab596;
+            font-size: 18px;
+          }
           .productPackageSelectBtn{
-            color: ${config.colorConfig.main};
-            label-color: ${config.colorConfig.main};
-            background-color: #fff;
-            border-color: "#fff";
+            color: #fff;
+            background-color: #0ab596;
+            border-color: #0ab596;
             float: right;
-            padding: 4px 15px;
-            height: 32px;
+            padding: 8px 20px;
+            height: 38px;
             font-weight: 600;
-            border: 1px solid ${config.colorConfig.main};
+            border: none;
             cursor: pointer;
-            border-radius: 2px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+          }
+          .productPackageSelectBtn:hover {
+            background-color: #099880;
           }
           .productPackageDetailIcon{
-            font-size: 20px;
+            font-size: 18px;
             margin-left: 8px;
             margin-right: 8px;
             padding-top: 8px;
             position: absolute;
             left: 4px;
             top: 28px;
-            color: #888;
+            color: #0ab596;
           }
           .productPackageDetailCaretDownIcon{
-            font-size: 16px;
+            font-size: 14px;
             margin-left: 8px;
             margin-right: 8px;
             padding-top: 8px;
             position: absolute;
             right: 10px;
             top: 28px;
-            color: rgb(0, 0, 0, 0.15);
+            color: #999;
           }
           .productPackageDetailMinusIcon{
-            border-right: 1px solid #dcd8d8;
+            border-right: 1px solid #e8e8e8;
             display: flex;
-            background-color: #fafafa;
+            background-color: #f5f5f5;
             justify-content: center;
             align-items: center;
             cursor: pointer;
             width: 33.33%;
+            transition: background-color 0.2s ease;
+          }
+          .productPackageDetailMinusIcon:hover {
+            background-color: #e8e8e8;
           }
           .productPackageDetailCurrentAmount{
-            border-right: 1px solid #dcd8d8;
+            border-right: 1px solid #e8e8e8;
             display: flex;
             justify-content: center;
             align-items: center;
             width: 33.33%;
+            font-weight: 600;
           }
           .productPackageDetailPlusIcon{
             display: flex;
-            background-color: #fafafa;
+            background-color: #f5f5f5;
             justify-content: center; 
             align-items: center;
             cursor: pointer;
             width: 33.33%;
+            transition: background-color 0.2s ease;
+          }
+          .productPackageDetailPlusIcon:hover {
+            background-color: #e8e8e8;
           }
           .productPackageTotalPriceLabel{
             color: #888;
-            font-size: 18px;
+            font-size: 14px;
           }
           .productPackageTotalPrice{
             font-weight: bold;
-            font-size: 24px;
+            font-size: 22px;
+            color: #0ab596;
           }
 
           .materialUIDatePickerLeft40>div{
@@ -215,17 +298,16 @@ class PackageOption extends Component {
           }
         `}</style>
         </Head>
-        <div className="backgroundGrey">
-          <div className="pageSmallWidth">
-            <div className="productSectionStyle">
-              <div>
-                <div>
-                  <h2 className="productSectionTitle">
-                    {Language.getLanguage(LanguageIdMap.PACKAGE_OPTIONS)}
-                  </h2>
-                  <div className="mgBottom8">
-                    <div className="focusBorderColorDefault productPackageListContainer">
-                      <i className="fa fa-calendar" />
+        <div className="package-options-wrapper">
+          <div className="package-options-header">
+            <i className="fa fa-ticket" />
+            Các gói dịch vụ
+          </div>
+          <div className="package-options-body">
+            <div className="package-date-row">
+              <span className="package-date-label">Chọn ngày:</span>
+              <div className="focusBorderColorDefault productPackageListContainer">
+                <i className="fa fa-calendar" />
                       <div className="posRelative">
                         <div className="productPackageCheckingStatus">
                           {Language.getLanguage(
@@ -260,12 +342,16 @@ class PackageOption extends Component {
                         })}
                       </div>
                     </div>
-                  </div>
+            </div>
 
-                  <div>
-                    {this.props.holder.props.initPropsData.schedule &&
-                      this.props.holder.props.initPropsData.schedule.map(
-                        (rowData, rowIndex) => {
+            <div className="tour-price-section">
+              <div className="tour-price-header">
+                <span className="tour-price-header-label">Giá tour</span>
+              </div>
+              <div>
+                {this.props.holder.props.initPropsData.schedule &&
+                  this.props.holder.props.initPropsData.schedule.map(
+                    (rowData, rowIndex) => {
                           rowData._tmpTotalPrice = 0;
                           rowData._tmpListChoosen = [];
                           if (
@@ -1301,8 +1387,6 @@ class PackageOption extends Component {
                           );
                         }
                       )}
-                  </div>
-                </div>
               </div>
             </div>
           </div>
@@ -2016,45 +2100,118 @@ class Display extends SuperComponent {
       </div>
     );
   }
+  renderSidebar() {
+    return (
+      <div className="product-sidebar">
+        {/* Combined Booking Card with Kredivo */}
+        <div className="sidebar-booking-card">
+          {/* ĐẶT VÉ ONLINE Header */}
+          <div className="booking-header">
+            <i className="fa fa-ticket" />
+            <span>ĐẶT VÉ ONLINE</span>
+          </div>
+
+          {/* Price Section */}
+          <div className="booking-price-section">
+            <div className="price-row">
+              <span className="price-label-text">Giá từ:</span>
+              <div className="price-value-wrapper">
+                {this.props.initPropsData.data.discount !== undefined && (
+                  <span className="original-price-strike">
+                    {common.numberWithCommas(this.props.initPropsData.data.advertisePrice)}đ
+                  </span>
+                )}
+                <span className="current-price-value">
+                  {common.numberWithCommas(
+                    this.props.initPropsData.data.newPrice
+                      ? this.props.initPropsData.data.newPrice
+                      : this.props.initPropsData.data.advertisePrice
+                  )}đ
+                </span>
+              </div>
+            </div>
+            {this.props.initPropsData.data.priceExplain && (
+              <div className="price-note">{this.props.initPropsData.data.priceExplain}</div>
+            )}
+          </div>
+
+          {/* Booking Buttons */}
+          <div id="renderShareBooknowFavoriteOnTopContainerId" className="sidebar-booking-buttons">
+            <ShareBooknowFavourite holder={this} spaceBetweenElement={"8px"} />
+          </div>
+
+          {/* Kredivo Section - Inside the same card */}
+          <div className="kredivo-section">
+            <div className="kredivo-header">
+              <div className="kredivo-badge">Kredivo</div>
+              <span className="kredivo-title">Mua trước trả sau</span>
+            </div>
+            <div className="kredivo-benefits">
+              <div className="kredivo-item">
+                <i className="fa fa-check" />
+                <span>Trả sau 30 ngày - Lãi suất 0%</span>
+              </div>
+              <div className="kredivo-item">
+                <i className="fa fa-check" />
+                <span>Trả góp 3, 6, 12 tháng</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Why Book With PVV Section */}
+        <div className="sidebar-why-book">
+          <div className="why-book-header">
+            <i className="fa fa-star" />
+            <span>Tại sao đặt Tour với Phượt Vi Vu?</span>
+          </div>
+          <div className="why-book-list">
+            <div className="why-book-item">
+              <div className="why-book-icon">
+                <i className="fa fa-dollar" />
+              </div>
+              <div className="why-book-text">
+                <strong>Giá cả cạnh tranh</strong>
+                <span>Đảm bảo giá tốt nhất thị trường</span>
+              </div>
+            </div>
+            <div className="why-book-item">
+              <div className="why-book-icon">
+                <i className="fa fa-shield" />
+              </div>
+              <div className="why-book-text">
+                <strong>An toàn & Bảo mật</strong>
+                <span>Thanh toán an toàn, bảo mật thông tin</span>
+              </div>
+            </div>
+            <div className="why-book-item">
+              <div className="why-book-icon">
+                <i className="fa fa-phone" />
+              </div>
+              <div className="why-book-text">
+                <strong>Hỗ trợ 24/7</strong>
+                <span>Hotline: {config.phoneContact}</span>
+              </div>
+            </div>
+            <div className="why-book-item">
+              <div className="why-book-icon">
+                <i className="fa fa-file-text-o" />
+              </div>
+              <div className="why-book-text">
+                <strong>Xác nhận ngay</strong>
+                <span>Nhận vé điện tử qua Email</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   renderData() {
     if (!this.props.initPropsData.data) {
       return <div />;
     }
-
-    const priceFavoriteBookNow = (
-      <div className="displayFlex flexWrapWrap justifyContentFlexEnd priceFavoriteBookNow">
-        <div>
-          {this.props.initPropsData.data.discount !== undefined && (
-            <div className="mgBottom8">
-              <div className="productTitleSectionRightMoney">
-                {common.numberWithCommas(
-                  this.props.initPropsData.data.advertisePrice
-                ) + Language.getLanguage(common.moneyType)}
-              </div>
-              <div className="productTitleSectionRightDiscount">
-                {"-" + this.props.initPropsData.data.discount + "%"}
-              </div>
-            </div>
-          )}
-          <div>
-            <div className="productTitleSectionRightFrom">
-              {Language.getLanguage(LanguageIdMap.from)}
-            </div>
-            <div className="productTitleSectionRightPrice">
-              {common.numberWithCommas(
-                this.props.initPropsData.data.newPrice
-                  ? this.props.initPropsData.data.newPrice
-                  : this.props.initPropsData.data.advertisePrice
-              ) + Language.getLanguage(common.moneyType)}
-            </div>
-          </div>
-          <div>{this.props.initPropsData.data.priceExplain}</div>
-        </div>
-        <div id={"renderShareBooknowFavoriteOnTopContainerId"}>
-          <ShareBooknowFavourite holder={this} spaceBetweenElement={"8px"} />
-        </div>
-      </div>
-    );
 
     const slidesToShow = Math.min(
       this.props.initPropsData.data && this.props.initPropsData.data.gallery
@@ -2072,64 +2229,479 @@ class Display extends SuperComponent {
       Math.floor(common.getViewportWidth() / 200),
       3
     );
+
+    const isMobile = common.getViewportWidth() < config.sizeConfig.widthMd;
+    const galleryImages = this.props.initPropsData.data.gallery || [];
+
     return (
       <div>
         <Head>
           <style type="text/css">{`
+          /* New Product Page Styles */
+          .product-page-wrapper {
+            padding: 0 120px;
+            margin-top: 20px;
+          }
+          @media only screen and (max-width: ${config.sizeConfig.widthMd - 1}px) {
+            .product-page-wrapper {
+              padding: 0 60px;
+            }
+          }
+          @media only screen and (max-width: ${config.sizeConfig.widthSm - 1}px) {
+            .product-page-wrapper {
+              padding: 0 16px;
+            }
+          }
+          .product-page-container {
+            display: flex;
+            gap: 32px;
+            padding: 0;
+          }
+          .product-main-content {
+            flex: 1;
+            min-width: 0;
+          }
+          .product-sidebar-wrapper {
+            width: 270px;
+            flex-shrink: 0;
+          }
+          @media only screen and (max-width: ${config.sizeConfig.widthMd - 1}px) {
+            .product-page-container {
+              flex-direction: column;
+            }
+            .product-sidebar-wrapper {
+              width: 100%;
+              order: -1;
+            }
+          }
+
+          /* Sidebar Styles */
+          .product-sidebar {
+            position: sticky;
+            top: 100px;
+          }
+
+          /* Booking Card Styles */
+          .sidebar-booking-card {
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 16px rgba(0, 0, 0, 0.1);
+            margin-bottom: 16px;
+          }
+          .booking-header {
+            background: #0ab596;
+            color: #fff;
+            padding: 14px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+          }
+          .booking-header i {
+            font-size: 18px;
+          }
+          .booking-price-section {
+            padding: 20px;
+            background: #fff;
+            border-bottom: 1px solid #eee;
+          }
+          .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+          }
+          .price-label-text {
+            font-size: 14px;
+            color: #666;
+          }
+          .price-value-wrapper {
+            text-align: right;
+          }
+          .original-price-strike {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 14px;
+            margin-right: 8px;
+          }
+          .current-price-value {
+            font-size: 26px;
+            font-weight: 700;
+            color: #e53935;
+          }
+          .price-note {
+            font-size: 12px;
+            color: #888;
+            margin-top: 4px;
+            text-align: right;
+          }
+          .sidebar-booking-buttons {
+            padding: 16px 20px;
+            background: #fff;
+          }
+          .sidebar-booking-buttons .productFavBooknowContainer {
+            flex-direction: column !important;
+            gap: 10px;
+          }
+          .sidebar-booking-buttons .booknowButton {
+            margin-left: 0 !important;
+            width: 100%;
+          }
+          .sidebar-booking-buttons .booknowButton > button {
+            width: 100% !important;
+            background: #0ab596 !important;
+            border-radius: 6px !important;
+          }
+          .sidebar-booking-buttons .productFavContainer {
+            display: none;
+          }
+
+          /* Kredivo Section Styles */
+          .kredivo-section {
+            background: #f0f7ff;
+            padding: 16px 20px;
+            border-top: 1px solid #e0e8f0;
+          }
+          .kredivo-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+          }
+          .kredivo-badge {
+            background: #f7941d;
+            color: #fff;
+            font-weight: 700;
+            font-size: 12px;
+            padding: 4px 10px;
+            border-radius: 4px;
+            text-transform: uppercase;
+          }
+          .kredivo-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+          }
+          .kredivo-benefits {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+          }
+          .kredivo-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: #555;
+          }
+          .kredivo-item i {
+            color: #0ab596;
+            font-size: 12px;
+          }
+
+          /* Why Book Section Styles */
+          .sidebar-why-book {
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 16px rgba(0, 0, 0, 0.1);
+          }
+          .why-book-header {
+            background: #0ab596;
+            color: #fff;
+            padding: 14px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            font-weight: 600;
+          }
+          .why-book-header i {
+            font-size: 16px;
+          }
+          .why-book-list {
+            padding: 16px 20px;
+          }
+          .why-book-item {
+            display: flex;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+          }
+          .why-book-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+          }
+          .why-book-item:first-child {
+            padding-top: 0;
+          }
+          .why-book-icon {
+            width: 36px;
+            height: 36px;
+            background: #e8f5f2;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+          }
+          .why-book-icon i {
+            color: #0ab596;
+            font-size: 16px;
+          }
+          .why-book-text {
+            flex: 1;
+          }
+          .why-book-text strong {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 2px;
+          }
+          .why-book-text span {
+            font-size: 12px;
+            color: #666;
+          }
+
+          /* New Gallery Styles */
+          .new-gallery-container {
+            margin-bottom: 24px;
+          }
+          .gallery-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 4px;
+            border-radius: 12px;
+            overflow: hidden;
+            height: 250px;
+          }
+          .gallery-grid .gallery-main {
+            grid-column: 1;
+            grid-row: 1 / 3;
+          }
+          .gallery-thumbs-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 4px;
+            grid-column: 2;
+            grid-row: 1 / 3;
+          }
+          @media only screen and (max-width: ${config.sizeConfig.widthSm - 1}px) {
+            .gallery-grid {
+              grid-template-columns: 1fr;
+              grid-template-rows: 1fr;
+              height: 180px;
+            }
+            .gallery-grid .gallery-thumb {
+              display: none;
+            }
+          }
+          .gallery-main {
+            position: relative;
+            cursor: pointer;
+          }
+          .gallery-main img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+          .gallery-thumb {
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+          }
+          .gallery-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+          }
+          .gallery-thumb:hover img {
+            transform: scale(1.05);
+          }
+          .gallery-more-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 18px;
+            font-weight: 600;
+          }
+          .gallery-view-all {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            background: rgba(255, 255, 255, 0.95);
+            color: #333;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            transition: all 0.2s ease;
+          }
+          .gallery-view-all:hover {
+            background: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+          }
+
+          /* Product Title Section */
+          .product-title-section {
+            margin-bottom: 20px;
+          }
+          .product-title-section h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin: 0 0 12px 0;
+            line-height: 1.3;
+          }
+          @media only screen and (max-width: ${config.sizeConfig.widthSm - 1}px) {
+            .product-title-section h1 {
+              font-size: 22px;
+            }
+          }
+          .product-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            align-items: center;
+          }
+          .product-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 14px;
+            color: #666;
+          }
+          .product-meta-item i {
+            color: #0ab596;
+          }
+          .product-services {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+          }
+          .product-service-tag {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: #f0f9f7;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            color: #0ab596;
+          }
+          .product-service-tag img {
+            width: 16px;
+            height: 16px;
+          }
+
+          /* Benefits Bar */
+          .benefits-bar {
+            display: none;
+          }
+
+          /* Content Sections */
+          .content-section {
+            background: #fff;
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+          }
+          .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin: 0 0 16px 0;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #0ab596;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+          }
+          .section-title i {
+            color: #0ab596;
+          }
+
+          /* Highlight Section with Background */
+          .highlight-section {
+            background: #0ab596;
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 20px;
+            color: #fff;
+          }
+          .highlight-section .highlight-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+          }
+          .highlight-section .highlight-header i {
+            font-size: 20px;
+          }
+          .highlight-section ul {
+            margin: 0;
+            padding-left: 20px;
+          }
+          .highlight-section li {
+            margin-bottom: 8px;
+            line-height: 1.5;
+          }
+          .highlight-section p {
+            margin: 0 0 8px 0;
+            line-height: 1.6;
+          }
+
+          /* Legacy Styles */
           .productSectionStyle{
             ${
               Math.round(common.getViewportWidth()) >= config.sizeConfig.widthSm
-                ? "padding:0px 64px"
-                : "padding:0px 32px"
+                ? "padding:0px"
+                : "padding:0px"
             }
           }
           .priceFavoriteBookNow{
             align-items: center;
           }
           .productBody{
-            font-size: 18px;
-            line-height: 27px;
+            font-size: 16px;
+            line-height: 1.6;
           }
           .productTitleSection{
             margin: 0;
-            background-color: #fff;
+            background-color: transparent;
             margin-top: 0px;
           }
-          @media only screen and (max-width: ${
-            config.sizeConfig.widthPC - 1
-          }px) {
-            .productTitleSection {
-              margin-top: 0;
-              padding-left: 0;
-              padding-right: 0;
-            }
-          }
-
           .productTitleSectionLeft{
             vertical-align: top;
           }
           .productTitleSectionLeft > h1{
             margin-top: 0;
             margin-bottom: 0;
-            ${
-              Math.round(common.getViewportWidth()) >=
-              config.pageSmallWidthStyle.width
-                ? "font-size: 32px; margin-bottom: 16px;"
-                : Math.round(common.getViewportWidth()) >=
-                  config.sizeConfig.widthSm
-                ? "letter-spacing: .2px; vertical-align: top; margin-bottom: 12px;"
-                : "margi-bottom: 8px;"
-            }
-          }
-          .productTitleSectionRight{
-            text-align: right;
-          }
-          .productTitleSectionRight > div{
-            display: flex;
-            justify-content: flex-end;
-          }
-          #renderShareBooknowFavoriteOnTopContainerId {
-            margin-left: 8px;
           }
           .productTitleSectionRightMoney{
             display: inline-block;
@@ -2145,747 +2717,585 @@ class Display extends SuperComponent {
           }
           .productTitleSectionRightFrom{
             display: inline-block;
-            margin-right: 4x;
+            margin-right: 4px;
             font-size: 14px;
           }
           .productTitleSectionRightPrice{
             display: inline-block;
-            ${
-              "font-size: 24px; "
-            }
+            font-size: 24px;
           }
         `}</style>
         </Head>
         <StickyMenu holder={this} ref={(r) => (this.stickyMenuRef = r)} />
         <div className="productBody">
-          <div className="pageSmallWidth posRelative">
-            <div className="productSectionStyle productTitleSection">
-            
-              <div className="displayFlex justifyContentSpaceBetween">
-                <div>
-                <div className="displayFlex">
-                {this.props.initPropsData.data.services &&
-                  !common.checkServer() &&
-                  this.props.initPropsData.data.services.map(
-                    (rowData, rowIndex) => {
-                      return (
-                        <HoverOpenDropdownMenu
-                          anchorOrigin={{ horizontal: "left", vertical: "top" }}
-                          targetOrigin={{
-                            horizontal: "left",
-                            vertical: "bottom",
-                          }}
-                          iconButtonElement={
-                            <img
-                              style={{
-                                width: 20,
-                                height: 20,
-                                marginRight: 8,
-                                marginBottom: 12,
-                              }}
-                              src={rowData.iconUrl}
-                            />
-                          }
-                          data={[
-                            <div
-                              style={{
-                                paddingTop: 8,
-                                paddingLeft: 12,
-                                paddingRight: 12,
-                              }}
-                            >
-                              {rowData.name}
-                            </div>,
-                          ]}
-                        />
-                      );
-                    }
-                  )}
-              </div>
-                  <div className="productTitleSectionLeft">
-                    <h1>{this.props.initPropsData.data.productName}</h1>
-                  </div>
-                </div>
-
-                <div className="productTitleSectionRight">
-                  {priceFavoriteBookNow}
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <Head>
-            <style type="text/css">{`
-            .productBestListContainer{
-              border: 1px solid #eee;
-              padding: 10px 0;
-            }
-            @media only screen and (max-width: ${
-              config.sizeConfig.widthPC - 1
-            }px) {
-              .productBestListContainer{
-                padding: 12px 0;
-              }
-            }
-            .productBestListContainer > div {
-              display: flex;
-              font-size: 18px;
-              justify-content: space-around;
-              flex-wrap: wrap;
-            }
-            @media only screen and (max-width: ${
-              config.sizeConfig.widthPC - 1
-            }px) {
-              .productBestListContainer > div > div {
-                padding: 5px 32px;
-                white-space: nowrap;
-              }
-            }
-            .productBestListContainer > div > div > i{
-              display: inline-block;
-              margin-right: 8px;
-            }
-            .productBestListContainer > div > div > div{
-              display: inline-block;
-            }
-          `}</style>
-          </Head>
-          <div className="pageSmallWidth">
-            <div className="productBestListContainer">
-              <div>
-                <div>
-                  <i className="fa fa-check-circle-o" />
-                  <div>{Language.getLanguage(LanguageIdMap.BEST_PRICE)}</div>
-                </div>
-                <div>
-                  <i className="fa fa-check-circle-o" />
-                  <div>{Language.getLanguage(LanguageIdMap.BEST_QUALITY)}</div>
-                </div>
-                <div>
-                  <i className="fa fa-check-circle-o" />
-                  <div>{Language.getLanguage(LanguageIdMap.EASY_BOOKING)}</div>
-                </div>
-              </div>
-            </div>
-
-            <Head>
-              <style type="text/css">{`
-              .productImageEle{
-                display: inline-block;
-                cursor: pointer;
-                position: relative;
-              }
-              .width33{
-                width:33.33%
-              }
-              .productImageMore{
-                position: absolute;
-                width: 100%;
-                height: 100%;
-                left: 0;
-                top: 0;
-                justify-content: center;
-                display: flex;
-                align-items: center;
-                background: rgb(12,12,12,0.5);
-                color: #fff;
-                font-size: 24px;
-              }
-              .image-gallery-left-nav{
-                top: 0 !important;
-                transform: none !important;
-                padding: 10px !important;
-                right: 40px !important;
-                left: unset !important;
-              }
-              .image-gallery-right-nav{
-                top: 0 !important;
-                transform: none !important;
-                padding: 10px !important;
-              }
-              .galeryBriefDescription{
-                display: flex;
-              }
-              .mainGaleryContainer{
-                width: ${
-                  common.getViewportWidth() >= config.sizeConfig.widthMd
-                    ? "75%"
-                    : "100%"
-                }
-              }
-              .briefDescriptionContainer{
-                background: ${config.colorConfig.main};
-                color: #fff;
-                width: 25%;
-                position: relative;
-              }
-              .briefDescription{
-                overflow: auto;
-                min-height: 300px;
-                ${
-                  ""
-                  /*!common.checkServer() &&
-                  document.getElementById("mainGalery") &&
-                  document.getElementById(
-                    "priceFavoriteBookNowBelowBriefDescription"
-                  )
-                    ? `height:${
-                        document.getElementById("mainGalery").offsetHeight -
-                        20 -
-                        document.getElementById(
-                          "priceFavoriteBookNowBelowBriefDescription"
-                        ).offsetHeight
-                      }px`
-                    : ""*/
-                }
-              }
-              .briefDescriptionTitle{
-                font-size: 25px;
-                text-align: center;
-              }
-              .galeryDescriptionContainer{
-                display: flex;
-                position: relative;
-              }
-              .sliderImageContainer{
-                width: 100%;
-                padding-bottom: 66.7%;
-                position: relative;
-              }
-              .sliderImage{
-                object-fit: cover;
-                cursor: pointer;
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-              }
-          `}</style>
-            </Head>
-
-            <div className="mgTop2">
-              {this.props.initPropsData.data &&
-                this.props.initPropsData.data.gallery &&
-                this.props.initPropsData.data.gallery.length > 0 && (
-                  <div className="galeryDescriptionContainer">
-                    <div className="mainGaleryContainer">
-                      <div id="mainGalery">
-                        <ImageGallery
-                          ref={(input) => {
-                            this.imageGaleryRef = input;
-                          }}
-                          items={this.props.initPropsData.data.gallery.map(
-                            ({ photoUrl, thumbUrl, altText }) => ({
-                              original: photoUrl.replace(
-                                "09e5ab510779.ngrok.io",
-                                "55482bf53374.ngrok.io"
-                              ),
-                              thumbnail: thumbUrl,
-                              description: altText,
-                            })
-                          )}
-                          slideInterval={5000}
-                          showPlayButton={false}
-                          autoPlay={false}
-                          disableArrowKeys={true}
-                          showThumbnails={false}
-                          showFullscreenButton={false}
-                          showBullets={false}
-                          stopPropagation={true}
-                          onClick={(e) => {
-                            this.setState({
-                              photoIndex: this.imageGaleryRef.getCurrentIndex(),
-                            });
-                          }}
-                        />
-                      </div>
-                    </div>
-                    {common.getViewportWidth() >= config.sizeConfig.widthMd && (
-                      <div className="briefDescriptionContainer">
-                        <div className="padding8 briefDescription">
-                          <h2 className="briefDescriptionTitle">
-                            {Language.getLanguage(LanguageIdMap.HIGH_LIGHT)}
-                          </h2>
-                          {Boolean(this.props.initPropsData.data.shortHighlight) && ReactHtmlParser(
-                            this.props.initPropsData.data.shortHighlight
-                          )}
-                        </div>
-                        <div className="priceFavoriteBookNowUnderBriefDescription">
-                          <div id="priceFavoriteBookNowBelowBriefDescription">
-                            {priceFavoriteBookNow}
-                          </div>
-                        </div>
+          <div className="pageSmallWidth product-page-wrapper">
+            <div className="product-page-container">
+              {/* Main Content */}
+              <div className="product-main-content">
+                {/* Product Title Section */}
+                <div className="product-title-section">
+                  <h1>{this.props.initPropsData.data.productName}</h1>
+                  <div className="product-meta">
+                    {this.props.initPropsData.data.destinations && this.props.initPropsData.data.destinations.length > 0 && (
+                      <div className="product-meta-item">
+                        <i className="fa fa-map-marker" />
+                        <span>{this.props.initPropsData.data.destinations.map(d => d.briefName).join(', ')}</span>
                       </div>
                     )}
+                    {this.props.initPropsData.data.duration && (
+                      <div className="product-meta-item">
+                        <i className="fa fa-clock-o" />
+                        <span>{this.props.initPropsData.data.duration}</span>
+                      </div>
+                    )}
+                  </div>
+                  {this.props.initPropsData.data.services && this.props.initPropsData.data.services.length > 0 && (
+                    <div className="product-services">
+                      {this.props.initPropsData.data.services.map((service, idx) => (
+                        <div key={idx} className="product-service-tag">
+                          {service.iconUrl && <img src={service.iconUrl} alt={service.name} />}
+                          <span>{service.name}</span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
 
+                {/* New Gallery Grid */}
+                {galleryImages.length > 0 && (
+                  <div className="new-gallery-container">
+                    <div className="gallery-grid">
+                      <div className="gallery-main" onClick={() => this.setState({ photoIndex: 0 })}>
+                        <img 
+                          src={galleryImages[0].photoUrl.replace("09e5ab510779.ngrok.io", "55482bf53374.ngrok.io")} 
+                          alt={galleryImages[0].altText || 'Main gallery image'} 
+                        />
+                        {!isMobile && galleryImages.length > 5 && (
+                          <div className="gallery-view-all" onClick={(e) => { e.stopPropagation(); this.setState({ photoIndex: 0 }); }}>
+                            <i className="fa fa-camera" />
+                            Xem tất cả {galleryImages.length} ảnh
+                          </div>
+                        )}
+                      </div>
+                      {!isMobile && (
+                        <div className="gallery-thumbs-container">
+                          {galleryImages.slice(1, 5).map((img, idx) => (
+                            <div 
+                              key={idx} 
+                              className="gallery-thumb" 
+                              onClick={() => this.setState({ photoIndex: idx + 1 })}
+                            >
+                              <img 
+                                src={img.photoUrl.replace("09e5ab510779.ngrok.io", "55482bf53374.ngrok.io")} 
+                                alt={img.altText || `Gallery image ${idx + 2}`} 
+                              />
+                              {idx === 3 && galleryImages.length > 5 && (
+                                <div className="gallery-more-overlay">
+                                  +{galleryImages.length - 5}
+                                </div>
+                              )}
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
                     {this.state.photoIndex >= 0 && (
                       <Lightbox
-                        mainSrc={
-                          this.props.initPropsData.data.gallery[
-                            this.state.photoIndex
-                          ].photoUrl
-                        }
-                        nextSrc={
-                          this.props.initPropsData.data.gallery[
-                            (this.state.photoIndex + 1) %
-                              this.props.initPropsData.data.gallery.length
-                          ]
-                        }
-                        prevSrc={
-                          this.props.initPropsData.data.gallery[
-                            (this.state.photoIndex - 1) %
-                              this.props.initPropsData.data.gallery.length
-                          ]
-                        }
+                        mainSrc={galleryImages[this.state.photoIndex].photoUrl}
+                        nextSrc={galleryImages[(this.state.photoIndex + 1) % galleryImages.length].photoUrl}
+                        prevSrc={galleryImages[(this.state.photoIndex - 1 + galleryImages.length) % galleryImages.length].photoUrl}
                         onCloseRequest={() => this.setState({ photoIndex: -1 })}
                         onMovePrevRequest={() =>
                           this.setState({
-                            photoIndex:
-                              (this.state.photoIndex +
-                                this.props.initPropsData.data.gallery.length -
-                                1) %
-                              this.props.initPropsData.data.gallery.length,
+                            photoIndex: (this.state.photoIndex - 1 + galleryImages.length) % galleryImages.length,
                           })
                         }
                         onMoveNextRequest={() =>
                           this.setState({
-                            photoIndex:
-                              (this.state.photoIndex +
-                                this.props.initPropsData.data.gallery.length +
-                                1) %
-                              this.props.initPropsData.data.gallery.length,
+                            photoIndex: (this.state.photoIndex + 1) % galleryImages.length,
                           })
                         }
                       />
                     )}
                   </div>
                 )}
-            </div>
 
-            {this.props.initPropsData.data &&
-              this.props.initPropsData.data.gallery &&
-              this.props.initPropsData.data.gallery.length >= 2 && (
-                <div style={{ marginTop: 4 }}>
+                {/* Benefits Bar */}
+                <div className="benefits-bar">
+                  <div className="benefit-item">
+                    <i className="fa fa-check-circle" />
+                    <span>{Language.getLanguage(LanguageIdMap.BEST_PRICE)}</span>
+                  </div>
+                  <div className="benefit-item">
+                    <i className="fa fa-check-circle" />
+                    <span>{Language.getLanguage(LanguageIdMap.BEST_QUALITY)}</span>
+                  </div>
+                  <div className="benefit-item">
+                    <i className="fa fa-check-circle" />
+                    <span>{Language.getLanguage(LanguageIdMap.EASY_BOOKING)}</span>
+                  </div>
+                </div>
+
+                {/* Short Highlight - Điểm nổi bật */}
+                {this.props.initPropsData.data.shortHighlight && (
+                  <div className="highlight-section">
+                    <div className="highlight-header">
+                      <i className="fa fa-star" />
+                      Điểm nổi bật
+                    </div>
+                    <div className="highlight-content">
+                      {ReactHtmlParser(this.props.initPropsData.data.shortHighlight)}
+                    </div>
+                  </div>
+                )}
+
+                <Head>
+                  <style type="text/css">{`
+                  .productImageEle{
+                    display: inline-block;
+                    cursor: pointer;
+                    position: relative;
+                  }
+                  .width33{
+                    width:33.33%
+                  }
+                  .productImageMore{
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    left: 0;
+                    top: 0;
+                    justify-content: center;
+                    display: flex;
+                    align-items: center;
+                    background: rgb(12,12,12,0.5);
+                    color: #fff;
+                    font-size: 24px;
+                  }
+                  .image-gallery-left-nav{
+                    top: 0 !important;
+                    transform: none !important;
+                    padding: 10px !important;
+                    right: 40px !important;
+                    left: unset !important;
+                  }
+                  .image-gallery-right-nav{
+                    top: 0 !important;
+                    transform: none !important;
+                    padding: 10px !important;
+                  }
+                  .sliderImageContainer{
+                    width: 100%;
+                    padding-bottom: 66.7%;
+                    position: relative;
+                  }
+                  .sliderImage{
+                    object-fit: cover;
+                    cursor: pointer;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                  }
+                  /* Timeline Styles */
+                  #timeline {
+                    margin-bottom: 24px;
+                  }
+                  #timeline > h2 {
+                    justify-content: center;
+                    align-items: center;
+                    display: flex;
+                    background: #0ab596;
+                    margin-top: 0;
+                    margin-bottom: 0;
+                    font-size: 22px;
+                    height: 55px;
+                    color: #fff;
+                    text-transform: uppercase;
+                    border-top-left-radius: 10px;
+                    border-top-right-radius: 10px;
+                  }
+                  #timeline > .timelineList {
+                    display: flex;
+                    font-size: 16px;
+                    cursor: pointer;
+                    background: #f5f5f5;
+                    flex-wrap: wrap;
+                  }
+                  #timeline > .timelineList > div {
+                    min-height: 50px;
+                    justify-content: center;
+                    align-items: center;
+                    display: flex;
+                    flex: 1;
+                    padding: 8px 12px;
+                    text-align: center;
+                    transition: all 0.2s ease;
+                  }
+                  #timeline > .timelineList > div:hover {
+                    background: #e8f5f2;
+                  }
+                  #timeline > .timelineList > .timelineFocus {
+                    background: #0ab596;
+                    color: #fff;
+                  }
+                  #timeline .timeline-content {
+                    padding: 20px;
+                    background: #fff;
+                    border: 1px solid #eee;
+                    border-top: none;
+                    border-bottom-left-radius: 10px;
+                    border-bottom-right-radius: 10px;
+                  }
+                  /* Highlight Styles */
+                  #highlight {
+                    border: 1px solid #eee;
+                    margin-bottom: 24px;
+                    padding: 24px;
+                    background: #fff;
+                    border-radius: 12px;
+                  }
+                  #highlight > h2 {
+                    font-weight: bold;
+                    margin-bottom: 16px;
+                    font-size: 20px;
+                    color: #1a1a1a;
+                  }
+              `}</style>
+                </Head>
+
+                {/* Timeline Section */}
+                {this.props.initPropsData.data.timeline &&
+                  this.props.initPropsData.data.timeline.length > 0 && (
+                    <div id="timeline">
+                      <h2>
+                        <i className="fa fa-calendar-check-o" style={{ marginRight: 10 }} />
+                        Lịch trình
+                      </h2>
+                      <div className="timelineList">
+                        {this.props.initPropsData.data.timeline.map(
+                          ({ title }, tlIdx) => (
+                            <div
+                              key={tlIdx}
+                              className={
+                                this.state.timelineFocus === tlIdx
+                                  ? "timelineFocus"
+                                  : ""
+                              }
+                              onClick={() =>
+                                this.setState({ timelineFocus: tlIdx })
+                              }
+                            >
+                              {title}
+                            </div>
+                          )
+                        )}
+                      </div>
+                      <div className="timeline-content">
+                        {this.props.initPropsData.data.timeline[
+                          this.state.timelineFocus
+                        ] &&
+                          this.props.initPropsData.data.timeline[
+                            this.state.timelineFocus
+                          ].content &&
+                          ReactHtmlParser(
+                            this.props.initPropsData.data.timeline[
+                              this.state.timelineFocus
+                            ].content
+                          )}
+                      </div>
+                    </div>
+                  )}
+
+                {/* Full Highlight Section */}
+                {this.props.initPropsData.data.highlight && (
+                  <div id="highlight">
+                    <h2 className="mgTop0">
+                      {Language.getLanguage(LanguageIdMap.HIGH_LIGHT)}
+                    </h2>
+                    {ReactHtmlParser(this.props.initPropsData.data.highlight)}
+                  </div>
+                )}
+
+                {/* Package Options */}
+                <div id="package_options">
+                  <PackageOption
+                    ref={(r) => (this.packageOptionRef = r)}
+                    holder={this}
+                  />
+                </div>
+
+                <Head>
+                  <style type="text/css">{`
+                  #what_to_expect {
+                    margin-top: 24px;
+                  }
+                  #what_to_expect .content-section {
+                    padding-top: 0;
+                    padding-bottom: 0;
+                  }
+                  #what_to_expect .content-section h2 {
+                    font-weight: bold;
+                    margin-bottom: 16px;
+                  }
+                  #what_to_expect .content-section hr {
+                    margin-top: 24px;
+                  }
+                `}</style>
+                </Head>
+                {this.props.initPropsData.data.longDescription && (
+                  <div id="what_to_expect">
+                    <div className="content-section">
+                      <h2 className="section-title">
+                        <i className="fa fa-info-circle" />
+                        {Language.getLanguage(LanguageIdMap.WHAT_TO_EXPECT)}
+                      </h2>
+                      {ReactHtmlParser(this.props.initPropsData.data.longDescription)}
+                    </div>
+                  </div>
+                )}
+
+                <Head>
+                  <style type="text/css">{`
+                  #act_info {
+                    margin-top: 20px;
+                  }
+                  #act_info .content-section h2 {
+                    font-weight: bold;
+                    margin-bottom: 16px;
+                  }
+                  #how_to_use {
+                    margin-top: 20px;
+                  }
+                  #how_to_use .content-section h2 {
+                    font-weight: bold;
+                    margin-bottom: 16px;
+                  }
+                  #how_to_use .how-use-item {
+                    display: flex;
+                    padding: 12px 0;
+                    border-bottom: 1px solid #f0f0f0;
+                  }
+                  #how_to_use .how-use-item:last-child {
+                    border-bottom: none;
+                  }
+                  #how_to_use .how-use-label {
+                    width: 30%;
+                    font-weight: 600;
+                    color: #333;
+                  }
+                  #how_to_use .how-use-value {
+                    flex: 1;
+                    color: #666;
+                    white-space: pre-wrap;
+                  }
+                  #cancel_policy {
+                    margin-top: 20px;
+                  }
+                  #cancel_policy .content-section h2 {
+                    font-weight: bold;
+                    margin-bottom: 16px;
+                  }
+                  .cancel-item {
+                    display: flex;
+                    align-items: flex-start;
+                    gap: 12px;
+                    padding: 8px 0;
+                  }
+                  .cancel-item i {
+                    color: #0ab596;
+                    margin-top: 4px;
+                  }
+                  #faq {
+                    margin-top: 20px;
+                  }
+                  #faq .content-section h2 {
+                    font-weight: bold;
+                    margin-bottom: 16px;
+                  }
+                  .faq-button {
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 8px;
+                    background: #0ab596;
+                    color: #fff;
+                    padding: 12px 24px;
+                    border-radius: 8px;
+                    cursor: pointer;
+                    margin-top: 16px;
+                    font-weight: 500;
+                    transition: all 0.2s ease;
+                    text-decoration: none;
+                  }
+                  .faq-button:hover {
+                    background: #099880;
+                    color: #fff;
+                  }
+                `}</style>
+                </Head>
+                
+                {/* Act Info Section */}
+                {this.props.initPropsData.data.actInfo && (
+                  <div id="act_info">
+                    <div className="content-section">
+                      <h2 className="section-title">
+                        <i className="fa fa-list-ul" />
+                        {Language.getLanguage(LanguageIdMap.ACT_INFO)}
+                      </h2>
+                      {ReactHtmlParser(this.props.initPropsData.data.actInfo)}
+                    </div>
+                  </div>
+                )}
+
+                {/* How to Use Section */}
+                {this.props.initPropsData.data.howUse && (
+                  <div id="how_to_use">
+                    <div className="content-section">
+                      <h2 className="section-title">
+                        <i className="fa fa-file-text-o" />
+                        {Language.getLanguage(LanguageIdMap.HOW_TO_USE)}
+                      </h2>
+                      {this.props.initPropsData.data.howUse.map(
+                        (rowData, rowIndex) => (
+                          <div key={rowIndex} className="how-use-item">
+                            <div className="how-use-label">{rowData.name}</div>
+                            <div className="how-use-value">{rowData.des}</div>
+                          </div>
+                        )
+                      )}
+                    </div>
+                  </div>
+                )}
+
+                {/* Cancel Policy Section */}
+                <div id="cancel_policy">
+                  <div className="content-section">
+                    <h2 className="section-title">
+                      <i className="fa fa-ban" />
+                      {Language.getLanguage(LanguageIdMap.CANCEL_POLICY)}
+                    </h2>
+
+                    {(!this.props.initPropsData.data.cancelRules ||
+                      this.props.initPropsData.data.cancelRules.length === 0) && (
+                      <div className="cancel-item">
+                        <i className="fa fa-times-circle" />
+                        <span>
+                          {Language.getLanguage(LanguageIdMap.CANCEL_POLICY_CANNOT_CANCEL)}
+                        </span>
+                      </div>
+                    )}
+                    {this.props.initPropsData.data.cancelRules &&
+                      this.props.initPropsData.data.cancelRules.map(
+                        (rowData, rowIndex) => (
+                          <div key={rowIndex} className="cancel-item">
+                            <i className="fa fa-check-circle" />
+                            <span>
+                              {Language.getLanguage(
+                                LanguageIdMap.CANCEL_POLICY_DESC,
+                                {
+                                  ...(rowData.day ? { day: rowData.day } : {}),
+                                  ...(rowData.hour ? { hour: rowData.hour } : {}),
+                                  percent: rowData.percent,
+                                },
+                                undefined,
+                                undefined,
+                                { HOUR: "hour", DAY: "day" }
+                              )}
+                            </span>
+                          </div>
+                        )
+                      )}
+                  </div>
+                </div>
+
+                {/* FAQ Section */}
+                <div id="faq">
+                  <div className="content-section">
+                    <h2 className="section-title">
+                      <i className="fa fa-question-circle" />
+                      {Language.getLanguage(LanguageIdMap.FAQ_DESC)}
+                    </h2>
+                    {this.props.initPropsData.data.faq !== undefined &&
+                      ReactHtmlParser(this.props.initPropsData.data.faq)}
+
+                    <a
+                      href={config.domain + config.shortUrl.faq}
+                      className="faq-button"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        window.open(config.domain + config.shortUrl.faq, "_blank");
+                      }}
+                    >
+                      <i className="fa fa-headphones" />
+                      {Language.getLanguage(LanguageIdMap.CUSTOMER_SUPPORT)}
+                    </a>
+                  </div>
+                </div>
+
+              </div>
+              {/* End Main Content */}
+
+              {/* Sidebar */}
+              {!isMobile && (
+                <div className="product-sidebar-wrapper">
+                  {this.renderSidebar()}
+                </div>
+              )}
+
+            </div>
+            {/* End product-page-container */}
+
+            {/* Related Products - Outside the container for full width */}
+            <Head>
+              <style type="text/css">{`
+              .related-products-section {
+                margin-top: 40px;
+                margin-bottom: 48px;
+              }
+              .related-products-section h2 {
+                font-size: 24px;
+                font-weight: 600;
+                margin-bottom: 24px;
+                color: #1a1a1a;
+              }
+            `}</style>
+            </Head>
+            {this.props.initPropsData.productRelative &&
+              this.props.initPropsData.productRelative.data &&
+              this.props.initPropsData.productRelative.data.length > 0 && (
+                <div className="related-products-section">
+                  <h2>
+                    <i className="fa fa-th-large" style={{ marginRight: 10, color: '#0ab596' }} />
+                    {Language.getLanguage(LanguageIdMap.RELATIVE_PRODUCT)}
+                  </h2>
                   <Slider
                     infinite={true}
                     speed={500}
                     slidesToShow={
-                      this.props.initPropsData.data.gallery.length >
-                      slidesToShow
-                        ? slidesToShow + 0.05
-                        : slidesToShow
+                      this.props.initPropsData.productRelative.data.length >
+                      productsRelativeToShow
+                        ? productsRelativeToShow + 0.05
+                        : productsRelativeToShow
                     }
-                    rows={1}
                     slidesToScroll={1}
                     prevArrow={<SlickPrevArrow />}
                     nextArrow={<SlickNextArrow />}
                   >
-                    {this.props.initPropsData.data.gallery.map(
-                      ({ photoUrl, altText }, i) => (
-                        <div key={i} className={"sliderImageContainer"}>
-                          <img
-                            className={"sliderImage"}
-                            src={photoUrl.replace(
-                              "09e5ab510779.ngrok.io",
-                              "55482bf53374.ngrok.io"
-                            )}
-                            alt={altText}
-                            onClick={() => this.imageGaleryRef.slideToIndex(i)}
-                          />
-                        </div>
-                      )
+                    {this.props.initPropsData.productRelative.data.map(
+                      this.renderProductCard.bind(this)
                     )}
                   </Slider>
                 </div>
               )}
 
-            {/* {this.props.initPropsData.data 
-          && (!this.props.initPropsData.data.gallery || this.props.initPropsData.data.gallery.length === 0) 
-          && <div className="productSectionStyle">
-            {this.props.initPropsData.data.briefDescription}
-          </div>} */}
-
-            <Head>
-              <style type="text/css">{`
-            #timeline{
-                margin-bottom: 32px;
-            }
-            #timeline > h2 {
-              justify-content: center;
-              align-items: center;
-              display: flex;
-              background: ${config.colorConfig.main};
-              margin-top: 0;
-              margin-bottom:0;
-              font-size: 30px;
-              height: 65px;
-              color: #fff;
-              text-transform: uppercase;
-              border-top-left-radius: 10px;
-              border-top-right-radius: 10px;
-            }
-            #timeline > .timelineList {
-              display: flex;
-              font-size: 25px;
-              cursor: pointer;
-            }
-            #timeline > .timelineList > div {
-              height: 65px;
-              justify-content: center;
-              align-items: center;
-              display: flex;
-              width: 100%;
-            }
-            #timeline > .timelineList > .timelineFocus {
-              background: ${config.colorConfig.main};
-              color: #fff;
-            }
-
-          `}</style>
-            </Head>
-            {this.props.initPropsData.data.timeline &&
-              this.props.initPropsData.data.timeline.length > 0 && (
-                <div className="productSectionStyle" id="timeline">
-                  <h2>{"Lịch trình"}</h2>
-                  <div className="timelineList">
-                    {this.props.initPropsData.data.timeline.map(
-                      ({ title }, tlIdx) => (
-                        <div
-                          key={tlIdx}
-                          className={
-                            this.state.timelineFocus === tlIdx
-                              ? "timelineFocus"
-                              : ""
-                          }
-                          onClick={() =>
-                            this.setState({ timelineFocus: tlIdx })
-                          }
-                        >
-                          {title}
-                        </div>
-                      )
-                    )}
-                  </div>
-                  <div>
-                    {this.props.initPropsData.data.timeline[
-                      this.state.timelineFocus
-                    ] &&
-                      this.props.initPropsData.data.timeline[
-                        this.state.timelineFocus
-                      ].content &&
-                      ReactHtmlParser(
-                        this.props.initPropsData.data.timeline[
-                          this.state.timelineFocus
-                        ].content
-                      )}
-                  </div>
-                </div>
-              )}
-
-            <Head>
-              <style type="text/css">{`
-            #highlight{
-                border: 1px solid #eee;
-                margin-bottom: 32px;
-            }
-            #highlight > h2{
-              font-weight: bold;
-              margin-bottom: 24px;
-            }
-          `}</style>
-            </Head>
-            {this.props.initPropsData.data.highlight && (
-              <div className="productSectionStyle" id="highlight">
-                <h2 className="mgTop0">
-                  {Language.getLanguage(LanguageIdMap.HIGH_LIGHT)}
-                </h2>
-                {ReactHtmlParser(this.props.initPropsData.data.highlight)}
+            {/* Mobile Sidebar - Show at bottom for mobile */}
+            {isMobile && (
+              <div style={{ marginTop: 24 }}>
+                {this.renderSidebar()}
               </div>
             )}
           </div>
-
-          <div id="package_options">
-            <PackageOption
-              ref={(r) => (this.packageOptionRef = r)}
-              holder={this}
-            />
-          </div>
-
-          <Head>
-            <style type="text/css">{`
-            #what_to_expect{
-              margin-top: 24 
-            }
-            #what_to_expect > div{
-              padding-top: 0;
-              padding-bottom: 0;
-            }
-            #what_to_expect > div > h2{
-              font-weight: bold;
-              margin-bottom: 24px;
-            }
-            #what_to_expect > div > hr{
-              margin-top: 32px;
-            }
-          `}</style>
-          </Head>
-          {this.props.initPropsData.data.longDescription && (
-            <div className="pageSmallWidth" id="what_to_expect">
-              <div className="productSectionStyle">
-                <h2>{Language.getLanguage(LanguageIdMap.WHAT_TO_EXPECT)}</h2>
-                {ReactHtmlParser(this.props.initPropsData.data.longDescription)}
-                <hr />
-              </div>
-            </div>
-          )}
-
-          <Head>
-            <style type="text/css">{`
-            #act_info{
-              margin-top: 24 
-            }
-            #act_info > div{
-              padding-top: 0;
-              padding-bottom: 0;
-            }
-            #act_info > div > h2{
-              font-weight: bold;
-              margin-bottom: 24px;
-            }
-            #act_info > div > hr{
-              margin-top: 32px;
-            }
-          `}</style>
-          </Head>
-          {this.props.initPropsData.data.actInfo && (
-            <div className="pageSmallWidth" id="act_info">
-              <div
-                className="productSectionStyle"
-                style={{ paddingTop: 0, paddingBottom: 0 }}
-              >
-                <h2>{Language.getLanguage(LanguageIdMap.ACT_INFO)}</h2>
-                {ReactHtmlParser(this.props.initPropsData.data.actInfo)}
-                <hr />
-              </div>
-            </div>
-          )}
-
-          <Head>
-            <style type="text/css">{`
-            #how_to_use{
-              margin-top: 24 
-            }
-            #how_to_use > div{
-              padding-top: 0;
-              padding-bottom: 0;
-            }
-            #how_to_use > div > h2{
-              font-weight: bold;
-              margin-bottom: 24px;
-            }
-            #how_to_use > div > hr{
-              margin-top: 32px;
-            }
-            #how_to_use > div > .grey{
-              background-color: #eee;
-            }
-            #how_to_use > div > .grey > div{
-              padding-top: 0;
-              padding-bottom: 0
-            }
-            #how_to_use > div > .grey > div > div{
-              margin-left: 0;
-              margin-right: 0 ;
-            }
-            #how_to_use > div > .grey > div > div > col-sm-3{
-              padding-top: 5px;
-              padding-bottom: 5px;
-              font-weight: bold;
-            }
-            #how_to_use > div > .grey > div > div > col-sm-9{
-              padding-top: 5px;
-              padding-bottom: 5px;
-              white-space: pre-wrap;
-            }
-          `}</style>
-          </Head>
-          {this.props.initPropsData.data.howUse && (
-            <div className="pageSmallWidth" id="how_to_use">
-              <div className="productSectionStyle">
-                <h2>{Language.getLanguage(LanguageIdMap.HOW_TO_USE)}</h2>
-                {this.props.initPropsData.data.howUse.map(
-                  (rowData, rowIndex) => {
-                    return (
-                      <div className={rowIndex % 2 === 0 ? "grey" : ""}>
-                        <div className="productSectionStyle">
-                          <div className="row">
-                            <div className="col-sm-3">{rowData.name}</div>
-                            <div className="col-sm-9">{rowData.des}</div>
-                          </div>
-                        </div>
-                      </div>
-                    );
-                  }
-                )}
-                <hr />
-              </div>
-            </div>
-          )}
-
-          <Head>
-            <style type="text/css">{`
-            #cancel_policy{
-              margin-top: 24 
-            }
-            #cancel_policy > div{
-              padding-top: 0;
-              padding-bottom: 0;
-            }
-            #cancel_policy > div > h2{
-              font-weight: bold;
-              margin-bottom: 24px;
-            }
-            .cancel_policy_sup{
-              top: -0.2em;
-              margin-right: 12px;
-              font-size: 8px;
-            }
-            #cancel_policy > div > hr{
-              margin-top: 32px;
-            }
-          `}</style>
-          </Head>
-          <div className="pageSmallWidth" id="cancel_policy">
-            <div className="productSectionStyle">
-              <h2>{Language.getLanguage(LanguageIdMap.CANCEL_POLICY)}</h2>
-
-              {(!this.props.initPropsData.data.cancelRules ||
-                this.props.initPropsData.data.cancelRules.length === 0) && (
-                <div className="productSectionStyle pdTop0 pdBottom0">
-                  <sup className="cancel_policy_sup">
-                    <i className="fa fa-circle colorMain" />
-                  </sup>
-                  {Language.getLanguage(
-                    LanguageIdMap.CANCEL_POLICY_CANNOT_CANCEL
-                  )}
-                </div>
-              )}
-              {this.props.initPropsData.data.cancelRules &&
-                this.props.initPropsData.data.cancelRules.map(
-                  (rowData, rowIndex) => {
-                    return (
-                      <div className="productSectionStyle pdTop0 pdBottom0">
-                        <sup className="cancel_policy_sup">
-                          <i className="fa fa-circle colorMain" />
-                        </sup>
-                        {Language.getLanguage(
-                          LanguageIdMap.CANCEL_POLICY_DESC,
-                          {
-                            ...(rowData.day ? { day: rowData.day } : {}),
-                            ...(rowData.hour ? { hour: rowData.hour } : {}),
-                            percent: rowData.percent,
-                          },
-                          undefined,
-                          undefined,
-                          { HOUR: "hour", DAY: "day" }
-                        )}
-                      </div>
-                    );
-                  }
-                )}
-              <hr className="mgTop32" />
-            </div>
-          </div>
-
-          <Head>
-            <style type="text/css">{`
-            #faq{
-              margin-top: 24 
-            }
-            #faq > div{
-              padding-top: 0;
-              padding-bottom: 0;
-            }
-            #faq > div > h2{
-              font-weight: bold;
-              margin-bottom: 24px;
-            }
-            .productFaqButton{
-              border: 1px solid #888888;
-              color: #888888;
-              padding: 5px 15px;
-              cursor: pointer;
-              margin-top: 20px;
-              margin-bottom: 20px;
-              display: inline-block;
-              font-weight: bold;
-            }
-          `}</style>
-          </Head>
-          <div className="pageSmallWidth" id="faq">
-            <div className="productSectionStyle">
-              <h2>{Language.getLanguage(LanguageIdMap.FAQ_DESC)}</h2>
-              {this.props.initPropsData.data.faq !== undefined &&
-                ReactHtmlParser(this.props.initPropsData.data.faq)}
-
-              <div>
-                <a
-                  href={config.domain + config.shortUrl.faq}
-                  className="productFaqButton"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    window.open(config.domain + config.shortUrl.faq, "_blank");
-                  }}
-                >
-                  {Language.getLanguage(LanguageIdMap.CUSTOMER_SUPPORT)}
-                </a>
-              </div>
-
-              <hr className="mgTop32 mgBottom32" />
-            </div>
-          </div>
-          {this.props.initPropsData.productRelative &&
-            this.props.initPropsData.productRelative.data &&
-            this.props.initPropsData.productRelative.data.length > 0 && (
-              <div className="pageSmallWidth mgBottom48">
-                <div className="productSectionStyle pdTop0 pdBottom0">
-                  <div className="mgBottom32 fontsize32">
-                    {Language.getLanguage(LanguageIdMap.RELATIVE_PRODUCT)}
-                  </div>
-
-                  {this.props.initPropsData.productRelative &&
-                    this.props.initPropsData.productRelative.data && (
-                      <Slider
-                        infinite={true}
-                        speed={500}
-                        slidesToShow={
-                          this.props.initPropsData.productRelative.data.length >
-                          productsRelativeToShow
-                            ? productsRelativeToShow + 0.05
-                            : productsRelativeToShow
-                        }
-                        slidesToScroll={1}
-                        prevArrow={<SlickPrevArrow />}
-                        nextArrow={<SlickNextArrow />}
-                      >
-                        {this.props.initPropsData.productRelative.data
-                        /*
-                          .map((e) => ({
-                            ...e,
-                            productName: undefined,
-                            excerpt: undefined,
-                            services: undefined,
-                            _useThumbSecondUrl:
-                              e.featureImage && e.featureImage.thumbSecondUrl,
-                          }))
-                          */
-                          .map(this.renderProductCard.bind(this))}
-                      </Slider>
-                    )}
-                </div>
-              </div>
-            )}
         </div>
       </div>
     );
