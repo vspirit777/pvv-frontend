@@ -2645,11 +2645,15 @@ class Display extends SuperComponent {
 
           /* Highlight Section with Background */
           .highlight-section {
-            background: #0ab596;
+            background: #f5a623 !important;
+            background-color: #f5a623 !important;
             border-radius: 8px;
             padding: 24px;
             margin-bottom: 20px;
-            color: #fff;
+            color: #fff !important;
+          }
+          .highlight-section * {
+            color: #fff !important;
           }
           .highlight-section .highlight-header {
             display: flex;
@@ -2659,21 +2663,29 @@ class Display extends SuperComponent {
             font-weight: 700;
             margin-bottom: 16px;
             text-transform: uppercase;
+            color: #fff !important;
           }
           .highlight-section .highlight-header i {
             font-size: 20px;
+            color: #fff !important;
+          }
+          .highlight-section .highlight-content {
+            color: #fff !important;
           }
           .highlight-section ul {
             margin: 0;
             padding-left: 20px;
+            color: #fff !important;
           }
           .highlight-section li {
             margin-bottom: 8px;
             line-height: 1.5;
+            color: #fff !important;
           }
           .highlight-section p {
             margin: 0 0 8px 0;
             line-height: 1.6;
+            color: #fff !important;
           }
 
           /* Legacy Styles */
@@ -2838,12 +2850,39 @@ class Display extends SuperComponent {
 
                 {/* Short Highlight - Điểm nổi bật */}
                 {this.props.initPropsData.data.shortHighlight && (
-                  <div className="highlight-section">
-                    <div className="highlight-header">
+                  <div className="highlight-section-wrapper">
+                    <style>{`
+                      .highlight-section-wrapper {
+                        background: #f5a623 !important;
+                        background-color: #f5a623 !important;
+                        border-radius: 8px !important;
+                        padding: 24px !important;
+                        margin-bottom: 20px !important;
+                      }
+                      .highlight-section-wrapper,
+                      .highlight-section-wrapper *,
+                      .highlight-section-wrapper p,
+                      .highlight-section-wrapper span,
+                      .highlight-section-wrapper li,
+                      .highlight-section-wrapper ul,
+                      .highlight-section-wrapper div {
+                        color: #333 !important;
+                      }
+                      .highlight-section-wrapper .highlight-title {
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+                        font-size: 18px;
+                        font-weight: 700;
+                        margin-bottom: 16px;
+                        text-transform: uppercase;
+                      }
+                    `}</style>
+                    <div className="highlight-title">
                       <i className="fa fa-star" />
                       Điểm nổi bật
                     </div>
-                    <div className="highlight-content">
+                    <div>
                       {ReactHtmlParser(this.props.initPropsData.data.shortHighlight)}
                     </div>
                   </div>
@@ -2950,17 +2989,25 @@ class Display extends SuperComponent {
                   }
                   /* Highlight Styles */
                   #highlight {
-                    border: 1px solid #eee;
+                    border: none;
                     margin-bottom: 24px;
                     padding: 24px;
-                    background: #fff;
+                    background: #fffaea;
                     border-radius: 12px;
                   }
                   #highlight > h2 {
                     font-weight: bold;
                     margin-bottom: 16px;
                     font-size: 20px;
-                    color: #1a1a1a;
+                    color: #333;
+                  }
+                  #highlight,
+                  #highlight *,
+                  #highlight p,
+                  #highlight span,
+                  #highlight li,
+                  #highlight ul {
+                    color: #333;
                   }
               `}</style>
                 </Head>
