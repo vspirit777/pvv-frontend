@@ -83,8 +83,8 @@ class PackageOption extends Component {
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
           }
           .package-options-header {
-            background: #0ab596;
-            color: #fff;
+            background: #fff;
+            color: #000;
             display: flex;
             align-items: center;
             gap: 10px;
