@@ -126,6 +126,9 @@ class PackageOption extends Component {
             padding-top: 10px;
             color: #0ab596;
           }
+          .productPackageListContainer hr{
+            display: none;
+          }
           .productPackageCheckingStatus {
             padding-right: 16px;
             font-size: 13px;
