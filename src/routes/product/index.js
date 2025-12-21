@@ -1660,15 +1660,11 @@ class StickyMenu extends Component {
             <style type="text/css">{`
           .productStickyMenuContainer{
             position: fixed;
-            z-index: 100;
+            z-index: 1015;
             background-color: #fff;
             width: 100%;
             border-top: 1px solid #eee;
-            top: ${
-              document.getElementById("mainheader")
-                ? document.getElementById("mainheader").clientHeight
-                : undefined
-            }px;
+            top: 64px;
             overflow-x: auto;
           }
           .productStickyMenu{
@@ -1780,34 +1776,38 @@ class Display extends SuperComponent {
   }
 
   scrollEventCallback() {
+    // Show sticky menu after scrolling past header area (150px threshold)
+    const stickyMenuScrollThreshold = 150;
+    this.headerHeight = this.getTopHeightNav();
+    
     if (
-      /* (document.documentElement.scrollTop<150 && this.headerHeight !== this.getTopHeightNav()) &&*/
-      $("#renderShareBooknowFavoriteOnTopContainerId") &&
-      $("#renderShareBooknowFavoriteOnTopContainerId").offset()
+      this.props.initPropsData.needRenderShareBooknowFavoriteAtStickyMenu &&
+      document.documentElement.scrollTop < stickyMenuScrollThreshold
     ) {
-      this.headerHeight = this.getTopHeightNav();
-      if (
-        this.props.initPropsData.needRenderShareBooknowFavoriteAtStickyMenu &&
-        document.documentElement.scrollTop <
-          $("#renderShareBooknowFavoriteOnTopContainerId").offset().top - 50
-      ) {
-        this.props.initPropsData.needRenderShareBooknowFavoriteAtStickyMenu = false;
-        if (this.stickyMenuRef) {
-          this.stickyMenuRef.forceUpdate();
-        }
-      } else if (
-        !this.props.initPropsData.needRenderShareBooknowFavoriteAtStickyMenu &&
-        document.documentElement.scrollTop >=
-          $("#renderShareBooknowFavoriteOnTopContainerId").offset().top - 50
-      ) {
-        this.props.initPropsData.needRenderShareBooknowFavoriteAtStickyMenu = true;
-        if (this.stickyMenuRef) {
-          this.stickyMenuRef.forceUpdate();
-        }
+      this.props.initPropsData.needRenderShareBooknowFavoriteAtStickyMenu = false;
+      // Show top menu when sticky menu hides
+      if ($("#pvvBlogCamnangContainer")) {
+        $("#pvvBlogCamnangContainer").css("display", "block");
+      }
+      if (this.stickyMenuRef) {
+        this.stickyMenuRef.forceUpdate();
+      }
+    } else if (
+      !this.props.initPropsData.needRenderShareBooknowFavoriteAtStickyMenu &&
+      document.documentElement.scrollTop >= stickyMenuScrollThreshold
+    ) {
+      this.props.initPropsData.needRenderShareBooknowFavoriteAtStickyMenu = true;
+      // Hide top menu when sticky menu appears
+      if ($("#pvvBlogCamnangContainer")) {
+        $("#pvvBlogCamnangContainer").css("display", "none");
+      }
+      if (this.stickyMenuRef) {
+        this.stickyMenuRef.forceUpdate();
       }
     }
 
-    if ($("#pvvBlogCamnangContainer")) {
+    // Only adjust top menu height when sticky menu is not showing
+    if (!this.props.initPropsData.needRenderShareBooknowFavoriteAtStickyMenu && $("#pvvBlogCamnangContainer")) {
       const prevHeight = $("#pvvBlogCamnangContainer").height();
       const realHeight = $("#pvvBlogCamnang").height();
       let nextHeight = realHeight - document.documentElement.scrollTop;

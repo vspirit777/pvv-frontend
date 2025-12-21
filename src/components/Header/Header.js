@@ -168,13 +168,14 @@ class Header extends Component {
               : ""
             }
           .navbarHeader{
-            border-bottom: 1px solid #e4e4e4;
-            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+            border: none;
+            box-shadow: none;
             margin-bottom: 0 !important;
-            background-color: #fff;
-            z-index: 100;
+            background-color: #d4f5ef;
+            z-index: 1010;
             transition-duration: 0.5s;
-            overflow-y: hidden;
+            overflow: visible;
+            min-height: auto;
           }
           .navLogo{
             width: ${common.getViewportWidth() >= config.sizeConfig.widthMd ? "20%" : "40%"};
@@ -237,9 +238,9 @@ class Header extends Component {
             }
           }
           .linkBelowBanner > div {
-            background: ${config.colorConfig.main};
+            background: #d4f5ef;
             width: 100%;
-            margin: 1px;
+            margin: 0;
             padding: 6px;
             text-align: center;
             padding-top: 14px;
@@ -322,7 +323,7 @@ class Header extends Component {
             display: flex;
           }
           #pvvBlogCamnangContainer{
-            overflow: hidden;
+            overflow: visible;
           }
           @media only screen and (max-width: ${config.sizeConfig.widthPC - 1}px) {
             #pvvBlogCamnangContainer{
@@ -336,7 +337,6 @@ class Header extends Component {
             padding: 0 24px;
             height: 64px;
             background: #fff;
-            border-bottom: 1px solid #e4e4e4;
             z-index: 1020;
             position: fixed;
             top: 0;
@@ -411,7 +411,7 @@ class Header extends Component {
           }
           .navbar-fixed-top {
             top: 64px !important; /* height of .headerTopBar */
-            border-width: 0 0 1px;
+            border-width: 0;
           }
       `}</style>
         </Head>
