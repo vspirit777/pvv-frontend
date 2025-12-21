@@ -1221,6 +1221,7 @@ class SuperComponent extends Component {
                                 fontWeight: "bold",
                                 outline: "none",
                                 opacity: this.loginLoading ? 0.3 : 1,
+                                backgroundColor:"#0e9a7e",
                             }}
                             type="submit" bsSize="large" block>
                             {!this.loginLoading && Language.getLanguage(LanguageIdMap.btnLogin)}
