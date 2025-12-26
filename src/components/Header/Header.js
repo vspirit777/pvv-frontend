@@ -842,6 +842,7 @@ class Header extends Component {
               <div 
                 id="menu-tour"
                 onClick={e => {
+                  e.currentTarget.parentElement.querySelectorAll('.menu-item-active').forEach(el => el.classList.remove('menu-item-active'));
                   e.currentTarget.classList.add('menu-item-active');
                   common.needReload = true;
                   setTimeout(function() {
@@ -852,6 +853,7 @@ class Header extends Component {
               <div 
                 id="menu-vethamquan"
                 onClick={e => {
+                  e.currentTarget.parentElement.querySelectorAll('.menu-item-active').forEach(el => el.classList.remove('menu-item-active'));
                   e.currentTarget.classList.add('menu-item-active');
                   common.needReload = true;
                   setTimeout(function() {
@@ -862,6 +864,7 @@ class Header extends Component {
               <div 
                 id="menu-dichuyen"
                 onClick={e => {
+                  e.currentTarget.parentElement.querySelectorAll('.menu-item-active').forEach(el => el.classList.remove('menu-item-active'));
                   e.currentTarget.classList.add('menu-item-active');
                   common.needReload = true;
                   setTimeout(function() {
@@ -872,6 +875,7 @@ class Header extends Component {
               <div 
                 id="menu-combo"
                 onClick={e => {
+                  e.currentTarget.parentElement.querySelectorAll('.menu-item-active').forEach(el => el.classList.remove('menu-item-active'));
                   e.currentTarget.classList.add('menu-item-active');
                   common.needReload = true;
                   setTimeout(function() {
@@ -882,6 +886,7 @@ class Header extends Component {
               <div 
                 id="menu-about"
                 onClick={e => {
+                  e.currentTarget.parentElement.querySelectorAll('.menu-item-active').forEach(el => el.classList.remove('menu-item-active'));
                   e.currentTarget.classList.add('menu-item-active');
                   setTimeout(function() {
                     Router.push(config.shortUrl.aboutUs);
