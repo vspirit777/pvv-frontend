@@ -1544,7 +1544,7 @@ class ShareBooknowFavourite extends Component {
                   }
                 }}
               >
-                ĐẶT VÉ ONLINE
+                ĐẶT NGAY
               </RaisedButton>
             )}
           </div>
@@ -2326,7 +2326,7 @@ class Display extends SuperComponent {
           .current-price-value {
             font-size: 26px;
             font-weight: 700;
-            color: #e53935;
+            color:rgb(0, 0, 0);
           }
           .price-note {
             font-size: 12px;
@@ -2861,46 +2861,6 @@ class Display extends SuperComponent {
                   </div>
                 </div>
 
-                {/* Short Highlight - Điểm nổi bật */}
-                {this.props.initPropsData.data.shortHighlight && (
-                  <div className="highlight-section-wrapper">
-                    <style>{`
-                      .highlight-section-wrapper {
-                        background: #f5a623 !important;
-                        background-color: #f5a623 !important;
-                        border-radius: 8px !important;
-                        padding: 24px !important;
-                        margin-bottom: 20px !important;
-                      }
-                      .highlight-section-wrapper,
-                      .highlight-section-wrapper *,
-                      .highlight-section-wrapper p,
-                      .highlight-section-wrapper span,
-                      .highlight-section-wrapper li,
-                      .highlight-section-wrapper ul,
-                      .highlight-section-wrapper div {
-                        color: #333 !important;
-                      }
-                      .highlight-section-wrapper .highlight-title {
-                        display: flex;
-                        align-items: center;
-                        gap: 10px;
-                        font-size: 18px;
-                        font-weight: 700;
-                        margin-bottom: 16px;
-                        text-transform: uppercase;
-                      }
-                    `}</style>
-                    <div className="highlight-title">
-                      <i className="fa fa-star" />
-                      Điểm nổi bật
-                    </div>
-                    <div>
-                      {ReactHtmlParser(this.props.initPropsData.data.shortHighlight)}
-                    </div>
-                  </div>
-                )}
-
                 <Head>
                   <style type="text/css">{`
                   .productImageEle{
@@ -3042,7 +3002,17 @@ class Display extends SuperComponent {
               `}</style>
                 </Head>
 
-                {/* Timeline Section - All days visible for SEO */}
+                {/* Full Highlight Section - Điểm nổi bật */}
+                {this.props.initPropsData.data.highlight && (
+                  <div id="highlight">
+                    <h2 className="mgTop0">
+                      {Language.getLanguage(LanguageIdMap.HIGH_LIGHT)}
+                    </h2>
+                    {ReactHtmlParser(this.props.initPropsData.data.highlight)}
+                  </div>
+                )}
+
+                {/* Timeline Section - LỊCH TRÌNH */}
                 {this.props.initPropsData.data.timeline &&
                   this.props.initPropsData.data.timeline.length > 0 && (
                     <div id="timeline">
@@ -3067,16 +3037,6 @@ class Display extends SuperComponent {
                       </div>
                     </div>
                   )}
-
-                {/* Full Highlight Section */}
-                {this.props.initPropsData.data.highlight && (
-                  <div id="highlight">
-                    <h2 className="mgTop0">
-                      {Language.getLanguage(LanguageIdMap.HIGH_LIGHT)}
-                    </h2>
-                    {ReactHtmlParser(this.props.initPropsData.data.highlight)}
-                  </div>
-                )}
 
                 {/* Package Options */}
                 <div id="package_options">
