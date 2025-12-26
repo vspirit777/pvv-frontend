@@ -17,7 +17,7 @@ import envConfig from '../.env'
 let env = envConfig[process.env.NODE_ENV] || envConfig.production;
 
 const colorConfig={
-  main: '#fff',//"#0ab596",
+  main: "#0ab596",
   darkGrey: "#8d8b8a",
   grey: "#f5f5f5",
 }

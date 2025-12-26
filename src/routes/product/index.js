@@ -1714,6 +1714,14 @@ class StickyMenu extends Component {
               display: none;
             }
           }
+          #shareBooknowFavoriteOnStickyMenu {
+            margin-right: 108px;
+          }
+          @media only screen and (max-width: ${config.sizeConfig.widthMd - 1}px) {
+            #shareBooknowFavoriteOnStickyMenu {
+              margin-right: 48px;
+            }
+          }
         `}</style>
           </Head>
           <PriceShareBooknowFavouriteFixedBelow
