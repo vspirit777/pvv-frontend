@@ -172,10 +172,9 @@ class Header extends Component {
             box-shadow: none;
             margin-bottom: 0 !important;
             background-color: #d4f5ef;
-            z-index: 1010;
+            z-index: 100;
             transition-duration: 0.5s;
-            overflow: visible;
-            min-height: auto;
+            overflow-y: hidden;
           }
           .navLogo{
             width: ${common.getViewportWidth() >= config.sizeConfig.widthMd ? "20%" : "40%"};
@@ -248,6 +247,23 @@ class Header extends Component {
           }
           .linkBelowBanner > div > a {
             color: inherit;
+          }
+          .linkBelowBanner > div.menu-item-active {
+            background: #0ab596 !important;
+            color: #fff !important;
+            transition: background 0.15s ease-in-out;
+          }
+          .linkBelowBanner > div.menu-item-active > a {
+            color: #fff !important;
+          }
+          @keyframes menuHighlight {
+            0% { background: #d4f5ef; }
+            50% { background: #0ab596; color: #fff; }
+            100% { background: #0ab596; color: #fff; }
+          }
+          .linkBelowBanner > div:hover {
+            background: #b8ede3;
+            cursor: pointer;
           }
           #rightBarContainer {
 	          padding-top: 0px;
@@ -323,11 +339,35 @@ class Header extends Component {
             display: flex;
           }
           #pvvBlogCamnangContainer{
-            overflow: visible;
+            overflow: hidden;
           }
           @media only screen and (max-width: ${config.sizeConfig.widthPC - 1}px) {
             #pvvBlogCamnangContainer{
-              display: none;
+              padding: 0;
+              margin: 0;
+            }
+            .linkBelowBanner {
+              flex-wrap: wrap !important;
+            }
+            .linkBelowBanner > div {
+              width: 50% !important;
+              font-size: 12px !important;
+              padding: 10px 4px !important;
+              box-sizing: border-box;
+              border-bottom: 1px solid #c0e8e0;
+            }
+            .linkBelowBanner > div:nth-child(odd) {
+              border-right: 1px solid #c0e8e0;
+            }
+            .linkBelowBanner > div:last-child {
+              width: 100% !important;
+              border-right: none;
+            }
+          }
+          @media only screen and (max-width: 480px) {
+            .linkBelowBanner > div {
+              font-size: 11px !important;
+              padding: 8px 2px !important;
             }
           }
           .headerTopBar {
@@ -799,11 +839,55 @@ class Header extends Component {
           <div className='pageSmallWidth row' id='pvvBlogCamnangContainer'>
             <div className="linkBelowBanner" id='pvvBlogCamnang' style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%'}}>
               {/* Only menu items, no logo here */}
-              <div><a href="/blog">Tour và trải nghiệm</a></div>
-              <div><a href="/blog/kinh-nghiem-du-lich/">Vé tham quan</a></div>
-              <div><a href="/blog/ebook/">Di chuyển</a></div>
-              <div><a href="/blog/ebook/">Combo & Packages</a></div>
-              <div><a href="/blog/ebook/">Về chúng tôi</a></div>
+              <div 
+                id="menu-tour"
+                onClick={e => {
+                  e.currentTarget.classList.add('menu-item-active');
+                  common.needReload = true;
+                  setTimeout(function() {
+                    Router.push(config.shortUrl.productsByType + "?typeOfTripAlias=hoat-dong-tour-trong-ngay");
+                  }, 150);
+                }}
+              ><a href={config.shortUrl.productsByType + "?typeOfTripAlias=hoat-dong-tour-trong-ngay"} onClick={e => e.preventDefault()}>Tour và trải nghiệm</a></div>
+              <div 
+                id="menu-vethamquan"
+                onClick={e => {
+                  e.currentTarget.classList.add('menu-item-active');
+                  common.needReload = true;
+                  setTimeout(function() {
+                    Router.push(config.shortUrl.productsByType + "?typeOfTripAlias=ve-tham-quan-show");
+                  }, 150);
+                }}
+              ><a href={config.shortUrl.productsByType + "?typeOfTripAlias=ve-tham-quan-show"} onClick={e => e.preventDefault()}>Vé tham quan</a></div>
+              <div 
+                id="menu-dichuyen"
+                onClick={e => {
+                  e.currentTarget.classList.add('menu-item-active');
+                  common.needReload = true;
+                  setTimeout(function() {
+                    Router.push(config.shortUrl.productsByType + "?typeOfTripAlias=phuong-tien-di-lai-wifi");
+                  }, 150);
+                }}
+              ><a href={config.shortUrl.productsByType + "?typeOfTripAlias=phuong-tien-di-lai-wifi"} onClick={e => e.preventDefault()}>Di chuyển</a></div>
+              <div 
+                id="menu-combo"
+                onClick={e => {
+                  e.currentTarget.classList.add('menu-item-active');
+                  common.needReload = true;
+                  setTimeout(function() {
+                    Router.push(config.shortUrl.productsByType + "?typeOfTripAlias=tour-tron-goi");
+                  }, 150);
+                }}
+              ><a href={config.shortUrl.productsByType + "?typeOfTripAlias=tour-tron-goi"} onClick={e => e.preventDefault()}>Combo & Packages</a></div>
+              <div 
+                id="menu-about"
+                onClick={e => {
+                  e.currentTarget.classList.add('menu-item-active');
+                  setTimeout(function() {
+                    Router.push(config.shortUrl.aboutUs);
+                  }, 150);
+                }}
+              ><a href={config.shortUrl.aboutUs} onClick={e => e.preventDefault()}>Về chúng tôi</a></div>
             </div>
           </div>
         </Navbar>

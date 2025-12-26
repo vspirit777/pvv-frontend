@@ -158,6 +158,7 @@ export const config = {
     },
     destination: "/tour-du-lich",
     typeOfTrip:"/type-of-trip",
+    productsByType: "/products-by-type",
     product: "/tour",
     attraction: "/attraction",
     supplierProductInfo: "/supplierinfo",
