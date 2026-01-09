@@ -268,20 +268,87 @@ class Home extends SuperComponent {
   }
   getBannerImageList() {
     return [
-      {
-        original: "/static/images/banner/home.jpg",
-        renderItem: this.renderItemGaleryImage.bind(this),
-      },
+      "/static/images/banner/home.jpg",
+      "/static/images/banner/home_01.jpg",
+      "/static/images/banner/home_02.jpg",
+      "/static/images/banner/home_03.jpg",
+      "/static/images/banner/home_04.jpg",
     ];
   }
+  
   renderBanner() {
-    // let imageGaleryList = this.getBannerImageList();
+    const bannerImages = this.getBannerImageList();
+    
+    if (!common.checkServer()) {
+      console.log('Banner images:', bannerImages);
+    }
+    
+    const BannerPrevArrow = (props) => {
+      const { className, style, onClick } = props;
+      return (
+        <div
+          className={className + " bannerArrow bannerArrowPrev"}
+          style={{ ...style, display: "block" }}
+          onClick={onClick}
+        >
+          <img
+            src={config.domain + "/static/images/back.png"}
+            alt="Previous"
+            style={{ width: "30px", height: "30px", opacity: 0.8 }}
+          />
+        </div>
+      );
+    };
+    
+    const BannerNextArrow = (props) => {
+      const { className, style, onClick } = props;
+      return (
+        <div
+          className={className + " bannerArrow bannerArrowNext"}
+          style={{ ...style, display: "block" }}
+          onClick={onClick}
+        >
+          <img
+            src={config.domain + "/static/images/next.png"}
+            alt="Next"
+            style={{ width: "30px", height: "30px", opacity: 0.8 }}
+          />
+        </div>
+      );
+    };
+    
+    const sliderSettings = {
+      dots: false,
+      infinite: bannerImages.length > 1,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      autoplay: bannerImages.length > 1,
+      autoplaySpeed: 5000,
+      pauseOnHover: true,
+      prevArrow: <BannerPrevArrow />,
+      nextArrow: <BannerNextArrow />,
+      adaptiveHeight: false,
+      lazyLoad: false,
+      swipeToSlide: true,
+      arrows: bannerImages.length > 1,
+    };
+    
     return (
       <div className="posRelative mgTop15Negative">
-        <div className="itemGalleryContainer">
-          <div>
-            <img src={"/static/images/banner/home.jpg"} />
-          </div>
+        <div className="bannerSliderContainer">
+          <Slider {...sliderSettings}>
+            {bannerImages.map((imageSrc, index) => (
+              <div key={index} className="itemGalleryContainer">
+                <div>
+                  <img 
+                    src={imageSrc} 
+                    alt={`Banner ${index + 1}`}
+                  />
+                </div>
+              </div>
+            ))}
+          </Slider>
         </div>
         <div className="homeGlass" />
         <div className="bannerContainer">
