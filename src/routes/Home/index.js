@@ -272,7 +272,6 @@ class Home extends SuperComponent {
       "/static/images/banner/home_01.jpg",
       "/static/images/banner/home_02.jpg",
       "/static/images/banner/home_03.jpg",
-      "/static/images/banner/home_04.jpg",
     ];
   }
   
