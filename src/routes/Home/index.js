@@ -290,13 +290,7 @@ class Home extends SuperComponent {
           className={className + " bannerArrow bannerArrowPrev"}
           style={{ ...style, display: "block" }}
           onClick={onClick}
-        >
-          <img
-            src={config.domain + "/static/images/back.png"}
-            alt="Previous"
-            style={{ width: "30px", height: "30px", opacity: 0.8 }}
-          />
-        </div>
+        />
       );
     };
     
@@ -307,13 +301,7 @@ class Home extends SuperComponent {
           className={className + " bannerArrow bannerArrowNext"}
           style={{ ...style, display: "block" }}
           onClick={onClick}
-        >
-          <img
-            src={config.domain + "/static/images/next.png"}
-            alt="Next"
-            style={{ width: "30px", height: "30px", opacity: 0.8 }}
-          />
-        </div>
+        />
       );
     };
     

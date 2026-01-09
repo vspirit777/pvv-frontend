@@ -18,24 +18,40 @@
   .bannerSliderContainer .slick-slide > div {
     width: 100%;
   }
+  .bannerSliderContainer .slick-prev.bannerArrow,
+  .bannerSliderContainer .slick-next.bannerArrow {
+    display: flex !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
   .bannerArrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 15;
-    cursor: pointer;
-    background-color: rgba(255, 255, 255, 0.3);
+    position: absolute !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    z-index: 20 !important;
+    cursor: pointer !important;
+    background-color: rgba(0, 0, 0, 0.4) !important;
     border-radius: 50%;
-    width: 50px;
-    height: 50px;
+    width: 40px !important;
+    height: 40px !important;
     display: flex !important;
     align-items: center;
     justify-content: center;
-    transition: background-color 0.3s ease, opacity 0.3s ease;
+    transition: background-color 0.3s ease;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  .bannerArrow::before {
+    color: #fff !important;
+    font-size: 20px !important;
+    opacity: 1 !important;
   }
   .bannerArrow:hover {
-    background-color: rgba(255, 255, 255, 0.5);
-    opacity: 1 !important;
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+  .bannerArrow span {
+    line-height: 1;
+    user-select: none;
   }
   .bannerArrowPrev {
     left: 20px;
@@ -45,8 +61,8 @@
   }
   @media only screen and (max-width: 768px) {
     .bannerArrow {
-      width: 40px;
-      height: 40px;
+      width: 36px;
+      height: 36px;
     }
     .bannerArrowPrev {
       left: 10px;
@@ -54,9 +70,8 @@
     .bannerArrowNext {
       right: 10px;
     }
-    .bannerArrow img {
-      width: 24px !important;
-      height: 24px !important;
+    .bannerArrow span {
+      font-size: 20px !important;
     }
   }
   .itemGalleryContainer {
