@@ -44,6 +44,10 @@ export const config = {
       id: "JTK",
       name: "Điểm yêu thích trong nước",
     },
+    cacHoatDongNoiBat: {
+      id: "JTK",
+      name: "Các hoạt động nổi bật",
+    },
     phuotBlog: {
       id: "MAV",
       name: "Phượt blog",

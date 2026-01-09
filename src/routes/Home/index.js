@@ -656,7 +656,10 @@ class Home extends SuperComponent {
           ] &&
           this.props.initPropsData.topList[
             config.topList.diemDenYeuThichTrongNuoc.id
-          ].data && (
+          ].data &&
+          this.props.initPropsData.topList[
+            config.topList.diemDenYeuThichTrongNuoc.id
+          ].data.length > 0 && (
             <div className="pageSmallWidth">
               <h2 className="topDestinationContainer">
                 {config.topList.diemDenYeuThichTrongNuoc.name}
@@ -716,6 +719,83 @@ class Home extends SuperComponent {
                     <ImageLink
                       {...this.props.initPropsData.topList[
                         config.topList.diemDenYeuThichTrongNuoc.id
+                      ].data[5]}
+                    />
+                  )}
+                </div>
+              </div>
+            </div>
+          )}
+
+        {this.props.initPropsData.topList &&
+          this.props.initPropsData.topList[
+            config.topList.cacHoatDongNoiBat.id
+          ] &&
+          this.props.initPropsData.topList[
+            config.topList.cacHoatDongNoiBat.id
+          ].data &&
+          this.props.initPropsData.topList[
+            config.topList.cacHoatDongNoiBat.id
+          ].data.length > 0 && (
+            <div className="pageSmallWidth">
+              <h2 className="topDestinationContainer">
+                {config.topList.cacHoatDongNoiBat.name}
+              </h2>
+              <div className="displayFlex flexWrapWrap">
+                {this.props.initPropsData.topList[
+                  config.topList.cacHoatDongNoiBat.id
+                ].data[0] && (
+                  <div
+                    className={
+                      common.getViewportWidth() < 400 ? "width100" : "width40"
+                    }
+                  >
+                    <ImageLink
+                      {...this.props.initPropsData.topList[
+                        config.topList.cacHoatDongNoiBat.id
+                      ].data[0]}
+                    />
+                  </div>
+                )}
+                <div
+                  className={`displayFlex flexWrapWrap ${
+                    common.getViewportWidth() < 300
+                      ? "width100"
+                      : common.getViewportWidth() < 400
+                      ? "width66"
+                      : "width40"
+                  }`}
+                >
+                  {[1, 2, 3, 4].map(
+                    (fieldIdx) =>
+                      this.props.initPropsData.topList[
+                        config.topList.cacHoatDongNoiBat.id
+                      ].data[fieldIdx] && (
+                        <div key={fieldIdx} className={"width50"}>
+                          <ImageLink
+                            {...this.props.initPropsData.topList[
+                              config.topList.cacHoatDongNoiBat.id
+                            ].data[fieldIdx]}
+                          />
+                        </div>
+                      )
+                  )}
+                </div>
+                <div
+                  className={
+                    common.getViewportWidth() < 300
+                      ? "width100"
+                      : common.getViewportWidth() < 400
+                      ? "width33"
+                      : "width20"
+                  }
+                >
+                  {this.props.initPropsData.topList[
+                    config.topList.cacHoatDongNoiBat.id
+                  ].data[5] && (
+                    <ImageLink
+                      {...this.props.initPropsData.topList[
+                        config.topList.cacHoatDongNoiBat.id
                       ].data[5]}
                     />
                   )}
