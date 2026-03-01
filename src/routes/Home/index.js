@@ -682,21 +682,22 @@ class Home extends SuperComponent {
                 {config.topList.uuDaiTrongThang.name}
               </h2>
               <Slider
+                className="uuDaiTrongThangSlider"
                 infinite={true}
                 speed={500}
                 slidesToShow={Math.min(
-                  5,
-                  Math.floor(common.getViewportWidth() / 100)
+                  6,
+                  Math.floor(common.getViewportWidth() / 150)
                 )}
                 slidesToScroll={1}
-                rows={2}
+                rows={1}
                 prevArrow={<SlickPrevArrow />}
                 nextArrow={<SlickNextArrow />}
               >
                 {this.props.initPropsData.topList[
                   config.topList.uuDaiTrongThang.id
                 ].data.map((topListUrl, idx) => (
-                  <div>
+                  <div key={idx} className="uuDaiSlideItem">
                     <ImageLink {...topListUrl} />
                   </div>
                 ))}

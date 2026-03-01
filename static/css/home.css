@@ -226,3 +226,15 @@
     width: 100%;
     cursor: pointer;
   }
+
+  .uuDaiTrongThangSlider .uuDaiSlideItem{
+    padding: 0 8px;
+  }
+
+  .uuDaiTrongThangSlider img{
+    width: 100%;
+    height: auto;
+    max-height: 140px;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  }
