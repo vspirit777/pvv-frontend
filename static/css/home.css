@@ -163,17 +163,17 @@
 
   .topDestinationContainer{
     font-size: 32px;
-    text-transform: uppercase;
     text-align: center;
     font-weight: 500;
+    margin-top: 56px;
+    margin-bottom: 24px;
   }
   .phuotBlogContainer{
     background-color: #666;
     font-size: 24px;
-    text-transform: uppercase;
     font-weight: bold;
-    margin-top: 0;
-    margin-bottom: 0;
+    margin-top: 56px;
+    margin-bottom: 24px;
     min-height: 40px;
     display: flex;
     align-items: center;
