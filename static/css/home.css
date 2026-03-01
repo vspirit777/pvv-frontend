@@ -254,3 +254,22 @@
     width: 30px !important;
     height: 30px !important;
   }
+
+  .diemDenYeuThichTrongNuocRow{
+    margin-left: -12px;
+    margin-right: -12px;
+    justify-content: center;
+  }
+
+  .diemDenYeuThichTrongNuocItem{
+    padding: 0 12px;
+    flex: 0 0 33.3333%;
+    max-width: 33.3333%;
+  }
+
+  .diemDenYeuThichTrongNuocItem img{
+    width: 100%;
+    height: 210px;
+    object-fit: cover;
+    border-radius: 6px;
+  }

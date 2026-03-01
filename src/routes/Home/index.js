@@ -435,6 +435,12 @@ class Home extends SuperComponent {
       </a>
     );
   }
+  getRectanglePhotoUrl(photoUrl, width = 400, height = 250) {
+    if (!photoUrl) {
+      return photoUrl;
+    }
+    return photoUrl.replace("s0x0", `s${width}xs${height}`);
+  }
   renderData() {
     // this.props.initPropsData.topList = {
     //   [config.topList.uuDaiTrongThang.id]: {
@@ -719,65 +725,22 @@ class Home extends SuperComponent {
               <h2 className="topDestinationContainer">
                 {config.topList.diemDenYeuThichTrongNuoc.name}
               </h2>
-              <div className="displayFlex flexWrapWrap">
+              <div className="displayFlex diemDenYeuThichTrongNuocRow">
                 {this.props.initPropsData.topList[
                   config.topList.diemDenYeuThichTrongNuoc.id
-                ].data[0] && (
-                  <div
-                    className={
-                      common.getViewportWidth() < 400 ? "width100" : "width40"
-                    }
-                  >
-                    <ImageLink
-                      {...this.props.initPropsData.topList[
-                        config.topList.diemDenYeuThichTrongNuoc.id
-                      ].data[0]}
-                    />
-                  </div>
-                )}
-                <div
-                  className={`displayFlex flexWrapWrap ${
-                    common.getViewportWidth() < 300
-                      ? "width100"
-                      : common.getViewportWidth() < 400
-                      ? "width66"
-                      : "width40"
-                  }`}
-                >
-                  {[1, 2, 3, 4].map(
-                    (fieldIdx) =>
-                      this.props.initPropsData.topList[
-                        config.topList.diemDenYeuThichTrongNuoc.id
-                      ].data[fieldIdx] && (
-                        <div key={fieldIdx} className={"width50"}>
-                          <ImageLink
-                            {...this.props.initPropsData.topList[
-                              config.topList.diemDenYeuThichTrongNuoc.id
-                            ].data[fieldIdx]}
-                          />
-                        </div>
-                      )
-                  )}
-                </div>
-                <div
-                  className={
-                    common.getViewportWidth() < 300
-                      ? "width100"
-                      : common.getViewportWidth() < 400
-                      ? "width33"
-                      : "width20"
-                  }
-                >
-                  {this.props.initPropsData.topList[
-                    config.topList.diemDenYeuThichTrongNuoc.id
-                  ].data[5] && (
-                    <ImageLink
-                      {...this.props.initPropsData.topList[
-                        config.topList.diemDenYeuThichTrongNuoc.id
-                      ].data[5]}
-                    />
-                  )}
-                </div>
+                ].data
+                  .slice(0, 3)
+                  .map((item, index) => (
+                    <div
+                      key={index}
+                      className="diemDenYeuThichTrongNuocItem"
+                    >
+                      <ImageLink
+                        {...item}
+                        photoUrl={this.getRectanglePhotoUrl(item.photoUrl)}
+                      />
+                    </div>
+                  ))}
               </div>
             </div>
           )}
