@@ -231,10 +231,26 @@
     padding: 0 8px;
   }
 
-  .uuDaiTrongThangSlider img{
+  .uuDaiTrongThangSlider .uuDaiSlideItem a{
+    position: relative;
+    display: block;
     width: 100%;
-    height: auto;
-    max-height: 140px;
+    padding-bottom: 100%;
+  }
+
+  .uuDaiTrongThangSlider .uuDaiSlideItem img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     border-radius: 6px;
     box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  }
+
+  .uuDaiTrongThangSlider .slick-prev,
+  .uuDaiTrongThangSlider .slick-next{
+    width: 30px !important;
+    height: 30px !important;
   }
