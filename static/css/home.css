@@ -1,4 +1,79 @@
 
+  .bannerSliderContainer {
+    position: relative;
+  }
+  .bannerSliderContainer .slick-slider {
+    position: relative;
+  }
+  .bannerSliderContainer .slick-list {
+    overflow: hidden;
+  }
+  .bannerSliderContainer .slick-track {
+    display: flex;
+  }
+  .bannerSliderContainer .slick-slide {
+    width: 100%;
+    flex-shrink: 0;
+  }
+  .bannerSliderContainer .slick-slide > div {
+    width: 100%;
+  }
+  .bannerSliderContainer .slick-prev.bannerArrow,
+  .bannerSliderContainer .slick-next.bannerArrow {
+    display: flex !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  .bannerArrow {
+    position: absolute !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    z-index: 20 !important;
+    cursor: pointer !important;
+    background-color: rgba(0, 0, 0, 0.4) !important;
+    border-radius: 50%;
+    width: 40px !important;
+    height: 40px !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  .bannerArrow::before {
+    color: #fff !important;
+    font-size: 20px !important;
+    opacity: 1 !important;
+  }
+  .bannerArrow:hover {
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+  .bannerArrow span {
+    line-height: 1;
+    user-select: none;
+  }
+  .bannerArrowPrev {
+    left: 20px;
+  }
+  .bannerArrowNext {
+    right: 20px;
+  }
+  @media only screen and (max-width: 768px) {
+    .bannerArrow {
+      width: 36px;
+      height: 36px;
+    }
+    .bannerArrowPrev {
+      left: 10px;
+    }
+    .bannerArrowNext {
+      right: 10px;
+    }
+    .bannerArrow span {
+      font-size: 20px !important;
+    }
+  }
   .itemGalleryContainer {
     overflow: hidden;
     position: relative
@@ -23,6 +98,7 @@
     left: 0;
     opacity: 0.2;
     background-color: #000;
+    z-index: 5;
   }
   .bannerTitle {
     color: #0f9a7e;
@@ -44,6 +120,7 @@
     top: 0;
     left: 0;
     display: flex;
+    z-index: 10;
   }
 
   .cardContainer{
@@ -86,17 +163,17 @@
 
   .topDestinationContainer{
     font-size: 32px;
-    text-transform: uppercase;
     text-align: center;
     font-weight: 500;
+    margin-top: 56px;
+    margin-bottom: 24px;
   }
   .phuotBlogContainer{
     background-color: #666;
     font-size: 24px;
-    text-transform: uppercase;
     font-weight: bold;
-    margin-top: 0;
-    margin-bottom: 0;
+    margin-top: 56px;
+    margin-bottom: 24px;
     min-height: 40px;
     display: flex;
     align-items: center;
@@ -148,4 +225,51 @@
   .adsImage{
     width: 100%;
     cursor: pointer;
+  }
+
+  .uuDaiTrongThangSlider .uuDaiSlideItem{
+    padding: 0 8px;
+  }
+
+  .uuDaiTrongThangSlider .uuDaiSlideItem a{
+    position: relative;
+    display: block;
+    width: 100%;
+    padding-bottom: 100%;
+  }
+
+  .uuDaiTrongThangSlider .uuDaiSlideItem img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  }
+
+  .uuDaiTrongThangSlider .slick-prev,
+  .uuDaiTrongThangSlider .slick-next{
+    width: 30px !important;
+    height: 30px !important;
+  }
+
+  .diemDenYeuThichTrongNuocRow{
+    margin-left: -12px;
+    margin-right: -12px;
+    justify-content: center;
+  }
+
+  .diemDenYeuThichTrongNuocItem{
+    padding: 0 12px;
+    flex: 0 0 33.3333%;
+    max-width: 33.3333%;
+  }
+
+  .diemDenYeuThichTrongNuocItem img{
+    width: 100%;
+    height: 210px;
+    object-fit: cover;
+    border-radius: 6px;
   }

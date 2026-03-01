@@ -268,20 +268,74 @@ class Home extends SuperComponent {
   }
   getBannerImageList() {
     return [
-      {
-        original: "/static/images/banner/home.jpg",
-        renderItem: this.renderItemGaleryImage.bind(this),
-      },
+      "/static/images/banner/home.jpg",
+      "/static/images/banner/home_01.jpg",
+      "/static/images/banner/home_02.jpg",
+      "/static/images/banner/home_03.jpg",
     ];
   }
+  
   renderBanner() {
-    // let imageGaleryList = this.getBannerImageList();
+    const bannerImages = this.getBannerImageList();
+    
+    if (!common.checkServer()) {
+      console.log('Banner images:', bannerImages);
+    }
+    
+    const BannerPrevArrow = (props) => {
+      const { className, style, onClick } = props;
+      return (
+        <div
+          className={className + " bannerArrow bannerArrowPrev"}
+          style={{ ...style, display: "block" }}
+          onClick={onClick}
+        />
+      );
+    };
+    
+    const BannerNextArrow = (props) => {
+      const { className, style, onClick } = props;
+      return (
+        <div
+          className={className + " bannerArrow bannerArrowNext"}
+          style={{ ...style, display: "block" }}
+          onClick={onClick}
+        />
+      );
+    };
+    
+    const sliderSettings = {
+      dots: false,
+      infinite: bannerImages.length > 1,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      autoplay: bannerImages.length > 1,
+      autoplaySpeed: 5000,
+      pauseOnHover: true,
+      prevArrow: <BannerPrevArrow />,
+      nextArrow: <BannerNextArrow />,
+      adaptiveHeight: false,
+      lazyLoad: false,
+      swipeToSlide: true,
+      arrows: bannerImages.length > 1,
+    };
+    
     return (
       <div className="posRelative mgTop15Negative">
-        <div className="itemGalleryContainer">
-          <div>
-            <img src={"/static/images/banner/home.jpg"} />
-          </div>
+        <div className="bannerSliderContainer">
+          <Slider {...sliderSettings}>
+            {bannerImages.map((imageSrc, index) => (
+              <div key={index} className="itemGalleryContainer">
+                <div>
+                  <img 
+                    src={imageSrc} 
+                    alt={`Banner ${index + 1}`}
+                  />
+                </div>
+              </div>
+            ))}
+          </Slider>
         </div>
         <div className="homeGlass" />
         <div className="bannerContainer">
@@ -380,6 +434,12 @@ class Home extends SuperComponent {
         </div>
       </a>
     );
+  }
+  getRectanglePhotoUrl(photoUrl, width = 400, height = 250) {
+    if (!photoUrl) {
+      return photoUrl;
+    }
+    return photoUrl.replace("s0x0", `s${width}xs${height}`);
   }
   renderData() {
     // this.props.initPropsData.topList = {
@@ -628,21 +688,22 @@ class Home extends SuperComponent {
                 {config.topList.uuDaiTrongThang.name}
               </h2>
               <Slider
+                className="uuDaiTrongThangSlider"
                 infinite={true}
                 speed={500}
                 slidesToShow={Math.min(
-                  5,
-                  Math.floor(common.getViewportWidth() / 100)
+                  6,
+                  Math.floor(common.getViewportWidth() / 150)
                 )}
                 slidesToScroll={1}
-                rows={2}
+                rows={1}
                 prevArrow={<SlickPrevArrow />}
                 nextArrow={<SlickNextArrow />}
               >
                 {this.props.initPropsData.topList[
                   config.topList.uuDaiTrongThang.id
                 ].data.map((topListUrl, idx) => (
-                  <div>
+                  <div key={idx} className="uuDaiSlideItem">
                     <ImageLink {...topListUrl} />
                   </div>
                 ))}
@@ -656,71 +717,69 @@ class Home extends SuperComponent {
           ] &&
           this.props.initPropsData.topList[
             config.topList.diemDenYeuThichTrongNuoc.id
-          ].data && (
+          ].data &&
+          this.props.initPropsData.topList[
+            config.topList.diemDenYeuThichTrongNuoc.id
+          ].data.length > 0 && (
             <div className="pageSmallWidth">
               <h2 className="topDestinationContainer">
                 {config.topList.diemDenYeuThichTrongNuoc.name}
               </h2>
-              <div className="displayFlex flexWrapWrap">
+              <div className="displayFlex diemDenYeuThichTrongNuocRow">
                 {this.props.initPropsData.topList[
                   config.topList.diemDenYeuThichTrongNuoc.id
-                ].data[0] && (
-                  <div
-                    className={
-                      common.getViewportWidth() < 400 ? "width100" : "width40"
-                    }
-                  >
-                    <ImageLink
-                      {...this.props.initPropsData.topList[
-                        config.topList.diemDenYeuThichTrongNuoc.id
-                      ].data[0]}
-                    />
-                  </div>
-                )}
-                <div
-                  className={`displayFlex flexWrapWrap ${
-                    common.getViewportWidth() < 300
-                      ? "width100"
-                      : common.getViewportWidth() < 400
-                      ? "width66"
-                      : "width40"
-                  }`}
-                >
-                  {[1, 2, 3, 4].map(
-                    (fieldIdx) =>
-                      this.props.initPropsData.topList[
-                        config.topList.diemDenYeuThichTrongNuoc.id
-                      ].data[fieldIdx] && (
-                        <div key={fieldIdx} className={"width50"}>
-                          <ImageLink
-                            {...this.props.initPropsData.topList[
-                              config.topList.diemDenYeuThichTrongNuoc.id
-                            ].data[fieldIdx]}
-                          />
-                        </div>
-                      )
-                  )}
-                </div>
-                <div
-                  className={
-                    common.getViewportWidth() < 300
-                      ? "width100"
-                      : common.getViewportWidth() < 400
-                      ? "width33"
-                      : "width20"
-                  }
-                >
-                  {this.props.initPropsData.topList[
-                    config.topList.diemDenYeuThichTrongNuoc.id
-                  ].data[5] && (
-                    <ImageLink
-                      {...this.props.initPropsData.topList[
-                        config.topList.diemDenYeuThichTrongNuoc.id
-                      ].data[5]}
-                    />
-                  )}
-                </div>
+                ].data
+                  .slice(0, 3)
+                  .map((item, index) => (
+                    <div
+                      key={index}
+                      className="diemDenYeuThichTrongNuocItem"
+                    >
+                      <ImageLink
+                        {...item}
+                        photoUrl={this.getRectanglePhotoUrl(item.photoUrl)}
+                      />
+                    </div>
+                  ))}
               </div>
+            </div>
+          )}
+
+        {this.props.initPropsData.topList &&
+          this.props.initPropsData.topList[
+            config.topList.cacHoatDongNoiBat.id
+          ] &&
+          this.props.initPropsData.topList[
+            config.topList.cacHoatDongNoiBat.id
+          ].data &&
+          this.props.initPropsData.topList[
+            config.topList.cacHoatDongNoiBat.id
+          ].data.length > 0 && (
+            <div className="pageSmallWidth">
+              <h2 className="topDestinationContainer">
+                {config.topList.cacHoatDongNoiBat.name}
+              </h2>
+              <Slider
+                className="uuDaiTrongThangSlider"
+                infinite={true}
+                speed={500}
+                slidesToShow={Math.min(
+                  6,
+                  Math.floor(common.getViewportWidth() / 150)
+                )}
+                slidesToScroll={1}
+                rows={1}
+                prevArrow={<SlickPrevArrow />}
+                nextArrow={<SlickNextArrow />}
+              >
+                {this.props.initPropsData.topList[
+                  config.topList.cacHoatDongNoiBat.id
+                ].data.map((topListUrl, idx) => (
+                  <div key={idx} className="uuDaiSlideItem">
+                    <ImageLink {...topListUrl} />
+                  </div>
+                ))}
+              </Slider>
             </div>
           )}
 
